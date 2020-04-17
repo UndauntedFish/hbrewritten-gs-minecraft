@@ -1,0 +1,10 @@
+# Default gameserver world name
+gameserverworldname: HBR01
+
+# Database setup
+host: localhost
+port: 3306
+database: thehb_rewritten
+table: player
+username: root
+password:

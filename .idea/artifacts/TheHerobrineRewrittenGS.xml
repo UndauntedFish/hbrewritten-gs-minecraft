@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="TheHerobrineRewrittenGS">
+    <output-path>$PROJECT_DIR$/../Desktop/Bungee Playground/LOB01/plugins</output-path>
+    <root id="archive" name="TheHerobrineRewrittenGS.jar">
+      <element id="module-output" name="TheHBRewrittenGS" />
+    </root>
+  </artifact>
+</component>
