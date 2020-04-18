@@ -20,6 +20,8 @@ public class Main extends JavaPlugin
 
     // Database setup class used to send queries. Used throughout all classes.
     private HikariDataSource hikari;
+    private String host, database, username, password;
+    private int port;
 
     @Override
     public void onEnable()
@@ -28,21 +30,19 @@ public class Main extends JavaPlugin
         instance = this;
 
         // Hikari Database Connection Setup
+        host = this.getConfig().getString("host");
+        port = this.getConfig().getInt("port");
+        database = this.getConfig().getString("database");
+        username = this.getConfig().getString("username");
+        password = this.getConfig().getString("password");
+
         hikari = new HikariDataSource();
-        hikari.setDataSourceClassName("org.mariadb.jdbc.MySQLDataSource");
-        hikari.addDataSourceProperty("serverName", this.getConfig().getString("host"));
-        hikari.addDataSourceProperty("port", this.getConfig().getInt("port"));
-        hikari.addDataSourceProperty("databaseName", this.getConfig().getString("database"));
-        hikari.addDataSourceProperty("user", this.getConfig().getString("username"));
-        if (!this.getConfig().getString("password").equals(null))
-        {
-            hikari.addDataSourceProperty("password", this.getConfig().getString("password"));
-        }
-        else
-        {
-            Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "[HBRgs] You forgot to set the password!");
-            this.getPluginLoader().disablePlugin(this);
-        }
+        hikari.setDataSourceClassName("com.mysql.jdbc.jdbc2.optional.MysqlDataSource");
+        hikari.addDataSourceProperty("serverName", host);
+        hikari.addDataSourceProperty("port", port);
+        hikari.addDataSourceProperty("databaseName", database);
+        hikari.addDataSourceProperty("user", username);
+        hikari.addDataSourceProperty("password", password);
 
         // Eventhandler registration
         Bukkit.getPluginManager().registerEvents(new AsyncPlayerDataLoader(), this);

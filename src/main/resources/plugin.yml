@@ -1,6 +1,6 @@
 name: HBRewrittenGS
 version: ${project.version}
-main: hbrewrittengs.hbrewrittengs.HBRewrittenGS
-api-version: 1.13
+main: com.ben.hbrewrittengs.Main
+api-version: 1.15
 authors: [UndauntedPhish]
 description: The gameserver plugin of The Herobrine Rewritten

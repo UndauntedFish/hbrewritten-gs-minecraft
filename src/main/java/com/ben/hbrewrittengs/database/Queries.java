@@ -11,7 +11,7 @@ import java.sql.SQLException;
 
 public class Queries
 {
-    // Retrieve's the player's points from the database and stores it in PlayerData.
+    // Retrieve's the player's points from the database and stores it in PlayerData. Returns true if the data was loaded.
     public static void loadPointsIntoPlayerData(PlayerData pd)
     {
         Bukkit.getScheduler().runTaskAsynchronously(Main.getInstance(), new Runnable()
@@ -28,7 +28,7 @@ public class Queries
                     Connection connection = Main.getInstance().getHikari().getConnection();
 
                     PreparedStatement ps = connection.prepareStatement(sql);
-                    ps.setString(0, pd.getUUID().toString());
+                    ps.setString(1, pd.getUUID().toString());
                     ResultSet rs = ps.executeQuery();
                     if (rs.next())
                     {

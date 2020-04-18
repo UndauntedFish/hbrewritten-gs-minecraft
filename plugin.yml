@@ -1,6 +1,0 @@
-name: TheHerobrineRewrittenGS
-author: UndauntedPhish
-version: 0.1
-api-version: 1.15
-main: com.ben.hbrewrittengs.Main
-description: Recreation of The Herobrine minigame that used to exist on the Hive server (gameserver plugin).
