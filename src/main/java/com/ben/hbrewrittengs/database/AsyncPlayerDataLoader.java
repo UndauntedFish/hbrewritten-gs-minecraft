@@ -51,6 +51,6 @@ public class AsyncPlayerDataLoader implements Listener
 				pd.setDataLoaded(true);
 				pd.setRank(Rank.setRankFromPoints(pd.getPoints()));
 			}
-		}, 100L); // L = ticks. 100 ticks.
+		}, 10L); // L = ticks. 10 ticks.
 	}
 }

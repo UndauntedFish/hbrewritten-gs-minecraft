@@ -1,11 +1,15 @@
 package com.ben.hbrewrittengs.classes;
 
 import com.ben.hbrewrittengs.enums.ClassData;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Paladin implements BaseClass
 {
@@ -16,9 +20,15 @@ public class Paladin implements BaseClass
 	// Weapons and Items
 	private static ItemStack paladinsMight, protSpirit, notchsWisdom;
 	private static ItemMeta paladinsMightMeta, protSpiritMeta;
+	private static List<String> paladinsMightLore = new ArrayList<>(), protSpiritLore = new ArrayList<>();
 	
 	public static void giveClass(Player player)
 	{
+		/* LORES */
+		paladinsMightLore.add("The might of the paladins!");
+		protSpiritLore.add("The spirit of protection empowers you!");
+
+		/* ITEMS */
 		// Armor
 		helmet = new ItemStack(Material.LEATHER_HELMET);
 		helmetMeta = (LeatherArmorMeta) helmet.getItemMeta();
@@ -31,12 +41,14 @@ public class Paladin implements BaseClass
 		// Weapons and Items
 		paladinsMight = new ItemStack(Material.IRON_SWORD);
 		paladinsMightMeta = paladinsMight.getItemMeta();
-		paladinsMightMeta.setDisplayName("Paladin's Might");
+		paladinsMightMeta.setDisplayName(ChatColor.YELLOW + "Paladin's Might");
+		paladinsMightMeta.setLore(paladinsMightLore);
 		paladinsMight.setItemMeta(paladinsMightMeta);
 
 		protSpirit = new ItemStack(Material.ENDER_PEARL, 3);
 		protSpiritMeta = protSpirit.getItemMeta();
-		protSpiritMeta.setDisplayName("Protection Spirit");
+		protSpiritMeta.setDisplayName(ChatColor.WHITE + "Protection " + ChatColor.BOLD + "Spirit");
+		protSpiritMeta.setLore(protSpiritLore);
 		protSpirit.setItemMeta(protSpiritMeta);
 
 		notchsWisdom = CommonItems.getNotchsWisdom(3);
@@ -48,5 +60,6 @@ public class Paladin implements BaseClass
 		player.getInventory().setItem(0, paladinsMight);
 		player.getInventory().setItem(1, protSpirit);
 		player.getInventory().setItem(2, notchsWisdom);
+		player.getInventory().setItem(8, CommonItems.getObjectiveLocator());
 	}
 }
