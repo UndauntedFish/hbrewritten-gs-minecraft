@@ -14,13 +14,13 @@ public class PlayerData
 	
 	private int points;
 	private Rank rank;
-	private boolean allowChat; // There is a .5s chat delay. This will be true .5s after the player joins.
+	private boolean hasDataLoaded; // There is a .5s chat delay. This will be true .5s after the player joins.
 	
 	public PlayerData(UUID uuid)
 	{
 		this.uuid = uuid;
 		this.rank = Rank.setRankFromPoints(points);
-		this.allowChat = false;
+		this.hasDataLoaded = false;
 	}
 	
 	public UUID getUUID()
@@ -53,13 +53,13 @@ public class PlayerData
 		this.rank = rank;
 	}
 
-	public void setAllowedChat(boolean allowChat)
+	public void setDataLoaded(boolean hasDataLoaded)
 	{
-		this.allowChat = allowChat;
+		this.hasDataLoaded = hasDataLoaded;
 	}
 
-	public boolean isAllowedChat()
+	public boolean hasDataLoaded()
 	{
-		return allowChat;
+		return hasDataLoaded;
 	}
 }

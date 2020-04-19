@@ -26,8 +26,6 @@ public class AsyncPlayerDataLoader implements Listener
 
 		PlayerData pd = new PlayerData(uuid);
 		Queries.loadPointsIntoPlayerData(pd);
-		int points = pd.getPoints();
-		pd.setRank(Rank.setRankFromPoints(points));
 
 		if (Main.getInstance().playerDataMap.containsKey(uuid))
 		{
@@ -52,30 +50,9 @@ public class AsyncPlayerDataLoader implements Listener
 		{
 			public void run()
 			{
-				pd.setAllowedChat(true);
-				player.sendMessage("Your uuid is: " + pd.getUUID());
-				player.sendMessage("Your points are: " + pd.getPoints());
-				player.sendMessage("Your rank is: " + pd.getRank().getDisplayName());
+				pd.setDataLoaded(true);
+				pd.setRank(Rank.setRankFromPoints(pd.getPoints()));
 			}
 		}, 100L); // L = ticks. 100 ticks.
-	}
-
-	// Checks if it has been 0.5s. Lets the player chat if it has, otherwise cancels the chat message.
-	@EventHandler
-	public void onPlayerChat(AsyncPlayerChatEvent e)
-	{
-		Player player = e.getPlayer();
-		UUID uuid = player.getUniqueId();
-		PlayerData pd;
-
-		if (Main.getInstance().playerDataMap.containsKey(uuid))
-		{
-			pd = Main.getInstance().playerDataMap.get(uuid);
-			if (!pd.isAllowedChat())
-			{
-				player.sendMessage(ChatColor.RED + "Please wait to chat after joining!");
-				e.setCancelled(true);
-			}
-		}
 	}
 }

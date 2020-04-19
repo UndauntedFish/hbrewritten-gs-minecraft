@@ -3,6 +3,7 @@ package com.ben.hbrewrittengs;
 import java.util.HashMap;
 import java.util.UUID;
 
+import com.ben.hbrewrittengs.listeners.CustomChatFormatListener;
 import com.zaxxer.hikari.HikariDataSource;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -46,6 +47,7 @@ public class Main extends JavaPlugin
 
         // Eventhandler registration
         Bukkit.getPluginManager().registerEvents(new AsyncPlayerDataLoader(), this);
+        Bukkit.getPluginManager().registerEvents(new CustomChatFormatListener(), this);
     }
 
     // Loads info from config.yml
