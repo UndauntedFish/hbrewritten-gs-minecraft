@@ -43,6 +43,7 @@ public class Paladin implements BaseClass
 		paladinsMightMeta = paladinsMight.getItemMeta();
 		paladinsMightMeta.setDisplayName(ChatColor.YELLOW + "Paladin's Might");
 		paladinsMightMeta.setLore(paladinsMightLore);
+		paladinsMightMeta.setUnbreakable(true);
 		paladinsMight.setItemMeta(paladinsMightMeta);
 
 		protSpirit = new ItemStack(Material.ENDER_PEARL, 3);

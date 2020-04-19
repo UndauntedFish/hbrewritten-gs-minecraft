@@ -11,9 +11,11 @@ import java.util.List;
 
 public class CommonItems
 {
-	private static ItemStack notchsWisdom, objLocator;
-	private static ItemMeta notchsWisdomMeta, objLocatorMeta;
-	private static List<String> notchsWisdomLore = new ArrayList<>(), objLocatorLore = new ArrayList<>();
+	private static ItemStack notchsWisdom, objLocator, bladeHeroism;
+	private static ItemMeta notchsWisdomMeta, objLocatorMeta, bladeHeroismMeta;
+	private static List<String> notchsWisdomLore = new ArrayList<>(),
+								objLocatorLore = new ArrayList<>(),
+								bladeHeroismLore = new ArrayList<>();
 	
 	public static ItemStack getNotchsWisdom(int amount)
 	{
@@ -45,5 +47,22 @@ public class CommonItems
 		objLocator.setItemMeta(objLocatorMeta);
 
 		return objLocator;
+	}
+
+	public static ItemStack getBladeOfHeroism()
+	{
+		/* LORE */
+		bladeHeroismLore.add("Only true heros hold the");
+		bladeHeroismLore.add("strength to use this sword.");
+
+		/* ITEM */
+		bladeHeroism = new ItemStack(Material.STONE_SWORD);
+		bladeHeroismMeta = bladeHeroism.getItemMeta();
+		bladeHeroismMeta.setDisplayName(ChatColor.YELLOW + "Blade of Heroism");
+		bladeHeroismMeta.setLore(bladeHeroismLore);
+		bladeHeroismMeta.setUnbreakable(true);
+		bladeHeroism.setItemMeta(bladeHeroismMeta);
+
+		return bladeHeroism;
 	}
 }
