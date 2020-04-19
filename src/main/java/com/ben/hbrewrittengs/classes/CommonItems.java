@@ -11,11 +11,13 @@ import java.util.List;
 
 public class CommonItems
 {
-	private static ItemStack notchsWisdom, objLocator, bladeHeroism;
-	private static ItemMeta notchsWisdomMeta, objLocatorMeta, bladeHeroismMeta;
+	private static ItemStack notchsWisdom, objLocator, bladeHeroism, dwBandage, woofless;
+	private static ItemMeta notchsWisdomMeta, objLocatorMeta, bladeHeroismMeta, dwBandageMeta, wooflessMeta;
 	private static List<String> notchsWisdomLore = new ArrayList<>(),
 								objLocatorLore = new ArrayList<>(),
-								bladeHeroismLore = new ArrayList<>();
+								bladeHeroismLore = new ArrayList<>(),
+								dwBandageLore = new ArrayList<>(),
+								wooflessLore = new ArrayList<>();
 	
 	public static ItemStack getNotchsWisdom(int amount)
 	{
@@ -64,5 +66,37 @@ public class CommonItems
 		bladeHeroism.setItemMeta(bladeHeroismMeta);
 
 		return bladeHeroism;
+	}
+
+	public static ItemStack getDreamweaverBandage(int amount)
+	{
+		/* LORE */
+		dwBandageLore.add("A quick heal, perfect for");
+		dwBandageLore.add("sticky situations.");
+
+		/* ITEM */
+		dwBandage = new ItemStack(Material.MAGMA_CREAM, amount);
+		dwBandageMeta = dwBandage.getItemMeta();
+		dwBandageMeta.setDisplayName(ChatColor.YELLOW + "Dreamweaver Bandage");
+		dwBandageMeta.setLore(dwBandageLore);
+		dwBandage.setItemMeta(dwBandageMeta);
+
+		return dwBandage;
+	}
+
+	public static ItemStack getSummonWoofless()
+	{
+		/* LORE */
+		wooflessLore.add("A furry friend. It gets");
+		wooflessLore.add("lonely out there!");
+
+		/* ITEM */
+		woofless = new ItemStack(Material.BONE);
+		wooflessMeta = woofless.getItemMeta();
+		wooflessMeta.setDisplayName(ChatColor.WHITE + "Summon Woofless");
+		wooflessMeta.setLore(wooflessLore);
+		woofless.setItemMeta(wooflessMeta);
+
+		return woofless;
 	}
 }

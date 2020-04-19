@@ -52,6 +52,7 @@ public class Archer implements BaseClass
         phoenixBowMeta = phoenixBow.getItemMeta();
         phoenixBowMeta.setDisplayName(ChatColor.LIGHT_PURPLE + "Phoenix Bow");
         phoenixBowMeta.setLore(phoenixBowLore);
+        phoenixBowMeta.setUnbreakable(true);
         phoenixBow.setItemMeta(phoenixBowMeta);
 
         eagleArrows = new ItemStack(Material.ARROW, 64);
@@ -64,6 +65,7 @@ public class Archer implements BaseClass
         hatchetOfWarMeta = hatchetOfWar.getItemMeta();
         hatchetOfWarMeta.setDisplayName(ChatColor.LIGHT_PURPLE + "Hatchet of War");
         hatchetOfWarMeta.setLore(hatchetOfWarLore);
+        hatchetOfWarMeta.setUnbreakable(true);
         hatchetOfWar.setItemMeta(hatchetOfWarMeta);
 
         // Setting items to the player's inventory slots

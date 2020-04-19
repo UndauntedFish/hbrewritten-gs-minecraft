@@ -1,18 +1,19 @@
 package com.ben.hbrewrittengs.enums;
 
+import org.bukkit.ChatColor;
 import org.bukkit.Color;
 
 public enum ClassData
 {
-    ARCHER   (Color.fromRGB(102, 127, 51), "Archer"),
-    PRIEST   (Color.fromRGB(255, 255, 255), "Priest"),
-    SCOUT    (Color.fromRGB(229, 229, 51), "Scout"),
-    WIZARD   (Color.fromRGB(127, 63, 178), "Wizard"),
-    DEMO     (Color.BLACK, "Demo"),
-    MAGE     (Color.fromRGB(102, 153, 216), "Mage"),
-    PALADIN  (Color.fromRGB(216, 127, 51), "Paladin"),
-    SORCEROR (Color.fromRGB(153, 51, 51), "Sorceror"),
-    ASSASSIN (null, "Assassin"); // Assassin will have a player head, not a helmet.
+    ARCHER   (Color.fromRGB(102, 127, 51), ChatColor.YELLOW + "Archer"),
+    PRIEST   (Color.fromRGB(255, 255, 255), ChatColor.WHITE + "Priest"),
+    SCOUT    (Color.fromRGB(229, 229, 51), ChatColor.YELLOW + "Scout"),
+    WIZARD   (Color.fromRGB(127, 63, 178), ChatColor.LIGHT_PURPLE + "Wizard"),
+    DEMO     (Color.BLACK, ChatColor.GOLD + "Demo"),
+    MAGE     (Color.fromRGB(102, 153, 216), ChatColor.WHITE + "Mage"),
+    PALADIN  (Color.fromRGB(216, 127, 51), ChatColor.GOLD + "Paladin"),
+    SORCEROR (Color.fromRGB(153, 51, 51), ChatColor.RED + "Sorceror"),
+    ASSASSIN (null, ChatColor.GRAY + "Assassin"); // Assassin will have a player head, not a helmet.
 
     private final Color HELMETCOLOR;
     private final String NAME;
@@ -30,6 +31,6 @@ public enum ClassData
 
     public String getName()
     {
-        return NAME;
+        return NAME + ChatColor.RESET.toString();
     }
 }
