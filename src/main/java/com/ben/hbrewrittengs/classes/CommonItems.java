@@ -11,9 +11,9 @@ public class CommonItems
 	private static ItemStack notchsWisdom;
 	private static ItemMeta notchsWisdomMeta;
 	
-	public static ItemStack getNotchsWisdom()
+	public static ItemStack getNotchsWisdom(int amount)
 	{
-		notchsWisdom = new ItemStack(Material.BLAZE_POWDER);
+		notchsWisdom = new ItemStack(Material.BLAZE_POWDER, amount);
 		notchsWisdomMeta = notchsWisdom.getItemMeta();
 		notchsWisdomMeta.setDisplayName(ChatColor.GOLD + "Notch's Wisdom");
 		notchsWisdom.setItemMeta(notchsWisdomMeta);

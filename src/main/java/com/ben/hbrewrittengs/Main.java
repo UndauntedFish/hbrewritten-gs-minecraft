@@ -1,17 +1,14 @@
 package com.ben.hbrewrittengs;
 
-import java.util.HashMap;
-import java.util.UUID;
-
+import com.ben.hbrewrittengs.database.AsyncPlayerDataLoader;
 import com.ben.hbrewrittengs.listeners.CustomChatFormatListener;
+import com.ben.hbrewrittengs.listeners.EggThrowListener;
 import com.zaxxer.hikari.HikariDataSource;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import com.ben.hbrewrittengs.database.AsyncPlayerDataLoader;
-
-import javax.sql.DataSource;
+import java.util.HashMap;
+import java.util.UUID;
 
 public class Main extends JavaPlugin
 {
@@ -48,6 +45,7 @@ public class Main extends JavaPlugin
         // Eventhandler registration
         Bukkit.getPluginManager().registerEvents(new AsyncPlayerDataLoader(), this);
         Bukkit.getPluginManager().registerEvents(new CustomChatFormatListener(), this);
+        Bukkit.getPluginManager().registerEvents(new EggThrowListener(), this);
     }
 
     // Loads info from config.yml

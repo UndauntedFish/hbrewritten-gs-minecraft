@@ -1,12 +1,8 @@
 package com.ben.hbrewrittengs;
 
-import java.util.UUID;
-
-import com.ben.hbrewrittengs.database.Queries;
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
-
 import com.ben.hbrewrittengs.enums.Rank;
+
+import java.util.UUID;
 
 public class PlayerData
 {

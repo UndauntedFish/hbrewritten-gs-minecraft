@@ -1,19 +1,17 @@
 package com.ben.hbrewrittengs.database;
 
-import java.util.UUID;
-
 import com.ben.hbrewrittengs.Main;
+import com.ben.hbrewrittengs.PlayerData;
 import com.ben.hbrewrittengs.enums.Rank;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.AsyncPlayerPreLoginEvent;
-
-import com.ben.hbrewrittengs.PlayerData;
 import org.bukkit.event.player.PlayerJoinEvent;
+
+import java.util.UUID;
 
 public class AsyncPlayerDataLoader implements Listener
 {

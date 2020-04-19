@@ -4,6 +4,6 @@ import org.bukkit.entity.Player;
 
 public interface BaseClass
 {
-	public void setItemsInInventory(Player player);
-	public void setPlayer(Player player);
+	// Gives the player the items of a class.
+	public static void giveClass(Player player) {}
 }
