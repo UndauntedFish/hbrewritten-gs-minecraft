@@ -17,7 +17,7 @@ public class Paladin implements BaseClass
 	private static ItemStack helmet, chestplate, boots;
 	private static LeatherArmorMeta helmetMeta;
 
-	// Weapons and Items
+	// Weapons and Extras
 	private static ItemStack paladinsMight, protSpirit, notchsWisdom;
 	private static ItemMeta paladinsMightMeta, protSpiritMeta;
 	private static List<String> paladinsMightLore = new ArrayList<>(), protSpiritLore = new ArrayList<>();
@@ -38,7 +38,7 @@ public class Paladin implements BaseClass
 		chestplate = new ItemStack(Material.CHAINMAIL_CHESTPLATE);
 		boots = new ItemStack(Material.CHAINMAIL_BOOTS);
 
-		// Weapons and Items
+		// Weapons and Extras
 		paladinsMight = new ItemStack(Material.IRON_SWORD);
 		paladinsMightMeta = paladinsMight.getItemMeta();
 		paladinsMightMeta.setDisplayName(ChatColor.YELLOW + "Paladin's Might");
