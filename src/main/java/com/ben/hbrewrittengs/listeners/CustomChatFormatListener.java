@@ -23,13 +23,6 @@ public class CustomChatFormatListener implements Listener
         {
             pd = Main.getInstance().playerDataMap.get(uuid);
 
-            // Checks if it has been 0.5s. Lets the player chat if it has, otherwise cancels the chat message.
-            if (!pd.hasDataLoaded())
-            {
-                player.sendMessage(ChatColor.RED + "Please wait to chat after joining!");
-                e.setCancelled(true);
-                return;
-            }
 
             // Sets chat format for the player
             String format = "<rank> " + ChatColor.BLUE + "<name> " + ChatColor.DARK_GRAY + "»" + "" + ChatColor.RESET + " <message>";

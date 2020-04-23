@@ -12,6 +12,7 @@ public class PlayerData
 	private Rank rank;
 	private boolean isHerobrine;
 	private String activeClass;
+	private Object class;
 
 	public PlayerData(UUID uuid)
 	{
@@ -58,6 +59,8 @@ public class PlayerData
 	public void setActiveClass(String myClass)
 	{
 		this.activeClass = myClass;
+
+
 	}
 
 	public int getTokens()

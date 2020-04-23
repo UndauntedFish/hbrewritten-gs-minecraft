@@ -114,5 +114,7 @@ public class CommonItems
 		blindGrenadeMeta.setDisplayName(name);
 		blindGrenadeMeta.setLore(blindGrenadeLore);
 		blindGrenade.setItemMeta(blindGrenadeMeta);
+
+		return blindGrenade;
 	}
 }

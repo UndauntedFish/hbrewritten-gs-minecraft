@@ -50,7 +50,7 @@ public class Wizard implements BaseClass
         elixirSpeedMeta.setBasePotionData(new PotionData(PotionType.SPEED, false, false));
         elixirSpeed.setItemMeta(elixirSpeedMeta);
 
-        elixirStrength = new ItemStack(Material.ARROW, 64);
+        elixirStrength = new ItemStack(Material.SPLASH_POTION);
         elixirStrengthMeta = (PotionMeta) elixirStrength.getItemMeta();
         elixirStrengthMeta.setDisplayName(ChatColor.YELLOW.toString() + ChatColor.BOLD + "Elixir: " + ChatColor.RESET.toString() + ChatColor.GOLD + "Strength");
         elixirStrengthMeta.setLore(elixirStrengthLore);

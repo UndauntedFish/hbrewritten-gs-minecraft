@@ -2,7 +2,6 @@ package com.ben.hbrewrittengs.listeners;
 
 import com.ben.hbrewrittengs.Main;
 import com.ben.hbrewrittengs.PlayerData;
-import com.ben.hbrewrittengs.database.Queries;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -19,13 +18,7 @@ public class PlayerLeaveListener implements Listener
 		Player player = e.getPlayer();
 		UUID uuid = player.getUniqueId();
 		PlayerData pd = Main.getInstance().playerDataMap.get(uuid);
-
-		if (pd.isHerobrine())
-		{
-			Queries.removeHBPass(uuid);
-			pd.setHerobrine(false);
-		}
-		
+		// set herobrine to false in db here if player is hb
 		Main.getInstance().playerDataMap.remove(pd);
 		e.setLeaveMessage(null);
 	}
@@ -36,13 +29,7 @@ public class PlayerLeaveListener implements Listener
 		Player player = e.getPlayer();
 		UUID uuid = player.getUniqueId();
 		PlayerData pd = Main.getInstance().playerDataMap.get(uuid);
-
-		if (pd.isHerobrine())
-		{
-			Queries.removeHBPass(uuid);
-			pd.setHerobrine(false);
-		}
-
+		// set herobrine to false in db here if player is hb
 		Main.getInstance().playerDataMap.remove(pd);
 		e.setQuitMessage(null);
 	}

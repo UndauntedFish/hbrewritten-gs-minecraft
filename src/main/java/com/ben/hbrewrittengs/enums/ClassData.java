@@ -33,4 +33,5 @@ public enum ClassData
     {
         return NAME + ChatColor.RESET.toString();
     }
+
 }

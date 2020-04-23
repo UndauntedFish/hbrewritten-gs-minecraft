@@ -49,7 +49,7 @@ public class Scout implements BaseClass
         // Weapons and Extras
         handcraftedBow = new ItemStack(Material.BOW);
         handcraftedBowMeta = handcraftedBow.getItemMeta();
-        handcraftedBowMeta.setDisplayName(ChatColor.LIGHT_PURPLE + "Phoenix Bow");
+        handcraftedBowMeta.setDisplayName(ChatColor.WHITE + "Handcrafted Bow");
         handcraftedBowMeta.setLore(handcraftedBowLore);
         handcraftedBowMeta.setUnbreakable(true);
         handcraftedBow.setItemMeta(handcraftedBowMeta);
