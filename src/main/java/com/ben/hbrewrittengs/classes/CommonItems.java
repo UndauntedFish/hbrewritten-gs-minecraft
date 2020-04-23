@@ -11,13 +11,16 @@ import java.util.List;
 
 public class CommonItems
 {
-	private static ItemStack notchsWisdom, objLocator, bladeHeroism, dwBandage, woofless;
-	private static ItemMeta notchsWisdomMeta, objLocatorMeta, bladeHeroismMeta, dwBandageMeta, wooflessMeta;
+	private static ItemStack notchsWisdom, objLocator, bladeHeroism, dwBandage,
+			woofless, blindGrenade;
+	private static ItemMeta notchsWisdomMeta, objLocatorMeta, bladeHeroismMeta, dwBandageMeta,
+			wooflessMeta, blindGrenadeMeta;
 	private static List<String> notchsWisdomLore = new ArrayList<>(),
 								objLocatorLore = new ArrayList<>(),
 								bladeHeroismLore = new ArrayList<>(),
 								dwBandageLore = new ArrayList<>(),
-								wooflessLore = new ArrayList<>();
+								wooflessLore = new ArrayList<>(),
+								blindGrenadeLore = new ArrayList<>();
 	
 	public static ItemStack getNotchsWisdom(int amount)
 	{
@@ -98,5 +101,18 @@ public class CommonItems
 		woofless.setItemMeta(wooflessMeta);
 
 		return woofless;
+	}
+
+	public static ItemStack getBlindingGrenade(int amount, String name)
+	{
+		/* LORE */
+		blindGrenadeLore.add("Blinds those it hits for 3 seconds.");
+
+		/* ITEM */
+		blindGrenade = new ItemStack(Material.GOLD_NUGGET, amount);
+		blindGrenadeMeta = blindGrenade.getItemMeta();
+		blindGrenadeMeta.setDisplayName(name);
+		blindGrenadeMeta.setLore(blindGrenadeLore);
+		blindGrenade.setItemMeta(blindGrenadeMeta);
 	}
 }

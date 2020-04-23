@@ -13,7 +13,7 @@ public enum ClassData
     MAGE     (Color.fromRGB(102, 153, 216), ChatColor.WHITE + "Mage"),
     PALADIN  (Color.fromRGB(216, 127, 51), ChatColor.GOLD + "Paladin"),
     SORCERER (Color.fromRGB(153, 51, 51), ChatColor.RED + "Sorceror"),
-    ASSASSIN (null, ChatColor.GRAY + "Assassin"); // Assassin will have a player head, not a helmet.
+    ASSASSIN (Color.fromRGB(64, 64, 64), ChatColor.GRAY + "Assassin"); // Assassin will have a player head, not a helmet.
 
     private final Color HELMETCOLOR;
     private final String NAME;

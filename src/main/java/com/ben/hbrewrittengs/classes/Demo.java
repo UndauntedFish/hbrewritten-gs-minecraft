@@ -18,16 +18,14 @@ public class Demo implements BaseClass
     private static LeatherArmorMeta helmetMeta;
 
     // Weapons and Extras
-    private static ItemStack heGrenade, blindGrenade;
-    private static ItemMeta heGrenadeMeta, blindGrenadeMeta;
-    private static List<String> heGrenadeLore = new ArrayList<>(),
-                                blindGrenadeLore = new ArrayList<>();
+    private static ItemStack heGrenade;
+    private static ItemMeta heGrenadeMeta;
+    private static List<String> heGrenadeLore = new ArrayList<>();
 
     public static void giveClass(Player player)
     {
         /* LORES */
         heGrenadeLore.add("Goes KABOOM 4 seconds after it's thrown");
-        blindGrenadeLore.add("Blinds those it hits for 3 seconds.");
 
         /* ITEMS */
 
@@ -47,19 +45,13 @@ public class Demo implements BaseClass
         heGrenadeMeta.setUnbreakable(true);
         heGrenade.setItemMeta(heGrenadeMeta);
 
-        blindGrenade = new ItemStack(Material.GOLD_NUGGET, 5);
-        blindGrenadeMeta = blindGrenade.getItemMeta();
-        blindGrenadeMeta.setDisplayName(ChatColor.GRAY + "Blinding Grenade");
-        blindGrenadeMeta.setLore(blindGrenadeLore);
-        blindGrenade.setItemMeta(blindGrenadeMeta);
-
         // Setting items to the player's inventory slots
         player.getInventory().setHelmet(helmet);
         player.getInventory().setChestplate(chestplate);
         player.getInventory().setBoots(boots);
         player.getInventory().setItem(0, CommonItems.getBladeOfHeroism());
         player.getInventory().setItem(1, heGrenade);
-        player.getInventory().setItem(2, blindGrenade);
+        player.getInventory().setItem(2, CommonItems.getBlindingGrenade(5, ChatColor.GRAY + "Blinding Grenade"));
         player.getInventory().setItem(8, CommonItems.getObjectiveLocator());
     }
 }
