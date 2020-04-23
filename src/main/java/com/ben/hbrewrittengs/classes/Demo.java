@@ -21,7 +21,7 @@ public class Demo implements BaseClass
     private static ItemStack heGrenade, blindGrenade;
     private static ItemMeta heGrenadeMeta, blindGrenadeMeta;
     private static List<String> heGrenadeLore = new ArrayList<>(),
-                                blindGrenadeLore = new ArrayList<>(),
+                                blindGrenadeLore = new ArrayList<>();
 
     public static void giveClass(Player player)
     {

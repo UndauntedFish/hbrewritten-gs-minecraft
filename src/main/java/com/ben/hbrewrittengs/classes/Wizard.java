@@ -60,6 +60,7 @@ public class Wizard implements BaseClass
         // Setting items to the player's inventory slots
         player.getInventory().setHelmet(helmet);
         player.getInventory().setChestplate(chestplate);
+        player.getInventory().setLeggings(leggings);
         player.getInventory().setBoots(boots);
         player.getInventory().setItem(0, CommonItems.getBladeOfHeroism());
         player.getInventory().setItem(1, elixirSpeed);
