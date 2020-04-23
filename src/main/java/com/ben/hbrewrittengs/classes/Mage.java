@@ -46,7 +46,7 @@ public class Mage implements BaseClass
         // Armor
         helmet = new ItemStack(Material.LEATHER_HELMET);
         helmetMeta = (LeatherArmorMeta) helmet.getItemMeta();
-        helmetMeta.setColor(ClassData.SCOUT.getHelmetColor());
+        helmetMeta.setColor(ClassData.MAGE.getHelmetColor());
         helmet.setItemMeta(helmetMeta);
         chestplate = new ItemStack(Material.LEATHER_CHESTPLATE);
         leggings = new ItemStack(Material.LEATHER_LEGGINGS);
