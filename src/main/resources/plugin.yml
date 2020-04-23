@@ -4,3 +4,7 @@ main: com.ben.hbrewrittengs.Main
 api-version: 1.15
 authors: [UndauntedPhish]
 description: The gameserver plugin of The Herobrine Rewritten
+commands:
+  class:
+    description: Get a class.
+

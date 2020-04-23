@@ -3,6 +3,8 @@ package com.ben.hbrewrittengs;
 import com.ben.hbrewrittengs.database.AsyncPlayerDataLoader;
 import com.ben.hbrewrittengs.listeners.CustomChatFormatListener;
 import com.ben.hbrewrittengs.listeners.EggThrowListener;
+import com.ben.hbrewrittengs.listeners.PlayerJoinListener;
+import com.ben.hbrewrittengs.listeners.PlayerLeaveListener;
 import com.zaxxer.hikari.HikariDataSource;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -46,6 +48,11 @@ public class Main extends JavaPlugin
         Bukkit.getPluginManager().registerEvents(new AsyncPlayerDataLoader(), this);
         Bukkit.getPluginManager().registerEvents(new CustomChatFormatListener(), this);
         Bukkit.getPluginManager().registerEvents(new EggThrowListener(), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerJoinListener(), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerLeaveListener(), this);
+
+        // Command registration
+        getCommand("class").setExecutor(new ClassCommand());
     }
 
     // Loads info from config.yml

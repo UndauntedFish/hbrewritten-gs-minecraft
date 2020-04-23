@@ -15,12 +15,12 @@ public class Priest implements BaseClass
     public static void giveClass(Player player)
     {
         /* ITEMS */
+
         // Armor
         helmet = new ItemStack(Material.LEATHER_HELMET);
         helmetMeta = (LeatherArmorMeta) helmet.getItemMeta();
         helmetMeta.setColor(ClassData.PRIEST.getHelmetColor());
         helmet.setItemMeta(helmetMeta);
-
         chestplate = new ItemStack(Material.LEATHER_CHESTPLATE);
         leggings = new ItemStack(Material.LEATHER_LEGGINGS);
         boots = new ItemStack(Material.LEATHER_BOOTS);

@@ -7,38 +7,39 @@ import java.util.UUID;
 public class PlayerData
 {
 	private UUID uuid;
-	
-	private int points;
+
+	private int points, tokens;
 	private Rank rank;
-	private boolean hasDataLoaded; // There is a .5s chat delay. This will be true .5s after the player joins.
-	
+	private boolean isHerobrine;
+	private String activeClass;
+
 	public PlayerData(UUID uuid)
 	{
 		this.uuid = uuid;
 		this.rank = Rank.setRankFromPoints(points);
-		this.hasDataLoaded = false;
+		this.isHerobrine = false;
 	}
-	
+
 	public UUID getUUID()
 	{
 		return uuid;
 	}
-	
+
 	public int getPoints()
 	{
 		return points;
 	}
-	
+
 	public void setPoints(int points)
 	{
 		this.points = points;
 	}
-	
+
 	public void incrementPointsBy(int addedPoints)
 	{
 		this.points += points;
 	}
-	
+
 	public Rank getRank()
 	{
 		return rank;
@@ -49,13 +50,34 @@ public class PlayerData
 		this.rank = rank;
 	}
 
-	public void setDataLoaded(boolean hasDataLoaded)
+	public String getActiveClass()
 	{
-		this.hasDataLoaded = hasDataLoaded;
+		return activeClass;
 	}
 
-	public boolean hasDataLoaded()
+	public void setActiveClass(String myClass)
 	{
-		return hasDataLoaded;
+		this.activeClass = myClass;
 	}
+
+	public int getTokens()
+	{
+		return tokens;
+	}
+
+	public void setTokens(int tokens)
+	{
+		this.tokens = tokens;
+	}
+
+	public boolean isHerobrine()
+	{
+		return isHerobrine;
+	}
+
+	public void setHerobrine(boolean isHerobrine)
+	{
+		this.isHerobrine = isHerobrine;
+	}
+
 }

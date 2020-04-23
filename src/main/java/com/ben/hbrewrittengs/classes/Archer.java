@@ -38,12 +38,12 @@ public class Archer implements BaseClass
         hatchetOfWarLore.add("metal axe.");
 
         /* ITEMS */
+
         // Armor
         helmet = new ItemStack(Material.LEATHER_HELMET);
         helmetMeta = (LeatherArmorMeta) helmet.getItemMeta();
         helmetMeta.setColor(ClassData.ARCHER.getHelmetColor());
         helmet.setItemMeta(helmetMeta);
-
         chestplate = new ItemStack(Material.CHAINMAIL_CHESTPLATE);
         boots = new ItemStack(Material.CHAINMAIL_BOOTS);
 

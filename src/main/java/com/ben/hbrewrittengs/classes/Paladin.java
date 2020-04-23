@@ -29,12 +29,12 @@ public class Paladin implements BaseClass
 		protSpiritLore.add("The spirit of protection empowers you!");
 
 		/* ITEMS */
+
 		// Armor
 		helmet = new ItemStack(Material.LEATHER_HELMET);
 		helmetMeta = (LeatherArmorMeta) helmet.getItemMeta();
 		helmetMeta.setColor(ClassData.PALADIN.getHelmetColor());
 		helmet.setItemMeta(helmetMeta);
-
 		chestplate = new ItemStack(Material.CHAINMAIL_CHESTPLATE);
 		boots = new ItemStack(Material.CHAINMAIL_BOOTS);
 

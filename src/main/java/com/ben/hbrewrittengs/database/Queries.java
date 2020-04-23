@@ -1,46 +1,86 @@
 package com.ben.hbrewrittengs.database;
 
-import com.ben.hbrewrittengs.Main;
-import com.ben.hbrewrittengs.PlayerData;
-import org.bukkit.Bukkit;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.UUID;
 
 public class Queries
 {
-    // Retrieve's the player's points from the database and stores it in PlayerData. Returns true if the data was loaded.
-    public static void loadPointsIntoPlayerData(PlayerData pd)
+    private static String getPoints = "SELECT points " +
+                                      "FROM hbstats " +
+                                      "WHERE uuid = ?";
+
+    private static String getActiveClass = "SELECT active_class " +
+                                           "FROM hbstats " +
+                                           "WHERE uuid = ?";
+
+    private static String isHerobrine = "SELECT is_herobrine " +
+                                        "FROM hbstats " +
+                                        "WHERE uuid = ?";
+
+    // Gets the player's current amount of points from the database
+    public static int getPoints(UUID uuid)
     {
-        Bukkit.getScheduler().runTaskAsynchronously(Main.getInstance(), new Runnable()
+        AsyncQuery query = new AsyncQuery(getPoints);
+        query.setString(1, uuid.toString());
+        ResultSet rs = query.execute();
+        try
         {
-            @Override
-            public void run()
+            while (rs.next())
             {
-                String sql = "SELECT points ";
-                sql += "FROM hbstats ";
-                sql += "WHERE uuid = ?";
+                return rs.getInt("points");
+            }
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return -42; // This means the player doesn't exist in the db. THIS SHOULD NEVER HAPPEN.
+    }
 
-                try
-                {
-                    Connection connection = Main.getInstance().getHikari().getConnection();
+    // Gets the player's current active class from the database.
+    // Output be formatted in all caps and with no color codes like "PALADIN"
+    public static String getActiveClass(UUID uuid)
+    {
+        AsyncQuery query = new AsyncQuery(getActiveClass);
+        query.setString(1, uuid.toString());
+        ResultSet rs = query.execute();
+        try
+        {
+            while (rs.next())
+            {
+                return rs.getString("active_class");
+            }
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
-                    PreparedStatement ps = connection.prepareStatement(sql);
-                    ps.setString(1, pd.getUUID().toString());
-                    ResultSet rs = ps.executeQuery();
-                    if (rs.next())
-                    {
-                        pd.setPoints(rs.getInt("points"));
-                    }
-                    rs.close();
-                }
-                catch (SQLException e)
+    // Returns the player's "is_herobrine" entry as is in the database.
+    // If it is true, that means the user used a herobrine pass.
+    public static boolean isHerobrine(UUID uuid)
+    {
+        AsyncQuery query = new AsyncQuery(isHerobrine);
+        query.setString(1, uuid.toString());
+        ResultSet rs = query.execute();
+        try
+        {
+            while (rs.next())
+            {
+                int result =  rs.getInt("is_herobrine");
+                if (result == 1)
                 {
-                    e.printStackTrace();
+                    return true;
                 }
             }
-        });
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return false;
     }
 }
