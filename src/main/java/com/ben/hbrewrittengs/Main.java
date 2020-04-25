@@ -1,13 +1,14 @@
 package com.ben.hbrewrittengs;
 
 import com.ben.hbrewrittengs.database.AsyncPlayerDataLoader;
-import com.ben.hbrewrittengs.listeners.CustomChatFormatListener;
-import com.ben.hbrewrittengs.listeners.PlayerJoinListener;
-import com.ben.hbrewrittengs.listeners.PlayerLeaveListener;
+import com.ben.hbrewrittengs.database.BaseFields;
+import com.ben.hbrewrittengs.listeners.*;
 import com.zaxxer.hikari.HikariDataSource;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -42,12 +43,24 @@ public class Main extends JavaPlugin
         hikari.addDataSourceProperty("databaseName", database);
         hikari.addDataSourceProperty("user", username);
         hikari.addDataSourceProperty("password", password);
+        try
+        {
+            BaseFields.connection = hikari.getConnection();
+        }
+        catch (SQLException e)
+        {
+            Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "[HBRgs] Unable to set basefields connection to Hikari connection!");
+            e.printStackTrace();
+        }
 
         // Eventhandler registration
         Bukkit.getPluginManager().registerEvents(new AsyncPlayerDataLoader(), this);
         Bukkit.getPluginManager().registerEvents(new CustomChatFormatListener(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerJoinListener(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerLeaveListener(), this);
+        Bukkit.getPluginManager().registerEvents(new ItemThrowListener(), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerDamagePlayerListener(), this);
+
 
         // Command registration
         getCommand("class").setExecutor(new ClassCommand());

@@ -1,7 +1,10 @@
 package com.ben.hbrewrittengs;
 
+import com.ben.hbrewrittengs.enums.ClassData;
 import com.ben.hbrewrittengs.enums.Rank;
+import org.bukkit.entity.Entity;
 
+import java.util.LinkedList;
 import java.util.UUID;
 
 public class PlayerData
@@ -11,8 +14,10 @@ public class PlayerData
 	private int points, tokens;
 	private Rank rank;
 	private boolean isHerobrine;
-	private String activeClass;
-	private Object class;
+	private ClassData activeClass;
+	public LinkedList<Entity> thrownSmokeScreens = new LinkedList<>(),
+							  thrownChemGrenades = new LinkedList<>(),
+							  thrownBlindGrenades = new LinkedList<>();
 
 	public PlayerData(UUID uuid)
 	{
@@ -51,16 +56,14 @@ public class PlayerData
 		this.rank = rank;
 	}
 
-	public String getActiveClass()
+	public ClassData getActiveClass()
 	{
 		return activeClass;
 	}
 
-	public void setActiveClass(String myClass)
+	public void setActiveClass(ClassData myClass)
 	{
 		this.activeClass = myClass;
-
-
 	}
 
 	public int getTokens()

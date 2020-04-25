@@ -1,7 +1,10 @@
-package com.ben.hbrewrittengs.classitems.assassin;
+package com.ben.hbrewrittengs.customitems.assassin;
 
+import com.ben.hbrewrittengs.Main;
+import com.ben.hbrewrittengs.PlayerData;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -31,5 +34,19 @@ public class SpectralDagger
     public ItemStack getItem()
     {
         return spectralDagger;
+    }
+
+    // Activates the spectral stab and deals double damage to herobrine. Listens to
+    public void spectralStab(Player stabber, Player stabbed)
+    {
+        PlayerData pdStabber = Main.getInstance().playerDataMap.get(stabber.getUniqueId());
+        PlayerData pdStabbed = Main.getInstance().playerDataMap.get(stabbed.getUniqueId());
+
+        if (!pdStabbed.isHerobrine())
+        {
+            return;
+        }
+
+        t
     }
 }

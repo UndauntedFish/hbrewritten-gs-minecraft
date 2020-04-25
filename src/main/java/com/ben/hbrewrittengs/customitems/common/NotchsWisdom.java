@@ -1,4 +1,4 @@
-package com.ben.hbrewrittengs.classitems.common;
+package com.ben.hbrewrittengs.customitems.common;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
