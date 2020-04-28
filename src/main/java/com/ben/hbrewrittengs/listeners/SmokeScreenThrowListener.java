@@ -45,7 +45,7 @@ public class SmokeScreenThrowListener implements Listener
                     if (!pd.activeCooldowns.isEmpty())
                     {
                         Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + "pd.activecooldiwns is NOT empty.");
-                        for (Iterator<BossBarCooldown> itr = pd.activeCooldowns.iterator(); itr.hasNext();)
+                        for (Iterator<BossBarCooldown> itr = pd.activeCooldowns.iterator(); itr.hasNext(); )
                         {
                             BossBarCooldown cooldown = itr.next();
                             if (cooldown.getPlayerUUID().equals(pd.getUUID()))
@@ -54,6 +54,7 @@ public class SmokeScreenThrowListener implements Listener
                                 {
                                     Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + "Removed expired cooldown.");
                                     itr.remove();
+                                    break;
                                 }
                                 else
                                 {
@@ -66,25 +67,22 @@ public class SmokeScreenThrowListener implements Listener
                         }
 
                     }
-                    else
-                    {
-                        Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + "Initiating throw sequence.");
+                    Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + "Initiating throw sequence.");
 
-                        // Item action here, there are no active cooldowns
-                        Entity thrownSmokeScreenEntity = SmokeScreen.throwItem(Material.IRON_NUGGET, player);
-                        pd.thrownSmokeScreens.add(thrownSmokeScreenEntity);
+                    // Item action here, there are no active cooldowns
+                    Entity thrownSmokeScreenEntity = SmokeScreen.throwItem(Material.IRON_NUGGET, player);
+                    pd.thrownSmokeScreens.add(thrownSmokeScreenEntity);
 
-                        // Starts cooldown
-                        BossBarCooldown cooldown = new BossBarCooldown(pd, 10.0, ChatColor.GRAY + "Smoke Screen Cooldown", BarColor.WHITE);
-                        cooldown.start();
-                        pd.activeCooldowns.add(cooldown);
+                    // Starts cooldown
+                    BossBarCooldown cooldown = new BossBarCooldown(pd, 25.0, ChatColor.GRAY + "Smoke Screen Cooldown", BarColor.WHITE);
+                    cooldown.start();
+                    pd.activeCooldowns.add(cooldown);
 
-                        // Removes thrown smoke screen from player's inventory
-                        player.getInventory().getItemInMainHand().setAmount(
-                                player.getInventory().getItemInMainHand().getAmount() - 1 );
+                    // Removes thrown smoke screen from player's inventory
+                    player.getInventory().getItemInMainHand().setAmount(
+                            player.getInventory().getItemInMainHand().getAmount() - 1);
 
-                        Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + "Threw smokescreen.");
-                    }
+                    Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + "Threw smokescreen.");
                 }
             }
             else if ((e.getAction() == Action.LEFT_CLICK_AIR || e.getAction() == Action.LEFT_CLICK_BLOCK))
