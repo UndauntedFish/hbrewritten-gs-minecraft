@@ -69,6 +69,7 @@ public class Archer
         hatchetOfWar.setItemMeta(hatchetOfWarMeta);
 
         // Setting items to the player's inventory slots
+        player.getInventory().clear();
         player.getInventory().setHelmet(helmet);
         player.getInventory().setChestplate(chestplate);
         player.getInventory().setBoots(boots);

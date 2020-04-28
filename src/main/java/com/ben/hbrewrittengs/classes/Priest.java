@@ -26,6 +26,7 @@ public class Priest
         boots = new ItemStack(Material.LEATHER_BOOTS);
 
         // Setting items to the player's inventory slots
+        player.getInventory().clear();
         player.getInventory().setHelmet(helmet);
         player.getInventory().setChestplate(chestplate);
         player.getInventory().setLeggings(leggings);
