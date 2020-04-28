@@ -17,7 +17,6 @@ public class ThrowableItem
         thrownItem.setVelocity(throwOrigin.getDirection().add(new Vector(0.0, 0.1, 0.0)).multiply(1.3));
         thrower.playSound(throwOrigin, Sound.ENTITY_SNOWBALL_THROW, 1.0F, 0.5F);
 
-        Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + "Threw smokescreen (throwable class).");
         return thrownItem;
     }
 }
