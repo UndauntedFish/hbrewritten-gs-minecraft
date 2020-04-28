@@ -2,6 +2,7 @@ package com.ben.hbrewrittengs.listeners;
 
 import com.ben.hbrewrittengs.Main;
 import com.ben.hbrewrittengs.PlayerData;
+import com.ben.hbrewrittengs.enums.ClassData;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -15,22 +16,26 @@ public class PlayerLeaveListener implements Listener
 	@EventHandler
 	public void onKick(PlayerKickEvent e)
 	{
-		Player player = e.getPlayer();
-		UUID uuid = player.getUniqueId();
-		PlayerData pd = Main.getInstance().playerDataMap.get(uuid);
-		// set herobrine to false in db here if player is hb
-		Main.getInstance().playerDataMap.remove(pd);
+		playerLeaveRoutine(e.getPlayer());
 		e.setLeaveMessage(null);
 	}
 	
 	@EventHandler
 	public void onDisconnect(PlayerQuitEvent e)
 	{
-		Player player = e.getPlayer();
+		playerLeaveRoutine(e.getPlayer());
+		e.setQuitMessage(null);
+	}
+
+	private void playerLeaveRoutine(Player player)
+	{
 		UUID uuid = player.getUniqueId();
 		PlayerData pd = Main.getInstance().playerDataMap.get(uuid);
+		if (pd.getActiveClass() == ClassData.ASSASSIN)
+		{
+			player.setHealth(20.0);
+		}
 		// set herobrine to false in db here if player is hb
 		Main.getInstance().playerDataMap.remove(pd);
-		e.setQuitMessage(null);
 	}
 }
