@@ -89,6 +89,7 @@ public class Assassin
         // Setting items to the player's inventory slots
         player.getInventory().setHelmet(helmet);
         player.getInventory().setChestplate(chestplate);
+        player.getInventory().setLeggings(leggings);
         player.getInventory().setBoots(boots);
         player.getInventory().setItem(0, spectralDagger);
         player.getInventory().setItem(1, cloak);
