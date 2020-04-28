@@ -65,7 +65,7 @@ public class SmokeScreenThrowListener implements Listener
                     pd.thrownSmokeScreens.add(thrownSmokeScreenEntity);
 
                     // Starting the cooldown
-                    BossBarCooldown cooldown = new BossBarCooldown(pd, 25.0, ChatColor.GRAY + "Smoke Screen Cooldown", BarColor.WHITE);
+                    BossBarCooldown cooldown = new BossBarCooldown(pd, Main.getInstance().getConfig().getDouble("smokescreen"), ChatColor.GRAY + "Smoke Screen Cooldown", BarColor.WHITE);
                     cooldown.start();
                     pd.activeCooldowns.add(cooldown);
 
