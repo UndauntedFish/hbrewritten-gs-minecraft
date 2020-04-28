@@ -2,7 +2,6 @@ package com.ben.hbrewrittengs.listeners;
 
 import com.ben.hbrewrittengs.Main;
 import com.ben.hbrewrittengs.PlayerData;
-import com.ben.hbrewrittengs.enums.ClassData;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.entity.Player;
@@ -35,11 +34,8 @@ public class PlayerLeaveListener implements Listener
 		PlayerData pd = Main.getInstance().playerDataMap.get(uuid);
 
 		// Resets health to 20.0
-		if (pd.getActiveClass() == ClassData.ASSASSIN)
-		{
-			AttributeInstance healthAttribute = player.getAttribute(Attribute.GENERIC_MAX_HEALTH);
-			healthAttribute.setBaseValue(20.0);
-		}
+		AttributeInstance healthAttribute = player.getAttribute(Attribute.GENERIC_MAX_HEALTH);
+		healthAttribute.setBaseValue(20.0);
 
 		// set herobrine to false in db here if player is hb
 		Main.getInstance().playerDataMap.remove(pd);
