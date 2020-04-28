@@ -2,6 +2,7 @@ package com.ben.hbrewrittengs.listeners;
 
 import com.ben.hbrewrittengs.Main;
 import com.ben.hbrewrittengs.PlayerData;
+import com.ben.hbrewrittengs.enums.ClassData;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -21,6 +22,10 @@ public class PlayerDamagePlayerListener implements Listener
         PlayerData pdDamaged = Main.getInstance().playerDataMap.get(damaged.getUniqueId());
         PlayerData pdDamager = Main.getInstance().playerDataMap.get(damager.getUniqueId());
 
-        if ()
+        // Assassin's Spectral Stab listener
+        if (pdDamager.getActiveClass() == ClassData.ASSASSIN && pdDamaged.isHerobrine())
+        {
+
+        }
     }
 }

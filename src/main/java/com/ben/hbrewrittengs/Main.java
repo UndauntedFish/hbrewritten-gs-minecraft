@@ -58,7 +58,7 @@ public class Main extends JavaPlugin
         Bukkit.getPluginManager().registerEvents(new CustomChatFormatListener(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerJoinListener(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerLeaveListener(), this);
-        Bukkit.getPluginManager().registerEvents(new ItemThrowListener(), this);
+        Bukkit.getPluginManager().registerEvents(new SmokeScreenThrowListener(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerDamagePlayerListener(), this);
 
 

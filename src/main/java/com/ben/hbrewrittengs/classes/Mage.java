@@ -11,7 +11,7 @@ import org.bukkit.inventory.meta.LeatherArmorMeta;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Mage implements BaseClass
+public class Mage
 {
     // Armor
     private static ItemStack helmet, chestplate, leggings, boots;

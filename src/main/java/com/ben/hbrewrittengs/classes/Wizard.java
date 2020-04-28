@@ -13,7 +13,7 @@ import org.bukkit.potion.PotionType;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Wizard implements BaseClass
+public class Wizard
 {
     // Armor
     private static ItemStack helmet, chestplate, leggings, boots;

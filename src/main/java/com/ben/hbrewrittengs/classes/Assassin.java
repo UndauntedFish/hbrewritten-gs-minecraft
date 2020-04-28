@@ -13,7 +13,7 @@ import org.bukkit.inventory.meta.LeatherArmorMeta;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Assassin implements BaseClass
+public class Assassin
 {
     // Armor
     private static ItemStack helmet, chestplate, leggings, boots;
@@ -26,7 +26,7 @@ public class Assassin implements BaseClass
                                 cloakLore = new ArrayList<>(),
                                 smokeScreenLore = new ArrayList<>();
 
-
+    // Gives the player the items of a class.
     public static void giveClass(Player player)
     {
         /* LORES */

@@ -13,7 +13,7 @@ import org.bukkit.potion.PotionEffectType;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Scout implements BaseClass
+public class Scout
 {
     // Armor
     private static ItemStack helmet, chestplate, leggings, boots;

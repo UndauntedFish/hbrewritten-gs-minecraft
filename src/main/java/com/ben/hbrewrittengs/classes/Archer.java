@@ -11,7 +11,7 @@ import org.bukkit.inventory.meta.LeatherArmorMeta;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Archer implements BaseClass
+public class Archer
 {
     // Armor
     private static ItemStack helmet, chestplate, boots;

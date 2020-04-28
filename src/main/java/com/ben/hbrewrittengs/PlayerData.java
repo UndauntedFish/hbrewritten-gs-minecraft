@@ -1,9 +1,11 @@
 package com.ben.hbrewrittengs;
 
+import com.ben.hbrewrittengs.bossbarcooldown.BossBarCooldown;
 import com.ben.hbrewrittengs.enums.ClassData;
 import com.ben.hbrewrittengs.enums.Rank;
 import org.bukkit.entity.Entity;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.UUID;
 
@@ -13,8 +15,9 @@ public class PlayerData
 
 	private int points, tokens;
 	private Rank rank;
-	private boolean isHerobrine;
+	private boolean isHerobrine, showXPCooldown;
 	private ClassData activeClass;
+	public ArrayList<BossBarCooldown> activeCooldowns = new ArrayList<>();
 	public LinkedList<Entity> thrownSmokeScreens = new LinkedList<>(),
 							  thrownChemGrenades = new LinkedList<>(),
 							  thrownBlindGrenades = new LinkedList<>();
@@ -24,6 +27,7 @@ public class PlayerData
 		this.uuid = uuid;
 		this.rank = Rank.setRankFromPoints(points);
 		this.isHerobrine = false;
+		this.showXPCooldown = true;
 	}
 
 	public UUID getUUID()
@@ -85,5 +89,4 @@ public class PlayerData
 	{
 		this.isHerobrine = isHerobrine;
 	}
-
 }

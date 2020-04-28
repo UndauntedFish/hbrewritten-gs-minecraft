@@ -6,7 +6,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 
-public class Priest implements BaseClass
+public class Priest
 {
     // Armor
     private static ItemStack helmet, chestplate, leggings, boots;
