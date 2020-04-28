@@ -64,11 +64,6 @@ public class SmokeScreenThrowListener implements Listener
                     Entity thrownSmokeScreenEntity = SmokeScreen.throwItem(Material.IRON_NUGGET, player);
                     pd.thrownSmokeScreens.add(thrownSmokeScreenEntity);
 
-                    // Starting the cooldown
-                    BossBarCooldown cooldown = new BossBarCooldown(pd, Main.getInstance().getConfig().getDouble("smokescreen"), ChatColor.GRAY + "Smoke Screen Cooldown", BarColor.WHITE);
-                    cooldown.start();
-                    pd.activeCooldowns.add(cooldown);
-
                     // Removing thrown smoke screen from player's inventory
                     player.getInventory().getItemInMainHand().setAmount(
                             player.getInventory().getItemInMainHand().getAmount() - 1);
@@ -83,6 +78,11 @@ public class SmokeScreenThrowListener implements Listener
                 {
                     Entity thrownSmokeScreenEntity = pd.thrownSmokeScreens.removeLast();
                     SmokeScreen.activate(thrownSmokeScreenEntity, player);
+
+                    // Starting the cooldown
+                    BossBarCooldown cooldown = new BossBarCooldown(pd, Main.getInstance().getConfig().getDouble("smokescreen"), ChatColor.GRAY + "Smoke Screen Cooldown", BarColor.WHITE);
+                    cooldown.start();
+                    pd.activeCooldowns.add(cooldown);
                 }
             }
         }
