@@ -61,6 +61,12 @@ public class SmokeScreenThrowListener implements Listener
                     }
 
                     // Throwing the smokescreen
+                    if (!pd.thrownSmokeScreens.isEmpty())
+                    {
+                        player.sendMessage(ChatColor.RED + "Cannot throw two smoke screens at once!");
+                        e.setCancelled(true);
+                        return;
+                    }
                     Entity thrownSmokeScreenEntity = SmokeScreen.throwItem(Material.IRON_NUGGET, player);
                     pd.thrownSmokeScreens.add(thrownSmokeScreenEntity);
 
