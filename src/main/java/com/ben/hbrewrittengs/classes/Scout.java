@@ -71,7 +71,6 @@ public class Scout
         player.getInventory().setItem(2, owlArrows);
         player.getInventory().setItem(8, CommonItems.getObjectiveLocator());
 
-
         // Giving the player Speed I
         player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 0, false, false));
     }
