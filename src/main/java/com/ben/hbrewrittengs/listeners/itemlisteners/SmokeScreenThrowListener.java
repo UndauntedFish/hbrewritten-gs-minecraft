@@ -1,4 +1,4 @@
-package com.ben.hbrewrittengs.listeners;
+package com.ben.hbrewrittengs.listeners.itemlisteners;
 
 import com.ben.hbrewrittengs.Main;
 import com.ben.hbrewrittengs.PlayerData;
