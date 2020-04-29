@@ -15,7 +15,7 @@ public class PlayerData
 
 	private int points, tokens;
 	private Rank rank;
-	private boolean isHerobrine, showXPCooldown, isCloaked;
+	private boolean isHerobrine, showXPCooldown;
 	private ClassData activeClass;
 	public ArrayList<BossBarCooldown> activeCooldowns = new ArrayList<>();
 	public LinkedList<Entity> thrownSmokeScreens = new LinkedList<>(),
@@ -88,15 +88,5 @@ public class PlayerData
 	public void setHerobrine(boolean isHerobrine)
 	{
 		this.isHerobrine = isHerobrine;
-	}
-
-	public boolean isCloaked()
-	{
-		return isCloaked;
-	}
-
-	public void setCloaked(boolean cloaked)
-	{
-		isCloaked = cloaked;
 	}
 }

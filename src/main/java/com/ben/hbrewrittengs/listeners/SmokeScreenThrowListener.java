@@ -1,4 +1,4 @@
-package com.ben.hbrewrittengs.listeners.itemlisteners;
+package com.ben.hbrewrittengs.listeners;
 
 import com.ben.hbrewrittengs.Main;
 import com.ben.hbrewrittengs.PlayerData;
@@ -29,8 +29,6 @@ public class SmokeScreenThrowListener implements Listener
         Action action = e.getAction();
         ItemStack thrownItem = player.getInventory().getItemInMainHand();
         int thrownItemSlot = player.getInventory().getHeldItemSlot();
-        String cooldownBossbarTitle = ChatColor.GRAY + "Smoke Screen Cooldown";
-
 
         if (e.getHand() == EquipmentSlot.HAND)
         {
@@ -41,12 +39,12 @@ public class SmokeScreenThrowListener implements Listener
                     // Checks if smoke screen has any active cooldowns
                     if (!pd.activeCooldowns.isEmpty())
                     {
-                        for (Iterator<BossBarCooldown> itr = pd.activeCooldowns.iterator(); itr.hasNext();)
+                        for (Iterator<BossBarCooldown> itr = pd.activeCooldowns.iterator(); itr.hasNext(); )
                         {
                             BossBarCooldown cooldown = itr.next();
                             if (cooldown.getPlayerUUID().equals(pd.getUUID()))
                             {
-                                if (cooldown.isDone() && cooldown.getCooldownTitle().equals(cooldownBossbarTitle))
+                                if (cooldown.isDone())
                                 {
                                     itr.remove();
                                     break;
@@ -88,7 +86,7 @@ public class SmokeScreenThrowListener implements Listener
                     SmokeScreen.activate(thrownSmokeScreenEntity, player);
 
                     // Starting the cooldown
-                    BossBarCooldown cooldown = new BossBarCooldown(pd, Main.getInstance().getConfig().getDouble("smokescreen"), cooldownBossbarTitle, BarColor.WHITE);
+                    BossBarCooldown cooldown = new BossBarCooldown(pd, Main.getInstance().getConfig().getDouble("smokescreen"), ChatColor.GRAY + "Smoke Screen Cooldown", BarColor.WHITE);
                     cooldown.start();
                     pd.activeCooldowns.add(cooldown);
                 }

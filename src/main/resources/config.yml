@@ -3,7 +3,6 @@ gameserverworldname: HBR01
 
 # Item cooldowns (in seconds!)
 smokescreen: 15.0
-cloakduration: 15
 
 # Database setup
 host: localhost

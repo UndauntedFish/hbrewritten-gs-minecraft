@@ -2,22 +2,14 @@ package com.ben.hbrewrittengs;
 
 import com.ben.hbrewrittengs.database.AsyncPlayerDataLoader;
 import com.ben.hbrewrittengs.database.BaseFields;
-import com.ben.hbrewrittengs.listeners.CustomChatFormatListener;
-import com.ben.hbrewrittengs.listeners.PlayerDamagePlayerListener;
-import com.ben.hbrewrittengs.listeners.PlayerJoinListener;
-import com.ben.hbrewrittengs.listeners.PlayerLeaveListener;
-import com.ben.hbrewrittengs.listeners.itemlisteners.CloakActivateListener;
-import com.ben.hbrewrittengs.listeners.itemlisteners.SmokeScreenThrowListener;
+import com.ben.hbrewrittengs.listeners.*;
 import com.zaxxer.hikari.HikariDataSource;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.UUID;
 
 public class Main extends JavaPlugin
@@ -25,7 +17,6 @@ public class Main extends JavaPlugin
     private static Main instance;
 
     public HashMap<UUID, PlayerData> playerDataMap = new HashMap<>();
-    public List<Player> vanishedPlayers = new ArrayList<>();
 
     // Database setup class used to send queries. Used throughout all classes.
     private HikariDataSource hikari;
@@ -69,7 +60,6 @@ public class Main extends JavaPlugin
         Bukkit.getPluginManager().registerEvents(new PlayerLeaveListener(), this);
         Bukkit.getPluginManager().registerEvents(new SmokeScreenThrowListener(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerDamagePlayerListener(), this);
-        Bukkit.getPluginManager().registerEvents(new CloakActivateListener(), this);
 
 
         // Command registration

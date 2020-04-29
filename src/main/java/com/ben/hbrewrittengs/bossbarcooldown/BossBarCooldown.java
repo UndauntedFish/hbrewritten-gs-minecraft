@@ -21,7 +21,6 @@ public class BossBarCooldown
     private double lengthInSeconds, timeRemaining, bossbarIncrement;
     private boolean isDone, wasStarted;
     private int taskID;
-    private String cooldownTitle;
 
     public BossBarCooldown(PlayerData pd, double lengthInSeconds, String cooldownTitle, BarColor barColor)
     {
@@ -31,7 +30,6 @@ public class BossBarCooldown
         this.lengthInSeconds = lengthInSeconds;
         this.isDone = false;
         this.wasStarted = false;
-        this.cooldownTitle = cooldownTitle;
         bossbarIncrement = 1.0 / (lengthInSeconds * 20.0);
     }
 
@@ -112,10 +110,5 @@ public class BossBarCooldown
     public UUID getPlayerUUID()
     {
         return player.getUniqueId();
-    }
-
-    public String getCooldownTitle()
-    {
-        return cooldownTitle;
     }
 }
