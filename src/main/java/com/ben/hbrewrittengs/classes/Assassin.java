@@ -26,8 +26,7 @@ public class Assassin
                                 cloakLore = new ArrayList<>(),
                                 smokeScreenLore = new ArrayList<>();
 
-    // Gives the player the items of a class.
-    public static void giveClass(Player player)
+    public static void loadItems()
     {
         /* LORES */
         spectralDaggerLore.add("Charged with Herobrine's hate,");
@@ -85,6 +84,11 @@ public class Assassin
         smokeScreen.setItemMeta(smokeScreenMeta);
 
 
+    }
+
+    // Gives the player the items of a class.
+    public static void giveClass(Player player)
+    {
         // Setting items to the player's inventory slots
         player.getInventory().clear();
         player.getInventory().setHelmet(helmet);

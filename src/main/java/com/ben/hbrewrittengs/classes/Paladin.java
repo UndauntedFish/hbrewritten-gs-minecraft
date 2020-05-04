@@ -21,8 +21,8 @@ public class Paladin
 	private static ItemStack paladinsMight, protSpirit, notchsWisdom;
 	private static ItemMeta paladinsMightMeta, protSpiritMeta;
 	private static List<String> paladinsMightLore = new ArrayList<>(), protSpiritLore = new ArrayList<>();
-	
-	public static void giveClass(Player player)
+
+	public static void loadItems()
 	{
 		/* LORES */
 		paladinsMightLore.add("The might of the paladins!");
@@ -53,7 +53,10 @@ public class Paladin
 		protSpirit.setItemMeta(protSpiritMeta);
 
 		notchsWisdom = CommonItems.getNotchsWisdom(3);
+	}
 
+	public static void giveClass(Player player)
+	{
 		// Setting items to the player's inventory slots
 		player.getInventory().clear();
 		player.getInventory().setHelmet(helmet);

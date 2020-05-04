@@ -22,7 +22,7 @@ public class Demo
     private static ItemMeta heGrenadeMeta;
     private static List<String> heGrenadeLore = new ArrayList<>();
 
-    public static void giveClass(Player player)
+    public static void loadItems()
     {
         /* LORES */
         heGrenadeLore.add("Goes KABOOM 4 seconds after it's thrown");
@@ -44,7 +44,10 @@ public class Demo
         heGrenadeMeta.setLore(heGrenadeLore);
         heGrenadeMeta.setUnbreakable(true);
         heGrenade.setItemMeta(heGrenadeMeta);
+    }
 
+    public static void giveClass(Player player)
+    {
         // Setting items to the player's inventory slots
         player.getInventory().clear();
         player.getInventory().setHelmet(helmet);

@@ -24,7 +24,7 @@ public class Archer
                                 eagleArrowsLore = new ArrayList<>(),
                                 hatchetOfWarLore = new ArrayList<>();
 
-    public static void giveClass(Player player)
+    public static void loadItems()
     {
         /* LORES */
         phoenixBowLore.add("A bow of mighty power");
@@ -67,7 +67,10 @@ public class Archer
         hatchetOfWarMeta.setLore(hatchetOfWarLore);
         hatchetOfWarMeta.setUnbreakable(true);
         hatchetOfWar.setItemMeta(hatchetOfWarMeta);
+    }
 
+    public static void giveClass(Player player)
+    {
         // Setting items to the player's inventory slots
         player.getInventory().clear();
         player.getInventory().setHelmet(helmet);

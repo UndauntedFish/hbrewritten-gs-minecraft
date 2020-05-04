@@ -25,7 +25,7 @@ public class Mage
                                 manaArrowsLore = new ArrayList<>(),
                                 manaChargeLore = new ArrayList<>();
 
-    public static void giveClass(Player player)
+    public static void loadItems()
     {
         /* LORES */
         elderSwordLore.add("The sword that has passed");
@@ -78,8 +78,10 @@ public class Mage
         manaChargeMeta.setDisplayName(ChatColor.GOLD + "Mana " + ChatColor.BOLD + "Charge");
         manaChargeMeta.setLore(manaChargeLore);
         manaCharge.setItemMeta(manaChargeMeta);
+    }
 
-
+    public static void giveClass(Player player)
+    {
         // Setting items to the player's inventory slots
         player.getInventory().clear();
         player.getInventory().setHelmet(helmet);

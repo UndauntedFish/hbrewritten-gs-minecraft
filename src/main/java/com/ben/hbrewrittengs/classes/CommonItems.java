@@ -21,46 +21,36 @@ public class CommonItems
 								dwBandageLore = new ArrayList<>(),
 								wooflessLore = new ArrayList<>(),
 								blindGrenadeLore = new ArrayList<>();
-	
-	public static ItemStack getNotchsWisdom(int amount)
+
+	public static void loadItems()
 	{
-		/* LORE */
+		/* Notch's Wisdom LORE */
 		notchsWisdomLore.add("Creates a field of healing");
 		notchsWisdomLore.add("around your location.");
 
-		/* ITEM */
-		notchsWisdom = new ItemStack(Material.BLAZE_POWDER, amount);
+		/* Notch's Wisdom ITEM */
+		notchsWisdom = new ItemStack(Material.BLAZE_POWDER);
 		notchsWisdomMeta = notchsWisdom.getItemMeta();
 		notchsWisdomMeta.setDisplayName(ChatColor.YELLOW + "Notch's Wisdom");
 		notchsWisdomMeta.setLore(notchsWisdomLore);
 		notchsWisdom.setItemMeta(notchsWisdomMeta);
 
-		return notchsWisdom;
-	}
-
-	public static ItemStack getObjectiveLocator()
-	{
-		/* LORE */
+		/* Objective Locator LORE */
 		objLocatorLore.add("Whenever a shard spawns,");
 		objLocatorLore.add("this compass will point to it!");
 
-		/* ITEM */
+		/* Objective Locator ITEM */
 		objLocator = new ItemStack(Material.COMPASS);
 		objLocatorMeta = objLocator.getItemMeta();
 		objLocatorMeta.setDisplayName(ChatColor.GRAY + "Objective Locator");
 		objLocatorMeta.setLore(objLocatorLore);
 		objLocator.setItemMeta(objLocatorMeta);
 
-		return objLocator;
-	}
-
-	public static ItemStack getBladeOfHeroism()
-	{
-		/* LORE */
+		/* Blade of Heroism LORE */
 		bladeHeroismLore.add("Only true heros hold the");
 		bladeHeroismLore.add("strength to use this sword.");
 
-		/* ITEM */
+		/* Blade of Heroism ITEM */
 		bladeHeroism = new ItemStack(Material.STONE_SWORD);
 		bladeHeroismMeta = bladeHeroism.getItemMeta();
 		bladeHeroismMeta.setDisplayName(ChatColor.YELLOW + "Blade of Heroism");
@@ -68,52 +58,72 @@ public class CommonItems
 		bladeHeroismMeta.setUnbreakable(true);
 		bladeHeroism.setItemMeta(bladeHeroismMeta);
 
-		return bladeHeroism;
-	}
-
-	public static ItemStack getDreamweaverBandage(int amount)
-	{
-		/* LORE */
+		/* Dreamweaver Bandage LORE */
 		dwBandageLore.add("A quick heal, perfect for");
 		dwBandageLore.add("sticky situations.");
 
-		/* ITEM */
-		dwBandage = new ItemStack(Material.MAGMA_CREAM, amount);
+		/* Dreamweaver Bandage ITEM */
+		dwBandage = new ItemStack(Material.MAGMA_CREAM);
 		dwBandageMeta = dwBandage.getItemMeta();
 		dwBandageMeta.setDisplayName(ChatColor.YELLOW + "Dreamweaver Bandage");
 		dwBandageMeta.setLore(dwBandageLore);
 		dwBandage.setItemMeta(dwBandageMeta);
 
-		return dwBandage;
-	}
-
-	public static ItemStack getSummonWoofless()
-	{
-		/* LORE */
+		/* Summon Wolfless LORE */
 		wooflessLore.add("A furry friend. It gets");
 		wooflessLore.add("lonely out there!");
 
-		/* ITEM */
+		/* Summon Wolfless ITEM */
 		woofless = new ItemStack(Material.BONE);
 		wooflessMeta = woofless.getItemMeta();
 		wooflessMeta.setDisplayName(ChatColor.WHITE + "Summon Woofless");
 		wooflessMeta.setLore(wooflessLore);
 		woofless.setItemMeta(wooflessMeta);
 
+		/* Blinding Grenade LORE */
+		blindGrenadeLore.add("Blinds those it hits for 3 seconds.");
+
+		/* Blinding Grenade ITEM */
+		blindGrenade = new ItemStack(Material.GOLD_NUGGET);
+		blindGrenadeMeta = blindGrenade.getItemMeta();
+		blindGrenadeMeta.setLore(blindGrenadeLore);
+		blindGrenade.setItemMeta(blindGrenadeMeta);
+
+	}
+
+	public static ItemStack getNotchsWisdom(int amount)
+	{
+		notchsWisdom.setAmount(amount);
+		return notchsWisdom;
+	}
+
+	public static ItemStack getObjectiveLocator()
+	{
+		return objLocator;
+	}
+
+	public static ItemStack getBladeOfHeroism()
+	{
+		return bladeHeroism;
+	}
+
+	public static ItemStack getDreamweaverBandage(int amount)
+	{
+		dwBandage.setAmount(amount);
+		return dwBandage;
+	}
+
+	public static ItemStack getSummonWoofless()
+	{
 		return woofless;
 	}
 
 	public static ItemStack getBlindingGrenade(int amount, String name)
 	{
-		/* LORE */
-		blindGrenadeLore.add("Blinds those it hits for 3 seconds.");
-
-		/* ITEM */
-		blindGrenade = new ItemStack(Material.GOLD_NUGGET, amount);
 		blindGrenadeMeta = blindGrenade.getItemMeta();
 		blindGrenadeMeta.setDisplayName(name);
-		blindGrenadeMeta.setLore(blindGrenadeLore);
 		blindGrenade.setItemMeta(blindGrenadeMeta);
+		blindGrenade.setAmount(amount);
 
 		return blindGrenade;
 	}
