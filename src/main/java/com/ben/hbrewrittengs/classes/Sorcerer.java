@@ -24,7 +24,7 @@ public class Sorcerer
                                 healingTotemLore = new ArrayList<>(),
                                 harmingTotemLore = new ArrayList<>();
 
-    public static void giveClass(Player player)
+    public static void loadItems()
     {
         /* LORES */
         axeOfDeathLore.add("The axe of many lost souls.");
@@ -63,8 +63,10 @@ public class Sorcerer
                 ChatColor.RESET.toString() + ChatColor.YELLOW + "Pain");
         harmingTotemMeta.setLore(harmingTotemLore);
         harmingTotem.setItemMeta(harmingTotemMeta);
+    }
 
-
+    public static void giveClass(Player player)
+    {
         // Setting items to the player's inventory slots
         player.getInventory().clear();
         player.getInventory().setHelmet(helmet);

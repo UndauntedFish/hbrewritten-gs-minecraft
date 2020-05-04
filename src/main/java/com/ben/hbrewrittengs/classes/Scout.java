@@ -25,7 +25,7 @@ public class Scout
     private static List<String> handcraftedBowLore = new ArrayList<>(),
                                 eagleArrowsLore = new ArrayList<>();
 
-    public static void giveClass(Player player)
+    public static void loadItems()
     {
         /* LORES */
         handcraftedBowLore.add("It's not a work of art,");
@@ -59,8 +59,10 @@ public class Scout
         owlArrowsMeta.setDisplayName(ChatColor.YELLOW + "Eagle Quill Feather");
         owlArrowsMeta.setLore(eagleArrowsLore);
         owlArrows.setItemMeta(owlArrowsMeta);
+    }
 
-
+    public static void giveClass(Player player)
+    {
         // Setting items to the player's inventory slots
         player.getInventory().clear();
         player.getInventory().setHelmet(helmet);

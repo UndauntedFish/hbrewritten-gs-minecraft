@@ -1,5 +1,6 @@
 package com.ben.hbrewrittengs;
 
+import com.ben.hbrewrittengs.classes.*;
 import com.ben.hbrewrittengs.customevents.PlayerUnvanishEvent;
 import com.ben.hbrewrittengs.customevents.PlayerVanishEvent;
 import com.ben.hbrewrittengs.customevents.VanishedPlayerHitByPlayerEvent;
@@ -53,6 +54,7 @@ public class Main extends JavaPlugin
 
         loadConfig();
         connectToDatabase();
+        loadClassItems();
         registerListeners();
 
         // ProtocolLib Packet Listeners
@@ -92,6 +94,22 @@ public class Main extends JavaPlugin
             Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "[HBRgs] Unable to set basefields connection to Hikari connection!");
             e.printStackTrace();
         }
+    }
+
+    // Initializes the default values for all the classes' items
+    private void loadClassItems()
+    {
+        CommonItems.loadItems();
+
+        Archer.loadItems();
+        Assassin.loadItems();
+        Demo.loadItems();
+        Mage.loadItems();
+        Paladin.loadItems();
+        Priest.loadItems();
+        Scout.loadItems();
+        Sorcerer.loadItems();
+        Wizard.loadItems();
     }
 
     private void registerListeners()
