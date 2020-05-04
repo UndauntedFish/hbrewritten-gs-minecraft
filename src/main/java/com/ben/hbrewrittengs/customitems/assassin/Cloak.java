@@ -2,7 +2,10 @@ package com.ben.hbrewrittengs.customitems.assassin;
 
 import com.ben.hbrewrittengs.Main;
 import com.ben.hbrewrittengs.PlayerData;
+import com.ben.hbrewrittengs.enums.ClassData;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 
 public class Cloak
@@ -10,46 +13,40 @@ public class Cloak
     // Activates the players's cloak and removes it from their inventory
     public static void activate(PlayerData pd)
     {
+        if (pd.getActiveClass() != ClassData.ASSASSIN)
+        {
+            Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "[HBRgs] CRITICAL ERROR: A player who wasn't assassin tried to cloak!");
+            return;
+        }
+
         Player player = Bukkit.getPlayer(pd.getUUID());
 
         // The player is currently unvanished, cloak them.
-        Main.getInstance().vanishedPlayers.add(player);
-        Bukkit.getOnlinePlayers().forEach((onlinePlayer) ->
-        {
-            onlinePlayer.hidePlayer(Main.getInstance(), player);
-        });
+        Main.getInstance().toggleVisibilityNative(player);
 
-        // Removing activated cloak from player's inventory
-        player.getInventory().getItemInMainHand().setAmount(
-                player.getInventory().getItemInMainHand().getAmount() - 1);
-
-        player.sendMessage("You are vanished");
+        // Playing cloak activation sounds
+        player.playSound(player.getLocation(), Sound.ENTITY_BLAZE_SHOOT, 1.0F, 0.7F);
+        player.playSound(player.getLocation(), Sound.ENTITY_ENDER_DRAGON_FLAP, 1.0F, 1.0F);
+        player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_BREATH, 1.0F, 0.5F);
 
         // Unvanishes them when cloakduration is over.
         Bukkit.getScheduler().runTaskLater(Main.getInstance(), new Runnable()
         {
             public void run()
             {
-                Cloak.deactivate(pd);
-                pd.setCloaked(false);
+                deactivate(pd);
             }
         }, Main.getInstance().getConfig().getLong("cloakduration") * 20L);
     }
 
-    public static void deactivate(PlayerData pd)
+    private static void deactivate(PlayerData pd)
     {
         Player player = Bukkit.getPlayer(pd.getUUID());
 
-        if (Main.getInstance().vanishedPlayers.contains(player))
-        {
-            // The player is currently vanished, uncloak them.
-            Main.getInstance().vanishedPlayers.remove(player);
-            Bukkit.getOnlinePlayers().forEach((onlinePlayer) ->
-            {
-                onlinePlayer.showPlayer(Main.getInstance(), player);
-            });
+        // Playing cloak deactivation sounds
+        player.playSound(player.getLocation(), Sound.ENTITY_ENDER_DRAGON_FLAP, 1.0F, 1.0F);
+        player.playSound(player.getLocation(), Sound.ENTITY_BLAZE_SHOOT, 1.0F, 0.7F);
 
-            player.sendMessage("You are unvanished");
-        }
+        Main.getInstance().toggleVisibilityNative(player);
     }
 }

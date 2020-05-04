@@ -3,12 +3,11 @@ package com.ben.hbrewrittengs.listeners.itemlisteners;
 import com.ben.hbrewrittengs.Main;
 import com.ben.hbrewrittengs.PlayerData;
 import com.ben.hbrewrittengs.bossbarcooldown.BossBarCooldown;
-import com.ben.hbrewrittengs.customitems.assassin.SmokeScreen;
+import com.ben.hbrewrittengs.customitems.assassin.Cloak;
 import com.ben.hbrewrittengs.enums.Format;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.boss.BarColor;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -19,31 +18,31 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.Iterator;
 
-public class SmokeScreenThrowListener implements Listener
+public class CloakActivationListener implements Listener
 {
     @EventHandler
-    public void onSmokeScreenThrow(PlayerInteractEvent e)
+    public void onCloakActivate(PlayerInteractEvent e)
     {
         Player player = e.getPlayer();
         PlayerData pd = Main.getInstance().playerDataMap.get(player.getUniqueId());
 
         Action action = e.getAction();
-        ItemStack thrownItem = player.getInventory().getItemInMainHand();
+        ItemStack heldItem = player.getInventory().getItemInMainHand();
 
         if (e.getHand() == EquipmentSlot.HAND)
         {
             if (action == Action.RIGHT_CLICK_AIR || action == Action.RIGHT_CLICK_BLOCK)
             {
-                if (thrownItem.getType() == Material.IRON_NUGGET)
+                if (heldItem.getType() == Material.GLOWSTONE_DUST)
                 {
                     // Checks if smoke screen has any active cooldowns
                     if (!pd.activeCooldowns.isEmpty())
                     {
                         for (Iterator<BossBarCooldown> itr = pd.activeCooldowns.iterator(); itr.hasNext(); )
                         {
-
                             BossBarCooldown cooldown = itr.next();
-                            if (cooldown.getCooldownItem().isSimilar(thrownItem) &&
+
+                            if (cooldown.getCooldownItem().isSimilar(heldItem) &&
                                     cooldown.getPlayerUUID().equals(pd.getUUID()))
                             {
                                 if (cooldown.isDone())
@@ -53,7 +52,7 @@ public class SmokeScreenThrowListener implements Listener
                                 }
                                 else
                                 {
-                                    player.sendMessage(ChatColor.RED + "Cannot use your smoke screen on cooldown!");
+                                    player.sendMessage(ChatColor.RED + "Cannot cloak while already cloaked!");
                                     e.setCancelled(true);
                                     return;
                                 }
@@ -62,40 +61,26 @@ public class SmokeScreenThrowListener implements Listener
 
                     }
 
-                    // Throwing the smokescreen
-                    if (!pd.thrownSmokeScreens.isEmpty())
+                    // Activating the cloak
+                    if (pd.isVanished())
                     {
-                        player.sendMessage(ChatColor.RED + "Cannot throw two smoke screens at once!");
+                        player.sendMessage(ChatColor.RED + "Cannot cloak while already cloaked!");
                         e.setCancelled(true);
                         return;
                     }
 
-                    Entity thrownSmokeScreenEntity = SmokeScreen.throwItem(Material.IRON_NUGGET, player);
-                    pd.thrownSmokeScreens.add(thrownSmokeScreenEntity);
+                    Cloak.activate(pd);
+                    player.sendMessage(Format.PREFIX_INGAME + ChatColor.WHITE.toString() + "POOF, you are VANished!");
 
-                    // Removing thrown smoke screen from player's inventory
+                    // Starting the cooldown
+                    BossBarCooldown cooldown = new BossBarCooldown(pd, heldItem, Main.getInstance().getConfig().getDouble("cloakduration"), ChatColor.WHITE + "Cloak Duration", BarColor.RED);
+                    cooldown.setCooldownEndMessage(Format.PREFIX_INGAME + ChatColor.WHITE.toString() + "Your cloak wore off!");
+                    cooldown.start();
+                    pd.activeCooldowns.add(cooldown);
+
+                    // Removing activated cloak from player's inventory
                     player.getInventory().getItemInMainHand().setAmount(
                             player.getInventory().getItemInMainHand().getAmount() - 1);
-                }
-            }
-            else if ((e.getAction() == Action.LEFT_CLICK_AIR || e.getAction() == Action.LEFT_CLICK_BLOCK))
-            {
-                /* Code reaches here if player left clicked */
-
-                // If the thrown item is a smoke screen, activate it.
-                if (!pd.thrownSmokeScreens.isEmpty())
-                {
-                    Entity thrownSmokeScreenEntity = pd.thrownSmokeScreens.removeLast();
-                    SmokeScreen.activate(thrownSmokeScreenEntity, player);
-
-                    // Starting the cooldown if the player has more than 1 smokescreen.
-                    if (thrownItem.getAmount() >= 1)
-                    {
-                        BossBarCooldown cooldown = new BossBarCooldown(pd, thrownItem, Main.getInstance().getConfig().getDouble("smokescreen"), ChatColor.GRAY + "Smoke Screen Cooldown", BarColor.WHITE);
-                        cooldown.setCooldownEndMessage(Format.PREFIX_INGAME + ChatColor.WHITE.toString() + "Smoke screen cooldown over!");
-                        cooldown.start();
-                        pd.activeCooldowns.add(cooldown);
-                    }
                 }
             }
         }

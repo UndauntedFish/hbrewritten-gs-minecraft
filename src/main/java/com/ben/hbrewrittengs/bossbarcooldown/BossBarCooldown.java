@@ -8,6 +8,7 @@ import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarStyle;
 import org.bukkit.boss.BossBar;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -17,15 +18,18 @@ public class BossBarCooldown
 {
     private Player player;
     private PlayerData pd;
+    private ItemStack cooldownItem;
     private BossBar bossbar;
     private double lengthInSeconds, timeRemaining, bossbarIncrement;
     private boolean isDone, wasStarted;
     private int taskID;
+    private String cooldownEndMessage;
 
-    public BossBarCooldown(PlayerData pd, double lengthInSeconds, String cooldownTitle, BarColor barColor)
+    public BossBarCooldown(PlayerData pd, ItemStack cooldownItem, double lengthInSeconds, String cooldownTitle, BarColor barColor)
     {
         this.pd = pd;
         this.player = Bukkit.getPlayer(pd.getUUID());
+        this.cooldownItem = cooldownItem;
         this.bossbar = Bukkit.createBossBar(cooldownTitle, barColor, BarStyle.SOLID);
         this.lengthInSeconds = lengthInSeconds;
         this.isDone = false;
@@ -52,6 +56,10 @@ public class BossBarCooldown
                     isDone = true;
                     bossbar.setProgress(0.0);
                     bossbar.removeAll();
+                    if (!cooldownEndMessage.equals(null))
+                    {
+                        player.sendMessage(cooldownEndMessage);
+                    }
                     Bukkit.getScheduler().cancelTask(taskID);
                 }
                 else
@@ -110,5 +118,20 @@ public class BossBarCooldown
     public UUID getPlayerUUID()
     {
         return player.getUniqueId();
+    }
+
+    public ItemStack getCooldownItem()
+    {
+        return cooldownItem;
+    }
+
+    public String getCooldownEndMessage()
+    {
+        return cooldownEndMessage;
+    }
+
+    public void setCooldownEndMessage(String cooldownEndMessage)
+    {
+        this.cooldownEndMessage = cooldownEndMessage;
     }
 }

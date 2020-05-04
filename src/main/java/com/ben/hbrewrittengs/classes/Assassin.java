@@ -38,8 +38,7 @@ public class Assassin
         cloakLore.add("Right click to vanish.");
 
         smokeScreenLore.add("Casts a cloud of smoke to mask your movements!");
-        smokeScreenLore.add("Right click to throw,");
-        smokeScreenLore.add("left click to detonate.");
+        smokeScreenLore.add("Right click to throw, left click to detonate.");
 
         /* ITEMS */
 
