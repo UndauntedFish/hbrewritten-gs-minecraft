@@ -1,5 +1,6 @@
 package com.ben.hbrewrittengs;
 
+import com.ben.hbrewrittengs.classes.*;
 import com.ben.hbrewrittengs.customevents.PlayerUnvanishEvent;
 import com.ben.hbrewrittengs.customevents.PlayerVanishEvent;
 import com.ben.hbrewrittengs.customevents.VanishedPlayerHitByPlayerEvent;
@@ -66,6 +67,22 @@ public class Main extends JavaPlugin
     {
         this.getConfig().options().copyDefaults();
         saveDefaultConfig();
+    }
+
+    // Initializes all the ItemStacks for all classes' items
+    private void loadClassItems()
+    {
+        CommonItems.loadItems();
+
+        Archer.loadItems();
+        Assassin.loadItems();
+        Demo.loadItems();
+        Mage.loadItems();
+        Paladin.loadItems();
+        Priest.loadItems();
+        Scout.loadItems();
+        Sorcerer.loadItems();
+        Wizard.loadItems();
     }
 
     private void connectToDatabase()

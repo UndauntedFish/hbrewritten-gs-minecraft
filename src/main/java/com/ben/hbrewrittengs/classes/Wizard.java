@@ -25,7 +25,7 @@ public class Wizard
     private static List<String> elixirStrengthLore = new ArrayList<>(),
                                 elixirSpeedLore = new ArrayList<>();
 
-    public static void giveClass(Player player)
+    public static void loadItems()
     {
         /* LORES */
         elixirSpeedLore.add("A friendly speed boost!");
@@ -56,6 +56,10 @@ public class Wizard
         elixirStrengthMeta.setLore(elixirStrengthLore);
         elixirStrengthMeta.setBasePotionData(new PotionData(PotionType.STRENGTH, false, false));
         elixirStrength.setItemMeta(elixirStrengthMeta);
+    }
+
+    public static void giveClass(Player player)
+    {
 
         // Setting items to the player's inventory slots
         player.getInventory().clear();

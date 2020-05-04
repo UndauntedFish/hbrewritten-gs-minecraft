@@ -12,7 +12,7 @@ public class Priest
     private static ItemStack helmet, chestplate, leggings, boots;
     private static LeatherArmorMeta helmetMeta;
 
-    public static void giveClass(Player player)
+    public static void loadItems()
     {
         /* ITEMS */
 
@@ -24,7 +24,10 @@ public class Priest
         chestplate = new ItemStack(Material.LEATHER_CHESTPLATE);
         leggings = new ItemStack(Material.LEATHER_LEGGINGS);
         boots = new ItemStack(Material.LEATHER_BOOTS);
+    }
 
+    public static void giveClass(Player player)
+    {
         // Setting items to the player's inventory slots
         player.getInventory().clear();
         player.getInventory().setHelmet(helmet);
