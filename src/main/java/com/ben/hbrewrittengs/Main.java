@@ -320,5 +320,8 @@ public class Main extends JavaPlugin
         return hikari;
     }
 
-
+    public ProtocolManager getProtocolManager()
+    {
+        return protocolManager;
+    }
 }

@@ -37,7 +37,7 @@ public class SpectralDagger
     }
 
     // Activates the spectral stab and deals double damage to herobrine. Listens to
-    public void spectralStab(Player stabber, Player stabbed)
+    public static void spectralStab(Player stabber, Player stabbed)
     {
         PlayerData pdStabber = Main.getInstance().playerDataMap.get(stabber.getUniqueId());
         PlayerData pdStabbed = Main.getInstance().playerDataMap.get(stabbed.getUniqueId());
