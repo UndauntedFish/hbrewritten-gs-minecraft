@@ -60,6 +60,7 @@ public class Wizard
 
     public static void giveClass(Player player)
     {
+
         // Setting items to the player's inventory slots
         player.getInventory().clear();
         player.getInventory().setHelmet(helmet);

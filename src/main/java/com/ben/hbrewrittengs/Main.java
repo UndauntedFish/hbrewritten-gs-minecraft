@@ -10,6 +10,7 @@ import com.ben.hbrewrittengs.listeners.CustomChatFormatListener;
 import com.ben.hbrewrittengs.listeners.PlayerDamagePlayerListener;
 import com.ben.hbrewrittengs.listeners.PlayerJoinListener;
 import com.ben.hbrewrittengs.listeners.PlayerLeaveListener;
+import com.ben.hbrewrittengs.listeners.itemlisteners.BlindGrenadeThrowListener;
 import com.ben.hbrewrittengs.listeners.itemlisteners.CloakActivationListener;
 import com.ben.hbrewrittengs.listeners.itemlisteners.SmokeScreenThrowListener;
 import com.ben.hbrewrittengs.utils.Vector3D;
@@ -60,7 +61,7 @@ public class Main extends JavaPlugin
         // ProtocolLib Packet Listeners
         vanishPacketListener();
 
-        getCommand("class").setExecutor(new ClassCommand());
+        //getCommand("class").setExecutor(new ClassCommand());
     }
 
     // Loads info from config.yml
@@ -68,6 +69,22 @@ public class Main extends JavaPlugin
     {
         this.getConfig().options().copyDefaults();
         saveDefaultConfig();
+    }
+
+    // Initializes all the ItemStacks for all classes' items
+    private void loadClassItems()
+    {
+        CommonItems.loadItems();
+
+        Archer.loadItems();
+        Assassin.loadItems();
+        Demo.loadItems();
+        Mage.loadItems();
+        Paladin.loadItems();
+        Priest.loadItems();
+        Scout.loadItems();
+        Sorcerer.loadItems();
+        Wizard.loadItems();
     }
 
     private void connectToDatabase()
@@ -121,6 +138,7 @@ public class Main extends JavaPlugin
         Bukkit.getPluginManager().registerEvents(new SmokeScreenThrowListener(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerDamagePlayerListener(), this);
         Bukkit.getPluginManager().registerEvents(new CloakActivationListener(), this);
+        Bukkit.getPluginManager().registerEvents(new BlindGrenadeThrowListener(), this);
     }
 
     private void vanishPacketListener()
@@ -321,5 +339,8 @@ public class Main extends JavaPlugin
         return hikari;
     }
 
-
+    public ProtocolManager getProtocolManager()
+    {
+        return protocolManager;
+    }
 }
