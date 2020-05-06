@@ -61,7 +61,7 @@ public class Main extends JavaPlugin
         // ProtocolLib Packet Listeners
         vanishPacketListener();
 
-        //getCommand("class").setExecutor(new ClassCommand());
+        getCommand("class").setExecutor(new ClassCommand());
     }
 
     // Loads info from config.yml
@@ -69,22 +69,6 @@ public class Main extends JavaPlugin
     {
         this.getConfig().options().copyDefaults();
         saveDefaultConfig();
-    }
-
-    // Initializes all the ItemStacks for all classes' items
-    private void loadClassItems()
-    {
-        CommonItems.loadItems();
-
-        Archer.loadItems();
-        Assassin.loadItems();
-        Demo.loadItems();
-        Mage.loadItems();
-        Paladin.loadItems();
-        Priest.loadItems();
-        Scout.loadItems();
-        Sorcerer.loadItems();
-        Wizard.loadItems();
     }
 
     private void connectToDatabase()
