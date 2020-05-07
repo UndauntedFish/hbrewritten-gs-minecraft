@@ -7,6 +7,7 @@ import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.events.PacketContainer;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -91,6 +92,7 @@ public class BlindGrenade extends ThrowableItem
                     }
                 });
                 thrownEntity.getWorld().playSound(thrownEntity.getLocation(), Sound.ENTITY_GENERIC_EXPLODE, 4.0F, 1.0F);
+                thrownEntity.getWorld().spawnParticle(Particle.EXPLOSION_LARGE, thrownEntity.getLocation(), 1);
                 thrownEntity.remove();
             }
         }, fuseDuration);

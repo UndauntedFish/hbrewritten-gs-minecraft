@@ -7,6 +7,7 @@ import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.events.PacketContainer;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
@@ -95,6 +96,8 @@ public class ChemicalGrenade extends ThrowableItem
                     }
                 });
                 thrownEntity.getWorld().playSound(thrownEntity.getLocation(), Sound.ITEM_TOTEM_USE, 4.0F, randPitch());
+                thrownEntity.getWorld().spawnParticle(Particle.EXPLOSION_LARGE, thrownEntity.getLocation(), 1);
+                thrownEntity.getWorld().spawnParticle(Particle.EXPLOSION_NORMAL, thrownEntity.getLocation(), 15, 1, 1, 1);
                 thrownEntity.remove();
             }
         }, fuseDuration);

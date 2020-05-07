@@ -11,6 +11,7 @@ public class SmokeScreen extends ThrowableItem
     // Activates the player's smokescreen and removes it from their inventory
     public static void activate(Entity thrownIronNuggetEntity, Player thrower)
     {
+        thrownIronNuggetEntity.getWorld().spawnParticle(Particle.EXPLOSION_LARGE, thrownIronNuggetEntity.getLocation(), 1);
         thrownIronNuggetEntity.remove();
         thrower.getWorld().spawnParticle(Particle.CAMPFIRE_SIGNAL_SMOKE, thrownIronNuggetEntity.getLocation(), 6000, 2.5, 1.5, 2.5, 0.0);
         thrower.getWorld().playSound(thrownIronNuggetEntity.getLocation(), Sound.BLOCK_FIRE_EXTINGUISH, 10.0F, 0.1F);
