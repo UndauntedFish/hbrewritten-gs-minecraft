@@ -5,10 +5,7 @@ import com.ben.hbrewrittengs.bossbarcooldown.ImplicitCooldown;
 import com.ben.hbrewrittengs.customitems.ThrowableItem;
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.events.PacketContainer;
-import org.bukkit.Bukkit;
-import org.bukkit.Material;
-import org.bukkit.Particle;
-import org.bukkit.Sound;
+import org.bukkit.*;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
@@ -93,8 +90,24 @@ public class BlindGrenade extends ThrowableItem
                 });
                 thrownEntity.getWorld().playSound(thrownEntity.getLocation(), Sound.ENTITY_GENERIC_EXPLODE, 4.0F, 1.0F);
                 thrownEntity.getWorld().spawnParticle(Particle.EXPLOSION_LARGE, thrownEntity.getLocation(), 1);
+                spawnTorchForOneTick(thrownEntity.getLocation());
                 thrownEntity.remove();
             }
         }, fuseDuration);
+    }
+
+    // Creates a flash effect by spawning and despawning a torch v e r y quickly
+    private static void spawnTorchForOneTick(Location location)
+    {
+        Material temp = location.getBlock().getType();
+        location.getBlock().setType(Material.TORCH);
+        Bukkit.getScheduler().runTaskLater(Main.getInstance(), new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                location.getBlock().setType(temp);
+            }
+        }, 1);
     }
 }
