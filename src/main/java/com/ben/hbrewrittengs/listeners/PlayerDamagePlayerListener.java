@@ -13,19 +13,19 @@ public class PlayerDamagePlayerListener implements Listener
     @EventHandler
     public void onPlayerDamagePlayer(EntityDamageByEntityEvent e)
     {
-        Player damaged = null, damager = null;
         if (e.getEntity() instanceof Player && e.getDamager() instanceof  Player)
         {
-            damaged = (Player) e.getEntity();
-            damager = (Player) e.getDamager();
-        }
-        PlayerData pdDamaged = Main.getInstance().playerDataMap.get(damaged.getUniqueId());
-        PlayerData pdDamager = Main.getInstance().playerDataMap.get(damager.getUniqueId());
+            Player damaged = (Player) e.getEntity();
+            Player damager = (Player) e.getDamager();
 
-        // Assassin's Spectral Stab listener
-        if (pdDamager.getActiveClass() == ClassData.ASSASSIN && pdDamaged.isHerobrine())
-        {
+            PlayerData pdDamaged = Main.getInstance().playerDataMap.get(damaged.getUniqueId());
+            PlayerData pdDamager = Main.getInstance().playerDataMap.get(damager.getUniqueId());
 
+            // Assassin's Spectral Stab listener
+            if (pdDamager.getActiveClass() == ClassData.ASSASSIN && pdDamaged.isHerobrine())
+            {
+
+            }
         }
     }
 }

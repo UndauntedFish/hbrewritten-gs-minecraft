@@ -11,6 +11,7 @@ import com.ben.hbrewrittengs.listeners.PlayerDamagePlayerListener;
 import com.ben.hbrewrittengs.listeners.PlayerJoinListener;
 import com.ben.hbrewrittengs.listeners.PlayerLeaveListener;
 import com.ben.hbrewrittengs.listeners.itemlisteners.BlindGrenadeThrowListener;
+import com.ben.hbrewrittengs.listeners.itemlisteners.ChemicalGrenadeThrowListener;
 import com.ben.hbrewrittengs.listeners.itemlisteners.CloakActivationListener;
 import com.ben.hbrewrittengs.listeners.itemlisteners.SmokeScreenThrowListener;
 import com.ben.hbrewrittengs.utils.Vector3D;
@@ -123,6 +124,7 @@ public class Main extends JavaPlugin
         Bukkit.getPluginManager().registerEvents(new PlayerDamagePlayerListener(), this);
         Bukkit.getPluginManager().registerEvents(new CloakActivationListener(), this);
         Bukkit.getPluginManager().registerEvents(new BlindGrenadeThrowListener(), this);
+        Bukkit.getPluginManager().registerEvents(new ChemicalGrenadeThrowListener(), this);
     }
 
     private void vanishPacketListener()

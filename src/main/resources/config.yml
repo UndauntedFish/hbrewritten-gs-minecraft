@@ -7,10 +7,16 @@ cloakduration: 10
 grenadeusagedelay: 1.5
 
 # Grenade unpin and fuse times (in ticks!)
-# FYI: 1 second = 20 game ticks
-# FYI: 1 redstone tick = 2 game ticks, 4 redstone ticks = 2*4 game ticks.
+  # FYI: 1 second = 20 game ticks
+  # FYI: 1 redstone tick = 2 game ticks, 4 redstone ticks = 2*4 game ticks.
 grenade_unpinduration: 10
 grenade_fuseduration: 70
+
+# Chemical grenade damage (0.0 - 20.0)
+chemicalgrenade_damage: 7.0
+
+# Chemical grenade damage radius
+chemicalgrenade_damageradius: 6.0
 
 # Database setup
 host: localhost

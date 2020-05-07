@@ -9,10 +9,10 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
 
+import java.util.LinkedList;
 import java.util.Random;
 
 public class ChemicalGrenade extends ThrowableItem
@@ -20,18 +20,20 @@ public class ChemicalGrenade extends ThrowableItem
     private static Random rand = new Random();
     private static float[] explosionValues = new float[] {1.55F, 1.7F, 1.9F};
     private static long unpinDuration = Main.getInstance().getConfig().getLong("grenade_unpinduration");
-    private static long fuseDuration = Main.getInstance().getConfig().getLong("blindgrenade_fuseduration");
+    private static long fuseDuration = Main.getInstance().getConfig().getLong("grenade_fuseduration");
     private static double grenadeUsageDelay = Main.getInstance().getConfig().getDouble("grenadeusagedelay");
-    private static Entity thrownEntity;
+    private static double damage = Main.getInstance().getConfig().getDouble("chemicalgrenade_damage");
+    private static double dmgDiameter = Main.getInstance().getConfig().getDouble("chemicalgrenade_damageradius");
+    private static LinkedList<Entity> thrownEntities = new LinkedList<>();
 
     public static void unpinAndThrow(Player thrower)
     {
-        // Remove thrown blind grenade from player's inventory
-        int blindGrenadeCount = thrower.getInventory().getItemInMainHand().getAmount();
-        thrower.getInventory().getItemInMainHand().setAmount(blindGrenadeCount - 1);
+        // Remove thrown chem grenade from player's inventory
+        int chemGrenadeCount = thrower.getInventory().getItemInMainHand().getAmount();
+        thrower.getInventory().getItemInMainHand().setAmount(chemGrenadeCount - 1);
 
         // Do cooldown if player has more grenades in their inventory
-        if (blindGrenadeCount - 1 != 0)
+        if (chemGrenadeCount - 1 != 0)
         {
             // Start implicit cooldown (the player won't be notified of this cooldown's effect, it'll just happen in the background)
             ImplicitCooldown cooldown = new ImplicitCooldown(thrower, thrower.getInventory().getItemInMainHand(), grenadeUsageDelay);
@@ -43,16 +45,16 @@ public class ChemicalGrenade extends ThrowableItem
         thrower.playSound(thrower.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 0.55F, 2.0F);
         thrower.playSound(thrower.getLocation(), Sound.ENTITY_CREEPER_PRIMED, 1.0F, 1.7F);
 
-        // Throws the blind grenade after playing the unpinning animation
+        // Throws the chem grenade after playing the unpinning animation
         Bukkit.getScheduler().runTaskLater(Main.getInstance(), new Runnable()
         {
             @Override
             public void run()
             {
-                // Throw blind grenade and play grenade whoosh sound
+                // Throw chem grenade and play grenade whoosh sound
                 thrower.playSound(thrower.getLocation(), Sound.ENTITY_SNOWBALL_THROW, 1.0F, 0.5F);
-                thrownEntity = throwItem(Material.GOLD_NUGGET, thrower);
-                thrownEntity.setTicksLived((int) ((int) (unpinDuration + fuseDuration) + 20 * (grenadeUsageDelay + 1)));
+                Entity thrownEntity = throwItem(Material.GHAST_TEAR, thrower);
+                thrownEntities.add(thrownEntity);
 
                 // Send packet that swings the player's arm (all players should be able to see this animation)
                 PacketContainer swingArm = Main.getInstance().getProtocolManager().createPacket(PacketType.Play.Server.ANIMATION);
@@ -68,19 +70,15 @@ public class ChemicalGrenade extends ThrowableItem
                 }
 
                 // Detonates the grenade after x ticks (fuseDuration)
-                detonateAfterDelay();
+                while (!thrownEntities.isEmpty())
+                {
+                    detonateAfterDelay(thrownEntities.removeLast());
+                }
             }
         }, unpinDuration);
-
-
-        /* Randomly selects one of three explosion sounds to play
-        thrower.getWorld().playSound(thrownGrenade.getThrownEntity().getLocation(), Sound.ENTITY_VILLAGER_YES, 1.0F, randPitch());
-
-        chemgrenade
-         */
     }
 
-    private static void detonateAfterDelay()
+    private static void detonateAfterDelay(Entity thrownEntity)
     {
         Bukkit.getScheduler().runTaskLater(Main.getInstance(), new Runnable()
         {
@@ -88,26 +86,23 @@ public class ChemicalGrenade extends ThrowableItem
             public void run()
             {
                 // Blinds anyone near the blind grenade
-                thrownEntity.getNearbyEntities(10.0, 10.0, 10.0).forEach( (entity) ->
+                thrownEntity.getNearbyEntities(dmgDiameter, dmgDiameter, dmgDiameter).forEach( (entity) ->
                 {
-                    if (entity instanceof Player)
+                    if (entity instanceof LivingEntity)
                     {
-                        Player target = (Player) entity;
-                        target.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 5 * 20, 0, false, false));
+                        LivingEntity target = (LivingEntity) entity;
+                        target.damage(damage);
                     }
                 });
-                thrownEntity.getWorld().playSound(thrownEntity.getLocation(), Sound.ENTITY_GENERIC_EXPLODE, 1.0F, 1.0F);
+                thrownEntity.getWorld().playSound(thrownEntity.getLocation(), Sound.ITEM_TOTEM_USE, 0.8F, randPitch());
                 thrownEntity.remove();
             }
         }, fuseDuration);
     }
 
-    /*
     private static float randPitch()
     {
         int randomIndex = new Random().nextInt(explosionValues.length);
         return explosionValues[randomIndex];
     }
-    chemgrenade
-     */
 }
