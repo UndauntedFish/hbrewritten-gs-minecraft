@@ -37,9 +37,9 @@ public class SmokeScreenThrowListener implements Listener
                 if (thrownItem.getType() == Material.IRON_NUGGET)
                 {
                     // Checks if smoke screen has any active cooldowns
-                    if (!pd.activeCooldowns.isEmpty())
+                    if (!pd.activeBossBarCooldowns.isEmpty())
                     {
-                        for (Iterator<BossBarCooldown> itr = pd.activeCooldowns.iterator(); itr.hasNext(); )
+                        for (Iterator<BossBarCooldown> itr = pd.activeBossBarCooldowns.iterator(); itr.hasNext(); )
                         {
 
                             BossBarCooldown cooldown = itr.next();
@@ -94,7 +94,7 @@ public class SmokeScreenThrowListener implements Listener
                         BossBarCooldown cooldown = new BossBarCooldown(pd, thrownItem, Main.getInstance().getConfig().getDouble("smokescreen"), ChatColor.GRAY + "Smoke Screen Cooldown", BarColor.WHITE);
                         cooldown.setCooldownEndMessage(Format.PREFIX_INGAME + ChatColor.WHITE.toString() + "Smoke screen cooldown over!");
                         cooldown.start();
-                        pd.activeCooldowns.add(cooldown);
+                        pd.activeBossBarCooldowns.add(cooldown);
                     }
                 }
             }

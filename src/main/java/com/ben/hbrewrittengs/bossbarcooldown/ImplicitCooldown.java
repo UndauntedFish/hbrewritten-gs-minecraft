@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.UUID;
 
-public class BossBarCooldown
+public class ImplicitCooldown
 {
     private Player player;
     private PlayerData pd;
@@ -25,7 +25,7 @@ public class BossBarCooldown
     private int taskID;
     private String cooldownEndMessage;
 
-    public BossBarCooldown(PlayerData pd, ItemStack cooldownItem, double lengthInSeconds, String cooldownTitle, BarColor barColor)
+    public ImplicitCooldown(PlayerData pd, ItemStack cooldownItem, double lengthInSeconds, String cooldownTitle, BarColor barColor)
     {
         this.pd = pd;
         this.player = Bukkit.getPlayer(pd.getUUID());

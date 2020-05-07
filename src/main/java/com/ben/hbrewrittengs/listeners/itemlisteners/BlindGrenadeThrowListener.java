@@ -2,15 +2,8 @@ package com.ben.hbrewrittengs.listeners.itemlisteners;
 
 import com.ben.hbrewrittengs.Main;
 import com.ben.hbrewrittengs.PlayerData;
-import com.ben.hbrewrittengs.bossbarcooldown.BossBarCooldown;
-import com.ben.hbrewrittengs.customitems.assassin.Cloak;
-import com.ben.hbrewrittengs.customitems.assassin.SmokeScreen;
 import com.ben.hbrewrittengs.customitems.common.BlindGrenade;
-import com.ben.hbrewrittengs.enums.Format;
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.boss.BarColor;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -18,8 +11,6 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
-
-import java.util.Iterator;
 
 public class BlindGrenadeThrowListener implements Listener
 {

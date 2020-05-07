@@ -36,9 +36,9 @@ public class CloakActivationListener implements Listener
                 if (heldItem.getType() == Material.GLOWSTONE_DUST)
                 {
                     // Checks if smoke screen has any active cooldowns
-                    if (!pd.activeCooldowns.isEmpty())
+                    if (!pd.activeBossBarCooldowns.isEmpty())
                     {
-                        for (Iterator<BossBarCooldown> itr = pd.activeCooldowns.iterator(); itr.hasNext(); )
+                        for (Iterator<BossBarCooldown> itr = pd.activeBossBarCooldowns.iterator(); itr.hasNext(); )
                         {
                             BossBarCooldown cooldown = itr.next();
 
@@ -76,7 +76,7 @@ public class CloakActivationListener implements Listener
                     BossBarCooldown cooldown = new BossBarCooldown(pd, heldItem, Main.getInstance().getConfig().getDouble("cloakduration"), ChatColor.WHITE + "Cloak Duration", BarColor.RED);
                     cooldown.setCooldownEndMessage(Format.PREFIX_INGAME + ChatColor.WHITE.toString() + "Your cloak wore off!");
                     cooldown.start();
-                    pd.activeCooldowns.add(cooldown);
+                    pd.activeBossBarCooldowns.add(cooldown);
 
                     // Removing activated cloak from player's inventory
                     player.getInventory().getItemInMainHand().setAmount(
