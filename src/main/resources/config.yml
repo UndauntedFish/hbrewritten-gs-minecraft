@@ -10,7 +10,7 @@ grenadeusagedelay: 1.5
 # FYI: 1 second = 20 game ticks
 # FYI: 1 redstone tick = 2 game ticks, 4 redstone ticks = 2*4 game ticks.
 grenade_unpinduration: 10
-blindgrenade_fuseduration: 70
+grenade_fuseduration: 70
 
 # Database setup
 host: localhost

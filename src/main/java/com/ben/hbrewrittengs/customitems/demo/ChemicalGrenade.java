@@ -1,4 +1,4 @@
-package com.ben.hbrewrittengs.customitems.common;
+package com.ben.hbrewrittengs.customitems.demo;
 
 import com.ben.hbrewrittengs.Main;
 import com.ben.hbrewrittengs.bossbarcooldown.ImplicitCooldown;
@@ -15,12 +15,12 @@ import org.bukkit.potion.PotionEffectType;
 
 import java.util.Random;
 
-public class BlindGrenade extends ThrowableItem
+public class ChemicalGrenade extends ThrowableItem
 {
     private static Random rand = new Random();
     private static float[] explosionValues = new float[] {1.55F, 1.7F, 1.9F};
     private static long unpinDuration = Main.getInstance().getConfig().getLong("grenade_unpinduration");
-    private static long fuseDuration = Main.getInstance().getConfig().getLong("grenade_fuseduration");
+    private static long fuseDuration = Main.getInstance().getConfig().getLong("blindgrenade_fuseduration");
     private static double grenadeUsageDelay = Main.getInstance().getConfig().getDouble("grenadeusagedelay");
     private static Entity thrownEntity;
 
