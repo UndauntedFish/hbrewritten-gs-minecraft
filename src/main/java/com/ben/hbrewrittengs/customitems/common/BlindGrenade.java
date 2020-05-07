@@ -25,10 +25,18 @@ public class BlindGrenade extends ThrowableItem
 
     public static void unpinAndThrow(Player thrower)
     {
-        // Start implicit cooldown (the player won't be notified of this cooldown's effect, it'll just happen in the background)
-        ImplicitCooldown cooldown = new ImplicitCooldown(thrower, thrower.getInventory().getItemInMainHand(), Main.getInstance().getConfig().getDouble("grenadeusagedelay"));
-        Main.getInstance().playerDataMap.get(thrower.getUniqueId()).activeImplicitCooldowns.add(cooldown);
-        cooldown.start();
+        // Remove thrown blind grenade from player's inventory
+        int blindGrenadeCount = thrower.getInventory().getItemInMainHand().getAmount();
+        thrower.getInventory().getItemInMainHand().setAmount(blindGrenadeCount - 1);
+
+        // Do cooldown if player has more grenades in their inventory
+        if (blindGrenadeCount - 1 != 0)
+        {
+            // Start implicit cooldown (the player won't be notified of this cooldown's effect, it'll just happen in the background)
+            ImplicitCooldown cooldown = new ImplicitCooldown(thrower, thrower.getInventory().getItemInMainHand(), Main.getInstance().getConfig().getDouble("grenadeusagedelay"));
+            Main.getInstance().playerDataMap.get(thrower.getUniqueId()).activeImplicitCooldowns.add(cooldown);
+            cooldown.start();
+        }
 
         // Play grenade fting sound
         thrower.playSound(thrower.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 0.55F, 2.0F);
@@ -40,7 +48,7 @@ public class BlindGrenade extends ThrowableItem
             @Override
             public void run()
             {
-                // Play grenade whoo sound
+                // Throw blind grenade and play grenade whoosh sound
                 thrower.playSound(thrower.getLocation(), Sound.ENTITY_SNOWBALL_THROW, 1.0F, 0.5F);
                 thrownEntity = throwItem(Material.GOLD_NUGGET, thrower);
 
@@ -78,7 +86,7 @@ public class BlindGrenade extends ThrowableItem
             public void run()
             {
                 // Blinds anyone near the blind grenade
-                thrownEntity.getNearbyEntities(5.0, 5.0, 5.0).forEach( (entity) ->
+                thrownEntity.getNearbyEntities(10.0, 10.0, 10.0).forEach( (entity) ->
                 {
                     if (entity instanceof Player)
                     {
