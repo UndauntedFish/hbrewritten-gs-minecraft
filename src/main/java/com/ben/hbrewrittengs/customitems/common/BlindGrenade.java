@@ -13,6 +13,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import java.util.LinkedList;
 import java.util.Random;
 
 public class BlindGrenade extends ThrowableItem
@@ -22,7 +23,7 @@ public class BlindGrenade extends ThrowableItem
     private static long unpinDuration = Main.getInstance().getConfig().getLong("grenade_unpinduration");
     private static long fuseDuration = Main.getInstance().getConfig().getLong("grenade_fuseduration");
     private static double grenadeUsageDelay = Main.getInstance().getConfig().getDouble("grenadeusagedelay");
-    private static Entity thrownEntity;
+    private static LinkedList<Entity> thrownEntities = new LinkedList<>();
 
     public static void unpinAndThrow(Player thrower)
     {
@@ -51,8 +52,8 @@ public class BlindGrenade extends ThrowableItem
             {
                 // Throw blind grenade and play grenade whoosh sound
                 thrower.playSound(thrower.getLocation(), Sound.ENTITY_SNOWBALL_THROW, 1.0F, 0.5F);
-                thrownEntity = throwItem(Material.GOLD_NUGGET, thrower);
-                thrownEntity.setTicksLived((int) ((int) (unpinDuration + fuseDuration) + 20 * (grenadeUsageDelay + 1)));
+                Entity thrownEntity = throwItem(Material.GOLD_NUGGET, thrower);
+                thrownEntities.add(thrownEntity);
 
                 // Send packet that swings the player's arm (all players should be able to see this animation)
                 PacketContainer swingArm = Main.getInstance().getProtocolManager().createPacket(PacketType.Play.Server.ANIMATION);
@@ -68,7 +69,10 @@ public class BlindGrenade extends ThrowableItem
                 }
 
                 // Detonates the grenade after x ticks (fuseDuration)
-                detonateAfterDelay();
+                while (!thrownEntities.isEmpty())
+                {
+                    detonateAfterDelay(thrownEntities.removeLast());
+                }
             }
         }, unpinDuration);
 
@@ -80,7 +84,7 @@ public class BlindGrenade extends ThrowableItem
          */
     }
 
-    private static void detonateAfterDelay()
+    private static void detonateAfterDelay(Entity thrownEntity)
     {
         Bukkit.getScheduler().runTaskLater(Main.getInstance(), new Runnable()
         {
