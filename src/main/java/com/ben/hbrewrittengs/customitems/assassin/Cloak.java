@@ -25,9 +25,9 @@ public class Cloak
         Main.getInstance().toggleVisibilityNative(player);
 
         // Playing cloak activation sounds
-        player.playSound(player.getLocation(), Sound.ENTITY_BLAZE_SHOOT, 1.0F, 0.7F);
-        player.playSound(player.getLocation(), Sound.ENTITY_ENDER_DRAGON_FLAP, 1.0F, 1.0F);
-        player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_BREATH, 1.0F, 0.5F);
+        player.playSound(player.getLocation(), Sound.ENTITY_BLAZE_SHOOT, 2.0F, 0.7F);
+        player.playSound(player.getLocation(), Sound.ENTITY_ENDER_DRAGON_FLAP, 2.0F, 1.0F);
+        player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_BREATH, 2.0F, 0.5F);
 
         // Unvanishes them when cloakduration is over.
         Bukkit.getScheduler().runTaskLater(Main.getInstance(), new Runnable()
@@ -44,8 +44,8 @@ public class Cloak
         Player player = Bukkit.getPlayer(pd.getUUID());
 
         // Playing cloak deactivation sounds
-        player.playSound(player.getLocation(), Sound.ENTITY_ENDER_DRAGON_FLAP, 1.0F, 1.0F);
-        player.playSound(player.getLocation(), Sound.ENTITY_BLAZE_SHOOT, 1.0F, 0.7F);
+        player.playSound(player.getLocation(), Sound.ENTITY_ENDER_DRAGON_FLAP, 2.0F, 1.0F);
+        player.playSound(player.getLocation(), Sound.ENTITY_BLAZE_SHOOT, 2.0F, 0.7F);
 
         Main.getInstance().toggleVisibilityNative(player);
     }
