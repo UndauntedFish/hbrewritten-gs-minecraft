@@ -5,6 +5,7 @@ gameserverworldname: HBR01
 smokescreen: 15
 cloakduration: 10
 grenadeusagedelay: 1.5
+spectralstab_cooldown: 7.0
 
 # Grenade unpin and fuse times (in ticks!)
   # FYI: 1 second = 20 game ticks
@@ -17,6 +18,9 @@ chemicalgrenade_damage: 7.0
 
 # Chemical grenade damage radius
 chemicalgrenade_damageradius: 6.0
+
+# Assassin's Spectral Stab damage (0.0 - 20.0) (guaranteed to damage Herobrine this amount upon landing a Spectral Stab)
+spectralstab_damage: 7.0
 
 # Database setup
 host: localhost

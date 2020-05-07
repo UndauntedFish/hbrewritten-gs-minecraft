@@ -4,6 +4,7 @@ import com.ben.hbrewrittengs.Main;
 import com.ben.hbrewrittengs.PlayerData;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -42,9 +43,11 @@ public class SpectralDagger
         PlayerData pdStabber = Main.getInstance().playerDataMap.get(stabber.getUniqueId());
         PlayerData pdStabbed = Main.getInstance().playerDataMap.get(stabbed.getUniqueId());
 
-        if (!pdStabbed.isHerobrine())
-        {
-            return;
-        }
+        // Play HB hurt sound
+        stabbed.getWorld().playSound(stabbed.getLocation(), Sound.ENTITY_BLAZE_HURT, 1.5F, 1.0F);
+
+        // Play Spectral Stab sounds
+        stabbed.playSound(stabbed.getLocation(), Sound.ENTITY_GHAST_HURT, 0.8F, 1.0F);
+        stabber.playSound(stabbed.getLocation(), Sound.ITEM_TRIDENT_THUNDER, 1.0F, 0.5F);
     }
 }
