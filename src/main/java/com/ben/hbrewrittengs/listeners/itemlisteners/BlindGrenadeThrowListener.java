@@ -2,6 +2,7 @@ package com.ben.hbrewrittengs.listeners.itemlisteners;
 
 import com.ben.hbrewrittengs.Main;
 import com.ben.hbrewrittengs.PlayerData;
+import com.ben.hbrewrittengs.bossbarcooldown.ImplicitCooldown;
 import com.ben.hbrewrittengs.customitems.common.BlindGrenade;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -11,6 +12,8 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
+
+import java.util.Iterator;
 
 public class BlindGrenadeThrowListener implements Listener
 {
@@ -29,6 +32,31 @@ public class BlindGrenadeThrowListener implements Listener
             {
                 if (heldItem.getType() == Material.GOLD_NUGGET)
                 {
+                    // Checks if smoke screen has any active cooldowns
+                    if (!pd.activeImplicitCooldowns.isEmpty())
+                    {
+                        for (Iterator<ImplicitCooldown> itr = pd.activeImplicitCooldowns.iterator(); itr.hasNext(); )
+                        {
+
+                            ImplicitCooldown cooldown = itr.next();
+                            if (cooldown.getCooldownItem().isSimilar(heldItem) &&
+                                    cooldown.getPlayerUUID().equals(pd.getUUID()))
+                            {
+                                if (cooldown.isDone())
+                                {
+                                    itr.remove();
+                                    break;
+                                }
+                                else
+                                {
+                                    e.setCancelled(true);
+                                    return;
+                                }
+                            }
+                        }
+
+                    }
+
                     // Throwing the blind grenade
                     BlindGrenade.unpinAndThrow(player);
                 }

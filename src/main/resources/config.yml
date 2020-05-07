@@ -4,6 +4,7 @@ gameserverworldname: HBR01
 # Item cooldowns (in seconds!)
 smokescreen: 15
 cloakduration: 10
+grenadeusagedelay: 1.5
 
 # Grenade unpin and fuse times (in ticks!)
 # FYI: 1 second = 20 game ticks

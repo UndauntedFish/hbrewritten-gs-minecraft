@@ -4,9 +4,6 @@ import com.ben.hbrewrittengs.Main;
 import com.ben.hbrewrittengs.PlayerData;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.boss.BarColor;
-import org.bukkit.boss.BarStyle;
-import org.bukkit.boss.BossBar;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -19,30 +16,34 @@ public class ImplicitCooldown
     private Player player;
     private PlayerData pd;
     private ItemStack cooldownItem;
-    private BossBar bossbar;
-    private double lengthInSeconds, timeRemaining, bossbarIncrement;
+    private double lengthInSeconds, timeRemaining;
     private boolean isDone, wasStarted;
     private int taskID;
-    private String cooldownEndMessage;
 
-    public ImplicitCooldown(PlayerData pd, ItemStack cooldownItem, double lengthInSeconds, String cooldownTitle, BarColor barColor)
+    public ImplicitCooldown(PlayerData pd, ItemStack cooldownItem, double lengthInSeconds)
     {
         this.pd = pd;
         this.player = Bukkit.getPlayer(pd.getUUID());
         this.cooldownItem = cooldownItem;
-        this.bossbar = Bukkit.createBossBar(cooldownTitle, barColor, BarStyle.SOLID);
         this.lengthInSeconds = lengthInSeconds;
         this.isDone = false;
         this.wasStarted = false;
-        bossbarIncrement = 1.0 / (lengthInSeconds * 20.0);
+    }
+
+    public ImplicitCooldown(Player player, ItemStack cooldownItem, double lengthInSeconds)
+    {
+        this.pd = Main.getInstance().playerDataMap.get(player);
+        this.player = player;
+        this.cooldownItem = cooldownItem;
+        this.lengthInSeconds = lengthInSeconds;
+        this.isDone = false;
+        this.wasStarted = false;
     }
 
     public void start()
     {
         this.wasStarted = true;
         this.timeRemaining = lengthInSeconds;
-        bossbar.setProgress(1.0);
-        bossbar.addPlayer(player);
 
         taskID = Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getInstance(), new Runnable()
         {
@@ -52,30 +53,12 @@ public class ImplicitCooldown
                 if (timeRemaining <= 0.0)
                 {
                     // end cooldown
-                    pd.activeBossBarCooldowns.remove(player.getUniqueId());
                     isDone = true;
-                    bossbar.setProgress(0.0);
-                    bossbar.removeAll();
-                    if (!cooldownEndMessage.equals(null))
-                    {
-                        player.sendMessage(cooldownEndMessage);
-                    }
                     Bukkit.getScheduler().cancelTask(taskID);
                 }
                 else
                 {
                     // continue cooldown
-
-                    // This makes sure that the bossbar progress is never set above 1.0F
-                    if (bossbar.getProgress() - bossbarIncrement < 0.0)
-                    {
-                        bossbar.setProgress(0.0);
-                    }
-                    else
-                    {
-                        bossbar.setProgress(bossbar.getProgress() - bossbarIncrement);
-                    }
-
                     timeRemaining = timeRemaining - (1.0F / 20.0F);
                 }
             }
@@ -123,15 +106,5 @@ public class ImplicitCooldown
     public ItemStack getCooldownItem()
     {
         return cooldownItem;
-    }
-
-    public String getCooldownEndMessage()
-    {
-        return cooldownEndMessage;
-    }
-
-    public void setCooldownEndMessage(String cooldownEndMessage)
-    {
-        this.cooldownEndMessage = cooldownEndMessage;
     }
 }

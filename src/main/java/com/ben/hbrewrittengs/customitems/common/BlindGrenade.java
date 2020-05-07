@@ -1,6 +1,7 @@
 package com.ben.hbrewrittengs.customitems.common;
 
 import com.ben.hbrewrittengs.Main;
+import com.ben.hbrewrittengs.bossbarcooldown.ImplicitCooldown;
 import com.ben.hbrewrittengs.customitems.ThrowableItem;
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.events.PacketContainer;
@@ -24,10 +25,14 @@ public class BlindGrenade extends ThrowableItem
 
     public static void unpinAndThrow(Player thrower)
     {
+        // Start implicit cooldown (the player won't be notified of this cooldown's effect, it'll just happen in the background)
+        ImplicitCooldown cooldown = new ImplicitCooldown(thrower, thrower.getInventory().getItemInMainHand(), Main.getInstance().getConfig().getDouble("grenadeusagedelay"));
+        Main.getInstance().playerDataMap.get(thrower.getUniqueId()).activeImplicitCooldowns.add(cooldown);
+        cooldown.start();
+
         // Play grenade fting sound
         thrower.playSound(thrower.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 0.55F, 2.0F);
         thrower.playSound(thrower.getLocation(), Sound.ENTITY_CREEPER_PRIMED, 1.0F, 1.7F);
-
 
         // Throws the blind grenade after playing the unpinning animation
         Bukkit.getScheduler().runTaskLater(Main.getInstance(), new Runnable()
@@ -78,10 +83,10 @@ public class BlindGrenade extends ThrowableItem
                     if (entity instanceof Player)
                     {
                         Player target = (Player) entity;
-                        target.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 5, 0, false, false));
+                        target.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 5 * 20, 0, false, false));
                     }
                 });
-
+                thrownEntity.getWorld().playSound(thrownEntity.getLocation(), Sound.ENTITY_GENERIC_EXPLODE, 1.0F, 1.0F);
                 thrownEntity.remove();
             }
         }, fuseDuration);
