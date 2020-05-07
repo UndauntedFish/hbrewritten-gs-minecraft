@@ -100,7 +100,7 @@ public class BlindGrenade extends ThrowableItem
                         target.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 5 * 20, 0, false, false));
                     }
                 });
-                thrownEntity.getWorld().playSound(thrownEntity.getLocation(), Sound.ENTITY_GENERIC_EXPLODE, 1.0F, 1.0F);
+                thrownEntity.getWorld().playSound(thrownEntity.getLocation(), Sound.ENTITY_GENERIC_EXPLODE, 4.0F, 1.0F);
                 thrownEntity.remove();
             }
         }, fuseDuration);
