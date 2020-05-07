@@ -14,12 +14,9 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import java.util.LinkedList;
-import java.util.Random;
 
 public class BlindGrenade extends ThrowableItem
 {
-    private static Random rand = new Random();
-    private static float[] explosionValues = new float[] {1.55F, 1.7F, 1.9F};
     private static long unpinDuration = Main.getInstance().getConfig().getLong("grenade_unpinduration");
     private static long fuseDuration = Main.getInstance().getConfig().getLong("grenade_fuseduration");
     private static double grenadeUsageDelay = Main.getInstance().getConfig().getDouble("grenadeusagedelay");
@@ -75,13 +72,6 @@ public class BlindGrenade extends ThrowableItem
                 }
             }
         }, unpinDuration);
-
-
-        /* Randomly selects one of three explosion sounds to play
-        thrower.getWorld().playSound(thrownGrenade.getThrownEntity().getLocation(), Sound.ENTITY_VILLAGER_YES, 1.0F, randPitch());
-
-        chemgrenade
-         */
     }
 
     private static void detonateAfterDelay(Entity thrownEntity)
@@ -105,13 +95,4 @@ public class BlindGrenade extends ThrowableItem
             }
         }, fuseDuration);
     }
-
-    /*
-    private static float randPitch()
-    {
-        int randomIndex = new Random().nextInt(explosionValues.length);
-        return explosionValues[randomIndex];
-    }
-    chemgrenade
-     */
 }
