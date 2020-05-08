@@ -1,5 +1,6 @@
 package com.ben.hbrewrittengs.enums;
 
+import com.ben.hbrewrittengs.utils.ColorUtils;
 import org.bukkit.ChatColor;
 
 public enum Rank
