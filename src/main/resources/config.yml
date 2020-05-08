@@ -7,20 +7,32 @@ cloakduration: 10
 grenadeusagedelay: 1.5
 spectralstab_cooldown: 7.0
 
+# cooldownbar_quality is essentially the "resolution" of the cooldown bossbar.
+#     1 will update the bossbar every tick
+#     3 will update the bossbar every 3 ticks
+#    20 will update the bossbar every second (since 1 second = 20 ticks)
+#    80 will update the bossbar every 4 seconds
+#    ...etc.
+# The lower the number, the HIGHER the resolution and the LAGGIER the game.
+cooldownbar_quality: 3
+
 # Grenade unpin and fuse times (in ticks!)
-  # FYI: 1 second = 20 game ticks
-  # FYI: 1 redstone tick = 2 game ticks, 4 redstone ticks = 2*4 game ticks.
+  # FYI: 1 second = 20 ticks
+  # FYI: 1 redstone tick = 2 ticks, 4 redstone ticks = 2*4 ticks.
 grenade_unpinduration: 10
 grenade_fuseduration: 70
 
-# Chemical grenade damage (0.0 - 20.0)
+# Chemical grenade damage (0.0 - 20.0) (Herobrine's resistance can protect against this, so the number is rather high)
 chemicalgrenade_damage: 7.0
 
 # Chemical grenade damage radius
 chemicalgrenade_damageradius: 6.0
 
-# Assassin's Spectral Stab damage (0.0 - 20.0) (guaranteed to damage Herobrine this amount upon landing a Spectral Stab)
+# Assassin's Spectral Stab damage (0.0 - 20.0) (Damages Herobrine, ignoring his resistance, when an Assassin lands a Spectral Stab)
 spectralstab_damage: 7.0
+
+# Paladin's Protection Spirit duration (in seconds!)
+protectionspirit_duration: 12.0
 
 # Database setup
 host: localhost

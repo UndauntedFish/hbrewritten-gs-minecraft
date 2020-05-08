@@ -20,10 +20,19 @@ public class BossBarCooldown
     private PlayerData pd;
     private ItemStack cooldownItem;
     private BossBar bossbar;
-    private double lengthInSeconds, timeRemaining, bossbarIncrement;
+    private double lengthInSeconds, timeRemaining, timeDecrement, bossbarIncrement;
     private boolean isDone, wasStarted;
     private int taskID;
     private String cooldownEndMessage;
+
+    /*
+     * runnableIncreaseTick is essentially the "resolution" of the bossbar.
+     *    1L will update the bossbar every tick
+     *   20L will update the bossbar every second (1 second = 20 ticks)
+     *   80L will update the bossbar every 4 seconds
+     *   ...etc.
+     */
+    private long runnableIncreaseTick = Main.getInstance().getConfig().getLong("cooldownbar_quality");
 
     public BossBarCooldown(PlayerData pd, ItemStack cooldownItem, double lengthInSeconds, String cooldownTitle, BarColor barColor)
     {
@@ -34,7 +43,9 @@ public class BossBarCooldown
         this.lengthInSeconds = lengthInSeconds;
         this.isDone = false;
         this.wasStarted = false;
-        bossbarIncrement = 1.0 / (lengthInSeconds * 20.0);
+        bossbarIncrement = 1.0 / (lengthInSeconds * (20.0 / (double) runnableIncreaseTick));
+        timeDecrement = 1.0 / (20 / (double) runnableIncreaseTick);
+
     }
 
     public void start()
@@ -76,10 +87,10 @@ public class BossBarCooldown
                         bossbar.setProgress(bossbar.getProgress() - bossbarIncrement);
                     }
 
-                    timeRemaining = timeRemaining - (1.0F / 20.0F);
+                    timeRemaining = timeRemaining - timeDecrement;
                 }
             }
-        }, 0L, 1L);
+        }, 0L, runnableIncreaseTick);
     }
 
     public boolean wasStarted()
