@@ -7,13 +7,14 @@ cloakduration: 10
 grenadeusagedelay: 1.5
 spectralstab_cooldown: 7.0
 
-# cooldownbar_quality is essentially the "resolution" of the cooldown bossbar.
+# cooldownbar_quality is essentially the "resolution" of the cooldown progress bossbar.
 #     1 will update the bossbar every tick
 #     3 will update the bossbar every 3 ticks
 #    20 will update the bossbar every second (since 1 second = 20 ticks)
 #    80 will update the bossbar every 4 seconds
 #    ...etc.
-# The lower the number, the HIGHER the resolution and the LAGGIER the game.
+#  A low number means the cooldown progress bar will be updated VERY frequently, making it look smooth.
+#  A high number means the cooldown progress bar will be updated less frequently, making the game less laggy.
 cooldownbar_quality: 3
 
 # Grenade unpin and fuse times (in ticks!)
@@ -23,16 +24,22 @@ grenade_unpinduration: 10
 grenade_fuseduration: 70
 
 # Chemical grenade damage (0.0 - 20.0) (Herobrine's resistance can protect against this, so the number is rather high)
-chemicalgrenade_damage: 7.0
+chemicalgrenade_damage: 10.0
 
 # Chemical grenade damage radius
-chemicalgrenade_damageradius: 6.0
+chemicalgrenade_damageradius: 4.0
 
 # Assassin's Spectral Stab damage (0.0 - 20.0) (Damages Herobrine, ignoring his resistance, when an Assassin lands a Spectral Stab)
 spectralstab_damage: 7.0
 
 # Paladin's Protection Spirit duration (in seconds!)
 protectionspirit_duration: 12.0
+
+# Notch's Wisdom duration (in seconds!)
+notchswisdom_duration: 8.0
+
+# Notch's Wisdom health increase per second (0.0 - 20.0)
+notchswisdom_healthpersecond: 3
 
 # Database setup
 host: localhost

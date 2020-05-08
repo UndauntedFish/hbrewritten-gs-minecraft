@@ -123,6 +123,7 @@ public class Main extends JavaPlugin
         Bukkit.getPluginManager().registerEvents(new BlindGrenadeThrowListener(), this);
         Bukkit.getPluginManager().registerEvents(new ChemicalGrenadeThrowListener(), this);
         Bukkit.getPluginManager().registerEvents(new ProtectionSpiritActivationListener(), this);
+        Bukkit.getPluginManager().registerEvents(new NotchsWisdomActivationListener(), this);
     }
 
     private void vanishPacketListener()
