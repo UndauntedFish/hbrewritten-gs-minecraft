@@ -16,15 +16,15 @@ public class ProtectionSpirit
     private static Random random = new Random();
 
     private Player player;
-    private int taskID;
     private double protSpiritDuration;
     private Location feetLocation;
     private AttributeInstance maxHealth;
 
+    private int taskID;
+
     public ProtectionSpirit(Player player)
     {
         this.player = player;
-
         this.maxHealth = player.getAttribute(Attribute.GENERIC_MAX_HEALTH);
     }
 
@@ -56,7 +56,7 @@ public class ProtectionSpirit
         }, 0L, 10L);
     }
 
-    // Contains the routine to heal the player for one second of Protection Spirit.
+    // Contains the routine to heal the player for every half second the Protection Spirit is active.
     private void healPlayer()
     {
         // Playing the floof sound
