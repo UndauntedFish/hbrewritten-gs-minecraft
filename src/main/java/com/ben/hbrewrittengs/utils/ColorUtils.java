@@ -1,10 +1,10 @@
-package com.ben.hbrewrittengs.enums;
+package com.ben.hbrewrittengs.utils;
+
+import org.bukkit.ChatColor;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
-
-import org.bukkit.ChatColor;
 
 public class ColorUtils
 {
