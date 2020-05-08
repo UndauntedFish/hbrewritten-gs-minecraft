@@ -92,7 +92,7 @@ public class ChemicalGrenade extends ThrowableItem
                         target.damage(damage);
                     }
                 });
-                thrownEntity.getWorld().playSound(thrownEntity.getLocation(), Sound.ITEM_TOTEM_USE, 4.0F, randPitch());
+                thrownEntity.getWorld().playSound(thrownEntity.getLocation(), Sound.ITEM_TOTEM_USE, 3.0F, randPitch());
                 thrownEntity.getWorld().spawnParticle(Particle.EXPLOSION_LARGE, thrownEntity.getLocation(), 1);
                 thrownEntity.getWorld().spawnParticle(Particle.EXPLOSION_NORMAL, thrownEntity.getLocation(), 15);
                 spawnTorchForOneTick(thrownEntity.getLocation());

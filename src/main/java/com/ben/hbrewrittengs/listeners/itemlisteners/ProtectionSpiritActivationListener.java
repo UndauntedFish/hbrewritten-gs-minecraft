@@ -1,7 +1,6 @@
 package com.ben.hbrewrittengs.listeners.itemlisteners;
 
 import com.ben.hbrewrittengs.Main;
-import com.ben.hbrewrittengs.PlayerData;
 import com.ben.hbrewrittengs.customitems.paladin.ProtectionSpirit;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
@@ -19,7 +18,10 @@ public class ProtectionSpiritActivationListener implements Listener
         if (e.getEntity().getShooter() instanceof Player && e.getEntity() instanceof EnderPearl)
         {
             Player player = (Player) e.getEntity().getShooter();
-            PlayerData pd = Main.getInstance().playerDataMap.get(player.getUniqueId());
+
+            // Removing activated Protection Spirit from player's inventory
+            player.getInventory().getItemInMainHand().setAmount(
+                    player.getInventory().getItemInMainHand().getAmount() - 1);
 
             EnderPearl thrownPearl = (EnderPearl) e.getEntity();
             thrownPearl.remove();
