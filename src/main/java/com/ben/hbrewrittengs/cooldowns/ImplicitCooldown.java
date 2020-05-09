@@ -1,4 +1,4 @@
-package com.ben.hbrewrittengs.bossbarcooldown;
+package com.ben.hbrewrittengs.cooldowns;
 
 import com.ben.hbrewrittengs.Main;
 import com.ben.hbrewrittengs.PlayerData;
@@ -20,6 +20,13 @@ public class ImplicitCooldown
     private boolean isDone, wasStarted;
     private int taskID;
 
+    /*
+     * This cooldown functions just like the bossbar cooldown, except there's no bossbar.
+     * The player isn't at all aware that this cooldown is happening, hence the name "Implicit Cooldown"
+     *
+     *  This is good for the short grenade unpinning cooldowns, since it would be weird to display
+     *  a 1 second cooldown bossbar for just unpinning a grenade.
+     */
     public ImplicitCooldown(PlayerData pd, ItemStack cooldownItem, double lengthInSeconds)
     {
         this.pd = pd;

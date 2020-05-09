@@ -2,7 +2,7 @@ package com.ben.hbrewrittengs.listeners.itemlisteners;
 
 import com.ben.hbrewrittengs.Main;
 import com.ben.hbrewrittengs.PlayerData;
-import com.ben.hbrewrittengs.bossbarcooldown.BossBarCooldown;
+import com.ben.hbrewrittengs.cooldowns.BossBarCooldown;
 import com.ben.hbrewrittengs.customitems.assassin.SmokeScreen;
 import com.ben.hbrewrittengs.enums.Format;
 import org.bukkit.ChatColor;

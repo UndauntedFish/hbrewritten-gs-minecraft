@@ -1,7 +1,7 @@
 package com.ben.hbrewrittengs.customitems.common;
 
 import com.ben.hbrewrittengs.Main;
-import com.ben.hbrewrittengs.bossbarcooldown.ImplicitCooldown;
+import com.ben.hbrewrittengs.cooldowns.ImplicitCooldown;
 import com.ben.hbrewrittengs.customitems.ThrowableItem;
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.events.PacketContainer;

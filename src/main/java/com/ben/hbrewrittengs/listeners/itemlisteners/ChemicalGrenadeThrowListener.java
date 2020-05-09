@@ -2,7 +2,7 @@ package com.ben.hbrewrittengs.listeners.itemlisteners;
 
 import com.ben.hbrewrittengs.Main;
 import com.ben.hbrewrittengs.PlayerData;
-import com.ben.hbrewrittengs.bossbarcooldown.ImplicitCooldown;
+import com.ben.hbrewrittengs.cooldowns.ImplicitCooldown;
 import com.ben.hbrewrittengs.customitems.demo.ChemicalGrenade;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;

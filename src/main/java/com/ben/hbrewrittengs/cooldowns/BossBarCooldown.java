@@ -1,4 +1,4 @@
-package com.ben.hbrewrittengs.bossbarcooldown;
+package com.ben.hbrewrittengs.cooldowns;
 
 import com.ben.hbrewrittengs.Main;
 import com.ben.hbrewrittengs.PlayerData;
