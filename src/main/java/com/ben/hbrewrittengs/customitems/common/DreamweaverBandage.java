@@ -17,7 +17,7 @@ public class DreamweaverBandage
 
     public void activate()
     {
-        player.playSound(player.getEyeLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0F, 1.0F);
+        player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0F, 1.0F);
         player.setHealth(maxHealth);
     }
 }
