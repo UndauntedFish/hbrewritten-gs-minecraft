@@ -1,34 +1,23 @@
 package com.ben.hbrewrittengs.customitems.common;
 
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
-
-import java.util.ArrayList;
-import java.util.List;
+import org.bukkit.Sound;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.entity.Player;
 
 public class DreamweaverBandage
 {
-    private ItemStack dwBandage;
+    private Player player;
+    private double maxHealth;
 
-    public DreamweaverBandage(int amount)
+    public DreamweaverBandage(Player player)
     {
-        /* LORE */
-        List<String> dwBandageLore = new ArrayList<>();
-        dwBandageLore.add("A quick heal, perfect for");
-        dwBandageLore.add("sticky situations.");
-
-        /* ITEM */
-        dwBandage = new ItemStack(Material.MAGMA_CREAM, amount);
-        ItemMeta dwBandageMeta = dwBandage.getItemMeta();
-        dwBandageMeta.setDisplayName(ChatColor.YELLOW + "Dreamweaver Bandage");
-        dwBandageMeta.setLore(dwBandageLore);
-        dwBandage.setItemMeta(dwBandageMeta);
+        this.player = player;
+        this.maxHealth = player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue();
     }
 
-    public ItemStack getItem()
+    public void activate()
     {
-        return dwBandage;
+        player.playSound(player.getEyeLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0F, 1.0F);
+        player.setHealth(maxHealth);
     }
 }

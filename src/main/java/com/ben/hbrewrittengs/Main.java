@@ -124,6 +124,7 @@ public class Main extends JavaPlugin
         Bukkit.getPluginManager().registerEvents(new ChemicalGrenadeThrowListener(), this);
         Bukkit.getPluginManager().registerEvents(new ProtectionSpiritActivationListener(), this);
         Bukkit.getPluginManager().registerEvents(new NotchsWisdomActivationListener(), this);
+        Bukkit.getPluginManager().registerEvents(new DreamweaverBandageActivationListener(), this);
     }
 
     private void vanishPacketListener()
