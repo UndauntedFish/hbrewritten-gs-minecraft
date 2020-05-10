@@ -28,8 +28,12 @@ public class Sorcerer
     {
         /* LORES */
         axeOfDeathLore.add("The axe of many lost souls.");
-        healingTotemLore.add("Heals users nearby for 1 heart per second.");
-        harmingTotemLore.add("Harms Herobrine every second when he is nearby.");
+
+        healingTotemLore.add("Heals users nearby for for 1 minute.");
+        healingTotemLore.add("Left click to place, right click to retrieve.");
+
+        harmingTotemLore.add("Harms Herobrine when he is nearby, for 1 minute.");
+        harmingTotemLore.add("Left click to place, right click to retrieve.");
 
         /* ITEMS */
 
@@ -78,5 +82,15 @@ public class Sorcerer
         player.getInventory().setItem(2, healingTotem);
         player.getInventory().setItem(3, harmingTotem);
         player.getInventory().setItem(8, CommonItems.getObjectiveLocator());
+    }
+
+    public static ItemStack getPainTotemItemStack()
+    {
+        return harmingTotem;
+    }
+
+    public static ItemStack getHealingTotemItemStack()
+    {
+        return healingTotem;
     }
 }

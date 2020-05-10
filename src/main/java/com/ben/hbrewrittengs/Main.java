@@ -125,6 +125,7 @@ public class Main extends JavaPlugin
         Bukkit.getPluginManager().registerEvents(new ProtectionSpiritActivationListener(), this);
         Bukkit.getPluginManager().registerEvents(new NotchsWisdomActivationListener(), this);
         Bukkit.getPluginManager().registerEvents(new DreamweaverBandageActivationListener(), this);
+        Bukkit.getPluginManager().registerEvents(new TotemListeners(), this);
     }
 
     private void vanishPacketListener()
