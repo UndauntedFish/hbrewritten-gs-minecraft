@@ -17,7 +17,7 @@ public class NotchsWisdom
     private Location activationLocation, soundLocation;
     private boolean particlesShown;
 
-    // Loads Notch's Wisdom config.yml settings
+    // Loads Notch's Wisdom variables from config.yml
     private double notchsWisdomDuration = Main.getInstance().getConfig().getDouble("notchswisdom_duration");
     private static double healthIncreasePerSecond =  Main.getInstance().getConfig().getDouble("notchswisdom_healthpersecond");
 

@@ -22,7 +22,7 @@ public class PlayerData
 
 	/*
 	 * These variables' values are fetched from the database upon the player joining the game
-	 *  (see AsyncPlayerDataLoader to see how that works).
+	 *  (see AsyncPlayerDataLoader to see how this works).
 	 */
 	private int points, tokens;
 	private Rank rank;
@@ -39,10 +39,8 @@ public class PlayerData
 	// These are all active cooldowns that the player cannot see. They just prohibit them from using an item for x seconds.
 	public ArrayList<ImplicitCooldown> activeImplicitCooldowns = new ArrayList<>();
 
-	// Any entity a player throws will be stored here for future removal.
-	public LinkedList<Entity> thrownSmokeScreens = new LinkedList<>(),
-							  thrownChemGrenades = new LinkedList<>(),
-							  thrownBlindGrenades = new LinkedList<>();
+	// Any smokescreen a player throws will be stored here for future removal.
+	public LinkedList<Entity> thrownSmokeScreens = new LinkedList<>();
 
 	public PlayerData(UUID uuid)
 	{
