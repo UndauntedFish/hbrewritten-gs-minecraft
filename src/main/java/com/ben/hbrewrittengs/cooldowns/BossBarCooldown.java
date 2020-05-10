@@ -45,7 +45,18 @@ public class BossBarCooldown
         this.wasStarted = false;
         bossbarIncrement = 1.0 / (lengthInSeconds * (20.0 / (double) runnableIncreaseTick));
         timeDecrement = 1.0 / (20 / (double) runnableIncreaseTick);
-
+    }
+    public BossBarCooldown(Player player, ItemStack cooldownItem, double lengthInSeconds, String cooldownTitle, BarColor barColor)
+    {
+        this.pd = Main.getInstance().playerDataMap.get(player.getUniqueId());
+        this.player = player;
+        this.cooldownItem = cooldownItem;
+        this.bossbar = Bukkit.createBossBar(cooldownTitle, barColor, BarStyle.SOLID);
+        this.lengthInSeconds = lengthInSeconds;
+        this.isDone = false;
+        this.wasStarted = false;
+        bossbarIncrement = 1.0 / (lengthInSeconds * (20.0 / (double) runnableIncreaseTick));
+        timeDecrement = 1.0 / (20 / (double) runnableIncreaseTick);
     }
 
     public void start()
@@ -67,7 +78,7 @@ public class BossBarCooldown
                     isDone = true;
                     bossbar.setProgress(0.0);
                     bossbar.removeAll();
-                    if (!cooldownEndMessage.equals(null))
+                    if (cooldownEndMessage.equals(null))
                     {
                         player.sendMessage(cooldownEndMessage);
                     }
