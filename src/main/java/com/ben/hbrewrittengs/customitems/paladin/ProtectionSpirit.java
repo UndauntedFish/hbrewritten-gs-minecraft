@@ -53,7 +53,7 @@ public class ProtectionSpirit
                     protSpiritDuration = protSpiritDuration - 0.5;
                 }
             }
-        }, 0L, 10L);
+        }, 10L, 10L);
     }
 
     // Contains the routine to heal the player for every half second the Protection Spirit is active.
