@@ -9,7 +9,6 @@ import org.bukkit.*;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.boss.BarColor;
 import org.bukkit.entity.Player;
-import org.bukkit.util.Vector;
 
 public class TotemPain
 {
@@ -76,19 +75,16 @@ public class TotemPain
 
     private void spawnParticles()
     {
-        Vector origin = totemLoc.toVector();
-        Vector circumferencePtr = origin.add(new Vector(totemRadius, 0.0, 0.0));
-
-        // Spawns particles around the origin vector
-        for (double i = 0.0; i < 360.0; i += (360.0 / totemParticleCount))
+        // Spawns particles around the totem
+        double x = 0.0;
+        double z = 0.0;
+        for (double angle = 0.0; angle < 360.0; angle += (360.0 / totemParticleCount))
         {
-            circumferencePtr = circumferencePtr.rotateAroundAxis(origin, i);
+            x = (totemRadius * Math.sin(Math.toRadians(angle)));
+            z = (totemRadius * Math.cos(Math.toRadians(angle)));
 
-            player.getWorld().spawnParticle(
-                    Particle.VILLAGER_ANGRY,
-                    circumferencePtr.toLocation(player.getWorld()),
-                    1
-            );
+            player.getWorld().spawnParticle(Particle.VILLAGER_ANGRY,
+                    totemLoc.getX() + x, totemLoc.getY(), totemLoc.getZ() + z, 1);
         }
     }
 
