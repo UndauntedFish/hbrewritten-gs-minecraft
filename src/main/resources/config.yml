@@ -45,11 +45,11 @@ notchswisdom_healthpersecond: 3
 totem_duration: 60.0
 
 # Sorcerer's Totems' effect radius
-totem_radius: 4.0
+totem_radius: 3.5
 
 # The number of particles spawned around a Sorcerer's Totem
 #  (adjust this as needed when making the radius bigger/smaller)
-totem_particlecount: 10
+totem_particlecount: 20
 
 # Sorcerer's Healing Totem's health healed per second (0.0 - 20.0)
 #  Default is 2.0 (1 heart) per second
