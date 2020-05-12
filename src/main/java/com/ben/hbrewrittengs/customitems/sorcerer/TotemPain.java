@@ -8,7 +8,6 @@ import com.ben.hbrewrittengs.enums.Format;
 import org.bukkit.*;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.boss.BarColor;
-import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
@@ -97,27 +96,23 @@ public class TotemPain
     {
         totemLoc.getWorld().getNearbyEntities(totemLoc, totemRadius, 4.0, totemRadius).forEach( (entity) ->
         {
-            if (entity instanceof LivingEntity)
+            if (entity instanceof Player)
             {
-                LivingEntity livingEntity = (LivingEntity) entity;
-                double maxHealth = livingEntity.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue();
+                Player target = (Player) entity;
+                double maxHealth = target.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue();
 
                 // Damages the LivingEntitiy (or kills them if their health is lower than dps)
-                if (livingEntity.getHealth() - totemDmgPerSecond <= 0)
+                if (target.getHealth() - totemDmgPerSecond <= 0)
                 {
-                    livingEntity.setHealth(0.0);
+                    target.setHealth(0.0);
                 }
                 else
                 {
-                    livingEntity.setHealth(livingEntity.getHealth() - totemDmgPerSecond);
+                    target.setHealth(target.getHealth() - totemDmgPerSecond);
                 }
 
-                // Plays totem harm sound to players
-                if (livingEntity instanceof Player)
-                {
-                    Player targetPlayer = (Player) livingEntity;
-                    targetPlayer.playSound(targetPlayer.getLocation(), Sound.ENTITY_BAT_HURT, 1.0F, 1.0F);
-                }
+                // Plays totem harm sound to harmed players
+                target.playSound(target.getLocation(), Sound.ENTITY_BAT_HURT, 1.0F, 1.0F);
             }
         });
     }
