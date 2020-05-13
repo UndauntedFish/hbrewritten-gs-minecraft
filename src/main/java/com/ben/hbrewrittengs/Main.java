@@ -51,7 +51,7 @@ public class Main extends JavaPlugin
         playerDataMap = new HashMap<>();
         protocolManager = ProtocolLibrary.getProtocolManager();
 
-        loadConfig();
+        Config config = new Config(this);
         connectToDatabase();
         loadClassItems();
         registerListeners();
@@ -60,13 +60,6 @@ public class Main extends JavaPlugin
         vanishPacketListener();
 
         getCommand("class").setExecutor(new ClassCommand());
-    }
-
-    // Loads info from config.yml
-    private void loadConfig()
-    {
-        this.getConfig().options().copyDefaults();
-        saveDefaultConfig();
     }
 
     private void connectToDatabase()

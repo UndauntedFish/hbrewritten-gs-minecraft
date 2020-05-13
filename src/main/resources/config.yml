@@ -1,13 +1,59 @@
 # Default gameserver world name
 gameserverworldname: HBR01
 
+#--------------------- DATABASE SETTINGS ---------------------#
+host: localhost
+port: 3306
+database: thehb_rewritten
+table: player
+username: root
+password:
+#-------------------------------------------------------------#
+
+#----------------------- MAP SETTINGS ------------------------#
+maps:
+  0:
+    level-name: world
+    spawn-x: -346.5
+    spawn-y: 76
+    spawn-z: 777.5
+    spawn-yaw: 90
+    spawn-pitch: 0
+    shard-spawns:
+      0:
+        x: -360
+        y: 76
+        z: 777.5
+      1:
+        x: -400
+        y: 76
+        z: 750
+      2:
+        x: -334
+        y: 76
+        z: 690
+      3:
+        x: -450
+        y: 76
+        z: 800
+      4:
+        x: -300
+        y: 76
+        z: 650
+      5:
+        x: -280
+        y: 76
+        z: 750
+#-------------------------------------------------------------#
+
+#----------------------- GAME SETTINGS -----------------------#
 # Item cooldowns (in seconds!)
 smokescreen: 15
 cloakduration: 10
 grenadeusagedelay: 1.5
 spectralstab_cooldown: 7.0
 
-# cooldownbar_quality is essentially the "resolution" of the cooldown progress bossbar.
+# This is the update frequency of the progress bar that is shown to players when they use cooldown items.
 #     1 will update the bossbar every tick
 #     3 will update the bossbar every 3 ticks
 #    20 will update the bossbar every second (since 1 second = 20 ticks)
@@ -17,52 +63,41 @@ spectralstab_cooldown: 7.0
 #  A high number means the cooldown progress bar will be updated less frequently, making the game less laggy.
 cooldownbar_quality: 3
 
-# Grenade unpin and fuse times (in ticks!)
-#  FYI: 1 second = 20 ticks
-#  FYI: 1 redstone tick = 2 ticks, 4 redstone ticks = 2*4 ticks.
+# Grenade unpin and fuse times (in ticks)
+#  FYI: 1 in-game redstone tick = 2 ticks, 4 in-game redstone ticks = 2*4 ticks.
 grenade_unpinduration: 10
 grenade_fuseduration: 70
 
-# Chemical grenade damage (0.0 - 20.0) (Herobrine's resistance can protect against this, so the number is rather high)
+# Chemical grenade damage (0.0 - 20.0) (Herobrine's resistance DOES apply, so the damage is rather high)
 chemicalgrenade_damage: 10.0
 
-# Chemical grenade damage radius
+# Chemical grenade damage radius (in blocks)
 chemicalgrenade_damageradius: 4.0
 
-# Assassin's Spectral Stab damage (0.0 - 20.0) (Damages Herobrine, ignoring his resistance, when an Assassin lands a Spectral Stab)
+# Assassin's Spectral Stab damage (0.0 - 20.0) (Herobrine's resistance DOES NOT apply)
 spectralstab_damage: 7.0
 
-# Paladin's Protection Spirit duration (in seconds!)
+# Paladin's Protection Spirit duration (in seconds)
 protectionspirit_duration: 12.0
 
-# Notch's Wisdom duration (in seconds!)
+# Notch's Wisdom duration (in seconds)
 notchswisdom_duration: 8.0
 
-# Notch's Wisdom health increase per second (0.0 - 20.0)
-notchswisdom_healthpersecond: 3
+# Notch's Wisdom health healed per second (0.0 - 20.0)
+notchswisdom_healthpersecond: 3.0
 
-# Sorcerer's Totems' active duration (in seconds!)
+# Sorcerer's Totems' active duration (in seconds)
 totem_duration: 60.0
 
 # Sorcerer's Totems' effect radius
 totem_radius: 3.5
 
-# The number of particles spawned around a Sorcerer's Totem
-#  (adjust this as needed when making the radius bigger/smaller)
+# The number of particles spawned around a Sorcerer's Totem (adjust this as needed when making the radius bigger/smaller)
 totem_particlecount: 20
 
-# Sorcerer's Healing Totem's health healed per second (0.0 - 20.0)
-#  Default is 2.0 (1 heart) per second
+# Sorcerer's Healing Totem's health healed per second (0.0 - 20.0). Default is 2.0 (1 heart) per second
 totemhealing_healthpersecond: 2.0
 
-# Sorcerer's Harming Totem's damage dealt per second (0.0 - 20.0)
-#  Default is 2.0 (1 heart) per second
+# Sorcerer's Harming Totem's damage dealt per second (0.0 - 20.0). Default is 2.0 (1 heart) per second
 totemharming_dmgpersecond: 2.0
-
-# Database setup
-host: localhost
-port: 3306
-database: thehb_rewritten
-table: player
-username: root
-password:
+#-------------------------------------------------------------#
