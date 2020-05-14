@@ -140,7 +140,7 @@ public class Shard
         // Plays shard capture sounds and particles to the whole world
         Location altarLocation = Main.arena.getAltarLocation();
         altarLocation.getWorld().playSound(altarLocation, Sound.BLOCK_PORTAL_TRAVEL, 1.0F, 1.0F);
-        altarLocation.getWorld().playEffect(altarLocation, Effect.MOBSPAWNER_FLAMES, 1, 5);
+        altarLocation.getWorld().playEffect(altarLocation, Effect.MOBSPAWNER_FLAMES, 1, 20);
 
         // Resets every player's compass target to the altar
         setGlobalCompassTargetTo(Main.arena.getAltarLocation());
