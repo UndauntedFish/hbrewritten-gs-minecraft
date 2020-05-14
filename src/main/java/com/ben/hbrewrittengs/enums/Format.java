@@ -7,7 +7,9 @@ public enum Format
 {
     PREFIX_INGAME (ChatColor.GRAY + "▐ Herobrine | "),
     SHARD_SPAWN   (Format.PREFIX_INGAME + ChatColor.LIGHT_PURPLE.toString() + "A new shard has " + ChatColor.WHITE.toString() + ChatColor.BOLD + "been SUMMONED!"),
+    SHARD_DESTROY (Format.PREFIX_INGAME + ChatColor.RED.toString() + "The shard has been " + ChatColor.BOLD + "DESTROYED" + ChatColor.RESET.toString() + ChatColor.RED + ". Work faster next time!"),
     HB_KILL       (Format.PREFIX_INGAME + ChatColor.WHITE.toString() + "<name> " + ChatColor.YELLOW + " was killed by " + ChatColor.RED.toString() + ChatColor.BOLD + "the HEROBRINE!");
+
     private final String STRING;
 
     private Format(String string)

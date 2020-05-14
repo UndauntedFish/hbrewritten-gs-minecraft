@@ -19,6 +19,9 @@ maps:
     spawn-z: 777.5
     spawn-yaw: 90
     spawn-pitch: 0
+    altarblock-x: -347
+    altarblock-y: 76
+    altarblock-z: 778
     shard-spawns:
       0:
         x: -360
@@ -47,7 +50,10 @@ maps:
 #-------------------------------------------------------------#
 
 #----------------------- GAME SETTINGS -----------------------#
-# Item cooldowns (in seconds!)
+# After a shard spawns, it will get destroyed if no one picks it up after this duration (in seconds)
+shard_lifespan: 180.0
+
+# Item cooldowns (in seconds)
 smokescreen: 15
 cloakduration: 10
 grenadeusagedelay: 1.5

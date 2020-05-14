@@ -28,6 +28,17 @@ public class Config
                 main.getConfig().getInt("maps." + mapId + ".spawn-pitch"));
     }
 
+    public static Location getAltarLocation(int mapId)
+    {
+        return new Location(
+                Bukkit.getWorld(main.getConfig().getString("maps." + mapId + ".level-name")),
+                main.getConfig().getDouble("maps." + mapId + ".altarblock-x"),
+                main.getConfig().getDouble("maps." + mapId + ".altarblock-y"),
+                main.getConfig().getDouble("maps." + mapId + ".altarblock-z"),
+                0,
+                0);
+    }
+
     public static Location getRandomShardSpawn(int mapId)
     {
         // Gets a random shardID between 0 and the amount of shardIDs appearing in config.yml
@@ -41,5 +52,10 @@ public class Config
                 main.getConfig().getDouble("maps." + mapId + ".shard-spawns." + shardID + ".z"),
                 0,
                 0);
+    }
+
+    public static long getShardTicksLived()
+    {
+        return (long) (20.0 * main.getConfig().getDouble("shard_lifespan"));
     }
 }

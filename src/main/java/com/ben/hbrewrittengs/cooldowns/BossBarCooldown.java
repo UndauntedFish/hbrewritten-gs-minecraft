@@ -12,6 +12,7 @@ import org.bukkit.inventory.ItemStack;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Objects;
 import java.util.UUID;
 
 public class BossBarCooldown
@@ -78,7 +79,7 @@ public class BossBarCooldown
                     isDone = true;
                     bossbar.setProgress(0.0);
                     bossbar.removeAll();
-                    if (cooldownEndMessage.equals(null))
+                    if (!Objects.equals(cooldownEndMessage, null))
                     {
                         player.sendMessage(cooldownEndMessage);
                     }

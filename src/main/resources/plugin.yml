@@ -8,4 +8,6 @@ depend: [ProtocolLib]
 commands:
   class:
     description: Get a class.
+  spawnshard:
+    description: Spawns a shard at one of the shard spawn locations on the map
 

@@ -6,10 +6,7 @@ import com.ben.hbrewrittengs.customevents.PlayerVanishEvent;
 import com.ben.hbrewrittengs.customevents.VanishedPlayerHitByPlayerEvent;
 import com.ben.hbrewrittengs.database.AsyncPlayerDataLoader;
 import com.ben.hbrewrittengs.database.BaseFields;
-import com.ben.hbrewrittengs.listeners.CustomChatFormatListener;
-import com.ben.hbrewrittengs.listeners.PlayerDamagePlayerListener;
-import com.ben.hbrewrittengs.listeners.PlayerJoinListener;
-import com.ben.hbrewrittengs.listeners.PlayerLeaveListener;
+import com.ben.hbrewrittengs.listeners.*;
 import com.ben.hbrewrittengs.listeners.itemlisteners.*;
 import com.ben.hbrewrittengs.utils.Vector3D;
 import com.comphenix.protocol.PacketType;
@@ -36,8 +33,8 @@ public class Main extends JavaPlugin
     private static Main instance;
 
     public HashMap<UUID, PlayerData> playerDataMap;
-
     private ProtocolManager protocolManager;
+    public static Arena arena;
 
     // Database setup class used to send queries. Used throughout all classes.
     private HikariDataSource hikari;
@@ -56,10 +53,13 @@ public class Main extends JavaPlugin
         loadClassItems();
         registerListeners();
 
+        arena = new Arena(0);
+
         // ProtocolLib Packet Listeners
         vanishPacketListener();
 
         getCommand("class").setExecutor(new ClassCommand());
+        getCommand("spawnshard").setExecutor(new ShardSpawnCommand());
     }
 
     private void connectToDatabase()
@@ -120,6 +120,8 @@ public class Main extends JavaPlugin
         Bukkit.getPluginManager().registerEvents(new DreamweaverBandageActivationListener(), this);
         Bukkit.getPluginManager().registerEvents(new TotemListeners(), this);
         Bukkit.getPluginManager().registerEvents(new SummonWooflessListener(), this);
+        Bukkit.getPluginManager().registerEvents(new ItemPickupListener(), this);
+        Bukkit.getPluginManager().registerEvents(new ShardCaptureListener(), this);
     }
 
     private void vanishPacketListener()
