@@ -26,20 +26,25 @@ public class NotchsWisdomActivationListener implements Listener
 
         if (e.getHand() == EquipmentSlot.HAND)
         {
-            if (action == Action.RIGHT_CLICK_BLOCK)
+            if (heldItem.getType() == Material.BLAZE_POWDER)
             {
-                if (heldItem.getType() == Material.BLAZE_POWDER)
-                {
-                    // Checks if the player is looking at a solid block.
-                    // Notch's Wisdom only activates on solid blocks.
-                    // Activating the Notch's Wisdom
-                    NotchsWisdom notchsWisdom = new NotchsWisdom(player, getCrosshairTargetLocation(player));
-                    notchsWisdom.activate();
+                NotchsWisdom notchsWisdom = null;
 
-                    // Removing activated Notch's Wisdom from player's inventory
-                    player.getInventory().getItemInMainHand().setAmount(
-                            player.getInventory().getItemInMainHand().getAmount() - 1);
+                // If the player is looking at a block, activate the notch's wisdom there.
+                // Otherwise, activate it wherever the player is.
+                if (action == Action.RIGHT_CLICK_BLOCK)
+                {
+                    notchsWisdom = new NotchsWisdom(player, getCrosshairTargetLocation(player));
                 }
+                else if (action == Action.RIGHT_CLICK_AIR)
+                {
+                    notchsWisdom = new NotchsWisdom(player, player.getLocation().subtract(0.0, 0.5, 0.0));
+                }
+                notchsWisdom.activate();
+
+                // Removing activated Notch's Wisdom from player's inventory
+                player.getInventory().getItemInMainHand().setAmount(
+                        player.getInventory().getItemInMainHand().getAmount() - 1);
             }
         }
     }
