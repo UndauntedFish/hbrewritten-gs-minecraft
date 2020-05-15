@@ -8,18 +8,21 @@ import java.util.concurrent.ThreadLocalRandom;
 public enum ShardName
 {
     /*
-     * LOREWORD will be used in the lore (description) of the shard, depending on the SHARDNAME.
-     *   Example:
-     *     Shard Name: Shard of <SHARDNAME>
-     *     Shard Lore: It feels...<LOREWORD>!
-     *                 Go capture this shard by holding it
-     *                 and right clicking the enchantment table!
+     * LOREWORD will be used in the lore (description) of the shard, depending on the SHARDNAME:
+     *    Shard's Name: Shard of <SHARDNAME>
+     *    Shard's Lore: It feels...<LOREWORD>!
+     *                  Go capture this shard by holding it
+     *                  and right clicking the enchantment table!
      */
     PESTILENCE    ("Shard of Pestilence", "infectious"),
-    REPUGNANCE    ("Shard of Repugnance", "stinky"),
+    REPUGNANCE    ("Shard of Repugnance", "revolting"),
     UGLINESS      ("Shard of Ugliness", "uglyyy"),
-    MALCONTENT    ("Shard of Malcontent", "angery"),
-    DEATHBRINGING ("Shard of Deathbringing", "cadaverous");
+    MALCONTENT    ("Shard of Malcontent", "irritating"),
+    DEATHBRINGING ("Shard of Deathbringing", "EPIC"),
+    FURY          ("Shard of Fury", "angery"),
+    UNEASE        ("Shard of Unease", "itchy"),
+    SPITE         ("Shard of Spite", "vengeful"),
+    STINKY        ("Shard of Stinky", "phishy");
 
     private static final List<ShardName> VALUES = Collections.unmodifiableList(Arrays.asList(values()));
     private final String SHARDNAME;
