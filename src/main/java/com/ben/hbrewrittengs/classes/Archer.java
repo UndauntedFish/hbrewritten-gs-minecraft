@@ -50,7 +50,7 @@ public class Archer
         // Weapons and Extras
         phoenixBow = new ItemStack(Material.BOW);
         phoenixBowMeta = phoenixBow.getItemMeta();
-        phoenixBowMeta.setDisplayName(ChatColor.LIGHT_PURPLE + "Phoenix Bow");
+        phoenixBowMeta.setDisplayName(ChatColor.LIGHT_PURPLE + "Phoenix Recurve");
         phoenixBowMeta.setLore(phoenixBowLore);
         phoenixBowMeta.setUnbreakable(true);
         phoenixBow.setItemMeta(phoenixBowMeta);
