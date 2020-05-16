@@ -13,7 +13,7 @@ import org.bukkit.entity.Player;
 public class TotemPain
 {
     private Player player;
-    private Location totemLoc;
+    private Location totemLoc, particlesCenter;
     private boolean isActivated, isDone;
     private BossBarCooldown durationBossbar;
 
@@ -29,6 +29,7 @@ public class TotemPain
     {
         this.player = player;
         this.totemLoc = totemLoc;
+        this.particlesCenter = totemLoc;
         this.durationBossbar = new BossBarCooldown(player, null, totemDuration, ChatColor.RED + "Totem: Pain", BarColor.RED);
         this.durationBossbar.setCooldownEndMessage(Format.PREFIX_INGAME + ChatColor.WHITE.toString() + "Your pain totem has perished.");
     }
@@ -84,7 +85,7 @@ public class TotemPain
             z = (totemRadius * Math.cos(Math.toRadians(angle)));
 
             player.getWorld().spawnParticle(Particle.VILLAGER_ANGRY,
-                    totemLoc.getX() + x, totemLoc.getY(), totemLoc.getZ() + z, 1);
+                    particlesCenter.getX() + x, particlesCenter.getY(), particlesCenter.getZ() + z, 1);
         }
     }
 

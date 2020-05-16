@@ -41,13 +41,20 @@ public class Arena
 
     public void spawnShard()
     {
-        if (herobrineState == HerobrineState.HUMAN || !Objects.equals(activeShard, null))
+        // Prevents shard rain
+        if (herobrineState == HerobrineState.HUMAN ||
+                 gameState == GameState.SHARD_SPAWNED ||
+                 gameState == GameState.SHARD_PICKEDUP ||
+                 gameState == GameState.SHARD_CAPTURED)
         {
             return;
         }
 
-        Location shardSpawnLoc = Config.getRandomShardSpawn(mapId);
-        activeShard = new Shard(shardSpawnLoc);
+        if (!Objects.isNull(activeShard))
+        {
+            activeShard = null;
+        }
+        activeShard = new Shard(Config.getRandomShardSpawn(mapId));
         activeShard.spawn();
 
         // Destroys the shard after x seconds (defined in config), if the shard isn't collected yet.
@@ -56,13 +63,9 @@ public class Arena
             @Override
             public void run()
             {
-                if (!Objects.equals(activeShard, null))
+                if (gameState == GameState.SHARD_SPAWNED)
                 {
-                    if (!activeShard.isCollected())
-                    {
-                        activeShard.despawn();
-                        activeShard = null;
-                    }
+                    activeShard.despawn();
                 }
             }
         }, Config.getShardTicksLived());
@@ -70,13 +73,7 @@ public class Arena
 
     public void captureActiveShard()
     {
-        if (Objects.equals(activeShard, null))
-        {
-            return;
-        }
-
         activeShard.capture();
-        activeShard = null;
     }
 
     public GameState getGameState()
@@ -96,10 +93,6 @@ public class Arena
 
     public Shard getActiveShard()
     {
-        if (Objects.equals(activeShard, null))
-        {
-            Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "[HBRgs] CRITICAL ERROR: Tried to call Arena.getActiveShard() when Arena.activeShard was empty! Contact a dev asap, this is a big deal.");
-        }
         return activeShard;
     }
 }

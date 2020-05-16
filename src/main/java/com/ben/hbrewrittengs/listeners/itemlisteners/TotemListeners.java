@@ -5,7 +5,6 @@ import com.ben.hbrewrittengs.PlayerData;
 import com.ben.hbrewrittengs.classes.Sorcerer;
 import com.ben.hbrewrittengs.customevents.TotemDespawnEvent;
 import com.ben.hbrewrittengs.customitems.sorcerer.TotemPain;
-import com.ben.hbrewrittengs.enums.ClassData;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -84,14 +83,14 @@ public class TotemListeners implements Listener
         // If a Sorcerer right clicks their placed totem, they can collect it, pause the timer, and use it again.
         if (e.getHand() == EquipmentSlot.HAND)
         {
-            if (pd.getActiveClass() == ClassData.SORCERER)
+            if (activePainTotems.containsKey(uuid))
             {
                 if (action == Action.RIGHT_CLICK_BLOCK)
                 {
                     Block clickedBlock = e.getClickedBlock();
 
-                    if ( (clickedBlock.getType() == Material.NETHER_BRICK_FENCE && activePainTotems.containsKey(uuid)) /*||
-                         (clickedBlock.getType() == Material.OAK_FENCE && pd.hasTotemHealing())*/)
+                    if (clickedBlock.getType() == Material.NETHER_BRICK_FENCE) /*||
+                         (clickedBlock.getType() == Material.OAK_FENCE && pd.hasTotemHealing())*/
                     {
                         player.getInventory().addItem(Sorcerer.getPainTotemItemStack());
                         TotemPain activeTotem = activePainTotems.remove(uuid);
