@@ -187,8 +187,6 @@ public class Shard
         Location particleSpawnLoc;
         for (int i = 0; i < 40; i++) // i < x = Spawn x particles around the altar
         {
-            Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + "   I am in the loop now (iteration #" + i + ")");
-
             // Gets random (x, y, z) coordinates between the bounds specified above, and spawns particles there
             randX = ThreadLocalRandom.current().nextInt(x1, x2);
             randY = ThreadLocalRandom.current().nextInt(y1, y2);
@@ -206,7 +204,14 @@ public class Shard
     public void despawn()
     {
         Main.arena.setGameState(GameState.IDLE);
-        isCaptured = true; // set this to true to cancel all runnable tasks
+
+        // Set this to true to cancel all runnable tasks
+        isCaptured = true;
+
+        // Stops ambient shard sounds
+        Bukkit.getScheduler().cancelTask(shardSoundsTask.getTaskId());
+
+        droppedShard.remove();
 
         // Broadcast to everyone that the shard was destroyed
         Bukkit.getServer().broadcastMessage(Format.SHARD_DESTROY.toString());

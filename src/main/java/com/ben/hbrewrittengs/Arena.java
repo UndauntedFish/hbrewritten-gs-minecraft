@@ -78,8 +78,6 @@ public class Arena
             @Override
             public void run()
             {
-                Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + "I am in the runnable now");
-
                 Location ambientLightningLoc = new Location(altarLocation.getWorld(), altarLocation.getX(), 255.0, altarLocation.getZ());
                 ambientLightningLoc.getWorld().strikeLightningEffect(ambientLightningLoc);
             }

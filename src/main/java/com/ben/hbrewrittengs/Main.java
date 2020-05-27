@@ -59,7 +59,7 @@ public class Main extends JavaPlugin
         vanishPacketListener();
 
         getCommand("class").setExecutor(new ClassCommand());
-        getCommand("spawnshard").setExecutor(new ShardSpawnCommand());
+        getCommand("shard").setExecutor(new ShardSpawnCommand());
     }
 
     private void connectToDatabase()
