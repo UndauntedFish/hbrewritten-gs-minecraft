@@ -4,10 +4,7 @@ import com.ben.hbrewrittengs.customitems.Shard;
 import com.ben.hbrewrittengs.enums.Format;
 import com.ben.hbrewrittengs.enums.GameState;
 import com.ben.hbrewrittengs.enums.HerobrineState;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
-import org.bukkit.Material;
+import org.bukkit.*;
 
 import java.util.HashMap;
 import java.util.Objects;
@@ -54,7 +51,7 @@ public class Arena
         {
             activeShard = null;
         }
-        activeShard = new Shard(Config.getRandomShardSpawn(mapId));
+        activeShard = new Shard(Config.getRandomShardSpawn(mapId), altarLocation);
         activeShard.spawn();
 
         // Destroys the shard after x seconds (defined in config), if the shard isn't collected yet.
@@ -74,6 +71,19 @@ public class Arena
     public void captureActiveShard()
     {
         activeShard.capture();
+
+        // Strikes ambient lightning after 5 seconds
+        Bukkit.getScheduler().runTaskLater(Main.getInstance(), new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + "I am in the runnable now");
+
+                Location ambientLightningLoc = new Location(altarLocation.getWorld(), altarLocation.getX(), 255.0, altarLocation.getZ());
+                ambientLightningLoc.getWorld().strikeLightningEffect(ambientLightningLoc);
+            }
+        }, 20L * 5L);
     }
 
     public GameState getGameState()
