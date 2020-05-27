@@ -1,6 +1,7 @@
 package com.ben.hbrewrittengs.database;
 
 import com.ben.hbrewrittengs.databaseutils.AsyncQuery;
+import com.ben.hbrewrittengs.databaseutils.AsyncUpdate;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,6 +11,10 @@ public class Queries
 {
     private static String getPoints = "SELECT points " +
                                       "FROM hbstats " +
+                                      "WHERE uuid = ?";
+
+    private static String addPoints = "UPDATE hbstats " +
+                                      "SET points = points + ? " +
                                       "WHERE uuid = ?";
 
     private static String getActiveClass = "SELECT active_class " +
@@ -38,6 +43,15 @@ public class Queries
             e.printStackTrace();
         }
         return -42; // This means the player doesn't exist in the db. THIS SHOULD NEVER HAPPEN.
+    }
+
+    // Increments a player's current amount of points in the database by a specific amount
+    public static void addPoints(int pointsToAdd, UUID uuid)
+    {
+        AsyncUpdate query = new AsyncUpdate(addPoints);
+        query.setString(1, Integer.toString(pointsToAdd));
+        query.setString(2, uuid.toString());
+        query.execute();
     }
 
     // Gets the player's current active class from the database.

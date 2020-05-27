@@ -2,6 +2,7 @@ package com.ben.hbrewrittengs;
 
 import com.ben.hbrewrittengs.cooldowns.BossBarCooldown;
 import com.ben.hbrewrittengs.cooldowns.ImplicitCooldown;
+import com.ben.hbrewrittengs.database.Queries;
 import com.ben.hbrewrittengs.enums.ClassData;
 import com.ben.hbrewrittengs.enums.Rank;
 import org.bukkit.entity.Entity;
@@ -64,9 +65,10 @@ public class PlayerData
 		this.points = points;
 	}
 
-	public void incrementPointsBy(int addedPoints)
+	public void addPoints(int pointsToAdd)
 	{
-		this.points += points;
+		Queries.addPoints(pointsToAdd, uuid);
+		setPoints(points + pointsToAdd);
 	}
 
 	public Rank getRank()

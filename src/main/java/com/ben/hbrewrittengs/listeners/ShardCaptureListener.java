@@ -1,6 +1,8 @@
 package com.ben.hbrewrittengs.listeners;
 
+import com.ben.hbrewrittengs.Config;
 import com.ben.hbrewrittengs.Main;
+import com.ben.hbrewrittengs.PlayerData;
 import com.ben.hbrewrittengs.enums.GameState;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -17,6 +19,7 @@ public class ShardCaptureListener implements Listener
     public void onShardCapture(PlayerInteractEvent e)
     {
         Player player = e.getPlayer();
+        PlayerData pd = Main.getInstance().playerDataMap.get(player.getUniqueId());
 
         Action action = e.getAction();
         ItemStack heldItem = player.getInventory().getItemInMainHand();
@@ -33,6 +36,10 @@ public class ShardCaptureListener implements Listener
                     if (heldItem.getType() == Material.NETHER_STAR &&
                             Main.arena.getGameState() == GameState.SHARD_PICKEDUP)
                     {
+                        // Send async query to database updating their points/tokens
+                        PlayerData shardHolderPD = Main.getInstance().playerDataMap.get(pd);
+                        pd.addPoints(Config.getShardCapPoints());
+
                         Main.arena.captureActiveShard();
 
                         // Removing the captured shard from player's inventory

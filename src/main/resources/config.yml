@@ -65,8 +65,8 @@ spectralstab_cooldown: 7.0
 #    20 will update the bossbar every second (since 1 second = 20 ticks)
 #    80 will update the bossbar every 4 seconds
 #    ...etc.
-#  A low number means the cooldown progress bar will be updated VERY frequently, making it look smooth.
-#  A high number means the cooldown progress bar will be updated less frequently, making the game less laggy.
+# A low number means the cooldown progress bar will be updated VERY frequently, making it look smooth.
+# A high number means the cooldown progress bar will be updated less frequently, making the game less laggy.
 cooldownbar_quality: 3
 
 # Grenade unpin and fuse times (in ticks)
@@ -106,4 +106,19 @@ totemhealing_healthpersecond: 2.0
 
 # Sorcerer's Harming Totem's damage dealt per second (0.0 - 20.0). Default is 2.0 (1 heart) per second
 totemharming_dmgpersecond: 2.0
+#-------------------------------------------------------------#
+
+#--------------------- POINT/TOKEN VALUES --------------------#
+# Survivors
+shard_capture_points: 10
+kill_herobrine_points: 30
+kill_herobrine_tokens: 75
+win_survivor_points: 10
+win_survivor_tokens: 25
+
+# Herobrine
+kill_survivor_points: 5
+kill_survivor_tokens: 5
+win_herobrine_points: 10
+win_herobrine_tokens: 50
 #-------------------------------------------------------------#

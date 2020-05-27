@@ -58,4 +58,47 @@ public class Config
     {
         return (long) (20.0 * main.getConfig().getDouble("shard_lifespan"));
     }
+
+    /* GETTING POINT VALUES FROM CONFIG */
+    // Survivors
+    public static int getShardCapPoints()
+    {
+        return main.getConfig().getInt("shard_capture_points");
+    }
+    public static int getKillHerobrinePoints()
+    {
+        return main.getConfig().getInt("kill_herobrine_points");
+    }
+    public static int getKillHerobrineTokens()
+    {
+        return main.getConfig().getInt("kill_herobrine_tokens");
+    }
+    public static int getWinSurvivorPoints()
+    {
+        return main.getConfig().getInt("win_survivor_points");
+    }
+    public static int getWinSurvivorTokens()
+    {
+        return main.getConfig().getInt("win_survivor_tokens");
+    }
+
+    // Herobrine
+    public static int getKillSurvivorPoints()
+    {
+        return main.getConfig().getInt("kill_survivor_points");
+    }
+    public static int getKillSurvivorTokens()
+    {
+        return main.getConfig().getInt("kill_survivor_tokens");
+    }
+    public static int getWinHerobrinePoints()
+    {
+        return main.getConfig().getInt("win_herobrine_points");
+    }
+    public static int getWinHerobrineTokens()
+    {
+        return main.getConfig().getInt("win_herobrine_tokens");
+    }
+
+
 }

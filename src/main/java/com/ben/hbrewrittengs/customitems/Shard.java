@@ -167,9 +167,6 @@ public class Shard
 
     public void capture()
     {
-        // Send async query to database updating their points/tokens
-        // Arena.GameState = idle
-        // play shard capture sounds to the whole world
         Main.arena.setGameState(GameState.SHARD_CAPTURED);
         shardHolder = null;
         isCaptured = true;
