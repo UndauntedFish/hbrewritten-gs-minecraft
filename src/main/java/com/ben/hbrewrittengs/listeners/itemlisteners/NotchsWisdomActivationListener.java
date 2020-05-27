@@ -32,11 +32,11 @@ public class NotchsWisdomActivationListener implements Listener
 
                 // If the player is looking at a block, activate the notch's wisdom there.
                 // Otherwise, activate it wherever the player is.
-                if (action == Action.RIGHT_CLICK_BLOCK)
+                if (action == Action.RIGHT_CLICK_BLOCK && e.hasBlock())
                 {
                     notchsWisdom = new NotchsWisdom(player, getCrosshairTargetLocation(player));
                 }
-                else if (action == Action.RIGHT_CLICK_AIR)
+                else if (action == Action.RIGHT_CLICK_AIR && !e.hasBlock())
                 {
                     notchsWisdom = new NotchsWisdom(player, player.getLocation().subtract(0.0, 0.5, 0.0));
                 }
