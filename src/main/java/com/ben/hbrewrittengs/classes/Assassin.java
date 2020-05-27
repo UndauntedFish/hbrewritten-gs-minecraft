@@ -70,7 +70,7 @@ public class Assassin
         spectralDaggerMeta.setUnbreakable(true);
         spectralDagger.setItemMeta(spectralDaggerMeta);
 
-        cloak = new ItemStack(Material.GLOWSTONE_DUST, 4);
+        cloak = new ItemStack(Material.GLOWSTONE_DUST, 3);
         cloakMeta = cloak.getItemMeta();
         cloakMeta.setDisplayName(ChatColor.WHITE.toString() + ChatColor.BOLD + "Phantasmal " +
                 ChatColor.RESET.toString() + ChatColor.WHITE + "Cloak");
