@@ -1,4 +1,4 @@
-package com.ben.hbrewrittengs.database;
+package com.ben.hbrewrittengs.databaseutils;
 
 import java.sql.Connection;
 

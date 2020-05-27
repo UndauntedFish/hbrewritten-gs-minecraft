@@ -1,20 +1,19 @@
-package com.ben.hbrewrittengs.database;
+package com.ben.hbrewrittengs.databaseutils;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class SyncQuery extends BaseFields
+public class SyncUpdate extends BaseFields
 {
     private PreparedStatement preparedStatement;
     private String sql;
 
-    private ResultSet result;
+    private int result;
 
-    public SyncQuery(String sql) throws IllegalArgumentException
+    public SyncUpdate(String sql) throws IllegalArgumentException
     {
         if (connection.equals(null))
         {
@@ -37,7 +36,7 @@ public class SyncQuery extends BaseFields
         {
             e.printStackTrace();
         }
-        this.result = null;
+        this.result = 0;
     }
 
     public void setString(int index, String input)
@@ -53,11 +52,11 @@ public class SyncQuery extends BaseFields
     }
 
     // Executes the update.
-    public ResultSet execute()
+    public int execute()
     {
         try
         {
-            result = preparedStatement.executeQuery();
+            result = preparedStatement.executeUpdate();
         }
         catch (SQLException e)
         {

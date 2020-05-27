@@ -5,7 +5,7 @@ import com.ben.hbrewrittengs.customevents.PlayerUnvanishEvent;
 import com.ben.hbrewrittengs.customevents.PlayerVanishEvent;
 import com.ben.hbrewrittengs.customevents.VanishedPlayerHitByPlayerEvent;
 import com.ben.hbrewrittengs.database.AsyncPlayerDataLoader;
-import com.ben.hbrewrittengs.database.BaseFields;
+import com.ben.hbrewrittengs.databaseutils.BaseFields;
 import com.ben.hbrewrittengs.listeners.*;
 import com.ben.hbrewrittengs.listeners.itemlisteners.*;
 import com.ben.hbrewrittengs.utils.Vector3D;

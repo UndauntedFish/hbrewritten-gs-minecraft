@@ -1,5 +1,7 @@
 package com.ben.hbrewrittengs.database;
 
+import com.ben.hbrewrittengs.databaseutils.AsyncQuery;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.UUID;
