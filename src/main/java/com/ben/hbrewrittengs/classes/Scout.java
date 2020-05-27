@@ -49,7 +49,7 @@ public class Scout
         // Weapons and Extras
         handcraftedBow = new ItemStack(Material.BOW);
         handcraftedBowMeta = handcraftedBow.getItemMeta();
-        handcraftedBowMeta.setDisplayName(ChatColor.WHITE + "Handcrafted Horsebow");
+        handcraftedBowMeta.setDisplayName(ChatColor.WHITE + "Handcrafted Recurve");
         handcraftedBowMeta.setLore(handcraftedBowLore);
         handcraftedBowMeta.setUnbreakable(true);
         handcraftedBow.setItemMeta(handcraftedBowMeta);
