@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.enchantment.PrepareItemEnchantEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
@@ -49,5 +50,17 @@ public class ShardCaptureListener implements Listener
                 }
             }
         }
+    }
+
+    /*
+     * If the player sneaks while capturing the shard, they are still able to open the enchantment table GUI (for some strange reason)
+     * So, this eventhandler listens for whenever the player puts an item in the ench table to be enchanted, and cancels their ability to enchant it.
+     *
+     * Clunky solution, but it works.
+     */
+    @EventHandler
+    public void onEnchant(PrepareItemEnchantEvent e)
+    {
+        e.setCancelled(true);
     }
 }
