@@ -49,7 +49,20 @@ maps:
         z: 750
 #-------------------------------------------------------------#
 
-#----------------------- GAME SETTINGS -----------------------#
+#--------------------- GAMEPLAY SETTINGS ---------------------#
+# Required Gamerule Values:
+#  doDaylightCycle = FALSE (fix the time to midnight)
+#  keepInventory = TRUE
+#  doInsomnia = FALSE
+#  doEntityDrops = FALSE
+#  doFireTick = FALSE
+#  doMobLoot = FALSE
+#  doMobSpawning = FALSE
+#  doTraderSpawning = FALSE
+#  doWeatherCycle = FALSE
+#  spawnRadius = 0
+#  spectatorsGenerateChunks = FALSE
+
 # After a shard spawns, it will get destroyed if no one picks it up after this duration (in seconds)
 shard_lifespan: 180.0
 
@@ -59,18 +72,8 @@ cloakduration: 10
 grenadeusagedelay: 1.5
 spectralstab_cooldown: 7.0
 
-# This is the update frequency of the progress bar that is shown to players when they use cooldown items.
-#     1 will update the bossbar every tick
-#     3 will update the bossbar every 3 ticks
-#    20 will update the bossbar every second (since 1 second = 20 ticks)
-#    80 will update the bossbar every 4 seconds
-#    ...etc.
-# A low number means the cooldown progress bar will be updated VERY frequently, making it look smooth.
-# A high number means the cooldown progress bar will be updated less frequently, making the game less laggy.
-cooldownbar_quality: 3
-
 # Grenade unpin and fuse times (in ticks)
-#  FYI: 1 in-game redstone tick = 2 ticks, 4 in-game redstone ticks = 2*4 ticks.
+#  1 in-game redstone tick = 2 ticks, 4 in-game redstone ticks = 2*4 ticks.
 grenade_unpinduration: 10
 grenade_fuseduration: 70
 
@@ -106,6 +109,18 @@ totemhealing_healthpersecond: 2.0
 
 # Sorcerer's Harming Totem's damage dealt per second (0.0 - 20.0). Default is 2.0 (1 heart) per second
 totemharming_dmgpersecond: 2.0
+#-------------------------------------------------------------#
+
+#------------------- PERFORMANCE SETTINGS --------------------#
+# This is the update frequency of the progress bar that is shown to players when they use cooldown items.
+#     1 will update the bossbar every tick
+#     3 will update the bossbar every 3 ticks
+#    20 will update the bossbar every second (since 1 second = 20 ticks)
+#    80 will update the bossbar every 4 seconds
+#    ...etc.
+# A low number means the cooldown progress bar will be updated VERY frequently, making it look smooth.
+# A high number means the cooldown progress bar will be updated less frequently, making the game less laggy.
+cooldownbar_quality: 3
 #-------------------------------------------------------------#
 
 #--------------------- POINT/TOKEN VALUES --------------------#
