@@ -157,11 +157,11 @@ public class Shard
         }, 0L, 5L);
     }
 
-    public void drop()
+    public void drop(Location location)
     {
         // Respawn shard at the dead player's location
         shardHolder = null;
-        spawnLoc = Bukkit.getPlayer(shardHolder).getLocation();
+        spawnLoc = location;
         spawn();
     }
 

@@ -122,6 +122,7 @@ public class Main extends JavaPlugin
         Bukkit.getPluginManager().registerEvents(new SummonWooflessListener(), this);
         Bukkit.getPluginManager().registerEvents(new ItemPickupListener(), this);
         Bukkit.getPluginManager().registerEvents(new ShardCaptureListener(), this);
+        Bukkit.getPluginManager().registerEvents(new SurvivorDeathListener(), this);
     }
 
     private void vanishPacketListener()
