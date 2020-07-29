@@ -1,56 +1,8 @@
 # Default gameserver world name
 gameserverworldname: HBR01
 
-#--------------------- DATABASE SETTINGS ---------------------#
-host: localhost
-port: 3306
-database: thehb_rewritten
-table: player
-username: root
-password:
-#-------------------------------------------------------------#
-
-#----------------------- MAP SETTINGS ------------------------#
-maps:
-  0:
-    level-name: world
-    spawn-x: -346.5
-    spawn-y: 76
-    spawn-z: 777.5
-    spawn-yaw: 90
-    spawn-pitch: 0
-    altarblock-x: -347
-    altarblock-y: 76
-    altarblock-z: 778
-    shard-spawns:
-      0:
-        x: -360
-        y: 76
-        z: 777.5
-      1:
-        x: -400
-        y: 76
-        z: 750
-      2:
-        x: -334
-        y: 76
-        z: 690
-      3:
-        x: -450
-        y: 76
-        z: 800
-      4:
-        x: -300
-        y: 76
-        z: 650
-      5:
-        x: -280
-        y: 76
-        z: 750
-#-------------------------------------------------------------#
-
 #--------------------- GAMEPLAY SETTINGS ---------------------#
-# Required Gamerule Values:
+# I M P O R T A N T Required Gamerule Values:
 #  doDaylightCycle = FALSE (fix the time to midnight)
 #  keepInventory = TRUE
 #  doInsomnia = FALSE
@@ -136,4 +88,52 @@ kill_survivor_points: 5
 kill_survivor_tokens: 5
 win_herobrine_points: 10
 win_herobrine_tokens: 50
+#-------------------------------------------------------------#
+
+#--------------------- DATABASE SETTINGS ---------------------#
+host: localhost
+port: 3306
+database: thehb_rewritten
+table: player
+username: root
+password:
+#-------------------------------------------------------------#
+
+#----------------------- MAP SETTINGS ------------------------#
+maps:
+  0:
+    level-name: world
+    spawn-x: -346.5
+    spawn-y: 76
+    spawn-z: 777.5
+    spawn-yaw: 90
+    spawn-pitch: 0
+    altarblock-x: -347
+    altarblock-y: 76
+    altarblock-z: 778
+    shard-spawns:
+      0:
+        x: -360
+        y: 76
+        z: 777.5
+      1:
+        x: -400
+        y: 76
+        z: 750
+      2:
+        x: -334
+        y: 76
+        z: 690
+      3:
+        x: -450
+        y: 76
+        z: 800
+      4:
+        x: -300
+        y: 76
+        z: 650
+      5:
+        x: -280
+        y: 76
+        z: 750
 #-------------------------------------------------------------#
