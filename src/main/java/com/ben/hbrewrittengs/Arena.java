@@ -4,11 +4,12 @@ import com.ben.hbrewrittengs.customitems.Shard;
 import com.ben.hbrewrittengs.enums.Format;
 import com.ben.hbrewrittengs.enums.GameState;
 import com.ben.hbrewrittengs.enums.HerobrineState;
-import org.bukkit.*;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.Location;
+import org.bukkit.Material;
 
-import java.util.HashMap;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 public class Arena
 {
@@ -19,6 +20,9 @@ public class Arena
     private GameState gameState;
     private HerobrineState herobrineState;
     private Shard activeShard;
+    private int survivorsLeft;
+
+    public ArrayList<UUID> spectatorList = new ArrayList<>();
 
     public Arena(int mapId)
     {
@@ -34,6 +38,7 @@ public class Arena
         this.playerDataMap = new HashMap<>();
         this.gameState = GameState.IDLE;
         this.herobrineState = HerobrineState.DEFAULT;
+        this.survivorsLeft = 0;
     }
 
     public void spawnShard()
@@ -102,5 +107,15 @@ public class Arena
     public Shard getActiveShard()
     {
         return activeShard;
+    }
+
+    public void setSurvivorsLeft(int survivorsLeft)
+    {
+        this.survivorsLeft = survivorsLeft;
+    }
+
+    public int getSurvivorsLeft()
+    {
+        return survivorsLeft;
     }
 }
