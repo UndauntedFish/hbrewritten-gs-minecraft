@@ -123,6 +123,7 @@ public class Main extends JavaPlugin
         Bukkit.getPluginManager().registerEvents(new ItemPickupListener(), this);
         Bukkit.getPluginManager().registerEvents(new ShardCaptureListener(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerDeathListener(), this);
+        Bukkit.getPluginManager().registerEvents(new SpectatorRespawnListener(), this);
     }
 
     private void vanishPacketListener()

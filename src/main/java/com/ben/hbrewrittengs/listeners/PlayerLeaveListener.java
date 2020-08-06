@@ -37,6 +37,19 @@ public class PlayerLeaveListener implements Listener
 		AttributeInstance healthAttribute = player.getAttribute(Attribute.GENERIC_MAX_HEALTH);
 		healthAttribute.setBaseValue(20.0);
 
+		// If the player was invulnerable, set that to false
+		if (player.isInvulnerable())
+		{
+			player.setInvulnerable(false);
+		}
+
+		// Disables flying if the player is allowed to fly
+		if(player.getAllowFlight())
+		{
+			player.setAllowFlight(false);
+		}
+
+
 		// set herobrine to false in db here if player is hb
 		Main.getInstance().playerDataMap.remove(pd);
 	}

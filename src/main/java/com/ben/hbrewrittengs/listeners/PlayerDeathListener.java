@@ -2,7 +2,6 @@ package com.ben.hbrewrittengs.listeners;
 
 import com.ben.hbrewrittengs.Main;
 import com.ben.hbrewrittengs.PlayerData;
-import com.ben.hbrewrittengs.classes.Spectator;
 import com.ben.hbrewrittengs.enums.GameState;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -41,8 +40,14 @@ public class PlayerDeathListener implements Listener
             Main.arena.getActiveShard().drop(player.getLocation());
         }
 
-        // Clear the player's inventory and give them the spectator inventory (compass, slimeball, etc.)
-        Spectator.giveClass(player);
+        // Turns the survivor into a spectator
+        Main.arena.spectatorManager.addPlayer(player);
+
+        // If there are no more survivors left after this player died, end the game.
+        if (Main.arena.getSurvivorsLeft() <= 0)
+        {
+            // end the game, herobrine wins and survivors lose.
+        }
     }
 
     // Transforms a dead herobrine into a spectator, and ends the game, rewarding all remaining survivors with a victory.

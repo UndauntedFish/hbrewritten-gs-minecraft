@@ -1,6 +1,7 @@
 package com.ben.hbrewrittengs.listeners;
 
 import com.ben.hbrewrittengs.Main;
+import com.ben.hbrewrittengs.PlayerData;
 import com.ben.hbrewrittengs.enums.GameState;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -13,14 +14,27 @@ public class ItemPickupListener implements Listener
     @EventHandler
     public void onItemPickup(EntityPickupItemEvent e)
     {
-        // Allows players to pick up shards
         if (e.getEntity() instanceof Player)
         {
+            Player player = (Player) e.getEntity();
+            PlayerData pd = Main.getInstance().playerDataMap.get(player.getUniqueId());
+
+            // Stops spectators from picking up anything
+            if (Main.arena.spectatorManager.isSpectator(player))
+            {
+                e.setCancelled(true);
+                return;
+            }
+
+            // Allows survivors to pick up shards
             if (e.getItem().getItemStack().getType() == Material.NETHER_STAR &&
                     Main.arena.getGameState() == GameState.SHARD_SPAWNED)
             {
-                Main.arena.getActiveShard().collect((Player) e.getEntity());
-                return;
+                if (!pd.isHerobrine())
+                {
+                    Main.arena.getActiveShard().collect(player);
+                    return;
+                }
             }
         }
 

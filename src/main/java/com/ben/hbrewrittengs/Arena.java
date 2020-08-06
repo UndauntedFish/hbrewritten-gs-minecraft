@@ -23,6 +23,7 @@ public class Arena
     private int survivorsLeft;
 
     public ArrayList<UUID> spectatorList = new ArrayList<>();
+    public SpectatorManager spectatorManager = new SpectatorManager();
 
     public Arena(int mapId)
     {
