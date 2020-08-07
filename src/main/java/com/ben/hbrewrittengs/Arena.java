@@ -8,20 +8,31 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.attribute.AttributeInstance;
+import org.bukkit.entity.Player;
+import org.bukkit.potion.PotionEffect;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Objects;
+import java.util.UUID;
 
 public class Arena
 {
     private int mapId;
     private Location spawn;
     private Location altarLocation;
-    private HashMap<UUID, PlayerData> playerDataMap;
+
     private GameState gameState;
-    private HerobrineState herobrineState;
-    private Shard activeShard;
     private int survivorsLeft;
 
+    private Player herobrine;
+    private HerobrineState herobrineState;
+
+    private Shard activeShard;
+
+    private HashMap<UUID, PlayerData> playerDataMap;
     public ArrayList<UUID> spectatorList = new ArrayList<>();
     public SpectatorManager spectatorManager = new SpectatorManager();
 
@@ -118,5 +129,56 @@ public class Arena
     public int getSurvivorsLeft()
     {
         return survivorsLeft;
+    }
+
+    // Resets the player's health, invisibility, vanish, invulnerability, inventory, etc.
+    // Good for when players leave the game
+    public void removeAllEffectsAndItems(Player player)
+    {
+        PlayerData pd = Main.getInstance().playerDataMap.get(player.getUniqueId());
+
+        // Resets health to 20.0
+        AttributeInstance healthAttribute = player.getAttribute(Attribute.GENERIC_MAX_HEALTH);
+        if (healthAttribute.getBaseValue() != 20.0)
+        {
+            healthAttribute.setBaseValue(20.0);
+        }
+
+        // Removes ALL potion effects from the player
+        for (PotionEffect effect : player.getActivePotionEffects())
+        {
+            player.removePotionEffect(effect.getType());
+        }
+
+        // Unvanishes the player if they're vanished. Else, does nothing.
+        if (pd.isVanished())
+        {
+            Main.getInstance().toggleVisibilityNative(player);
+        }
+
+        // Disables flying if the player is allowed to fly
+        if(player.getAllowFlight())
+        {
+            player.setAllowFlight(false);
+        }
+
+        // If the player was invulnerable, set that to false
+        if (player.isInvulnerable())
+        {
+            player.setInvulnerable(false);
+        }
+
+        // Clears the player's inventory
+        player.getInventory().clear();
+    }
+
+    public Player getHerobrine()
+    {
+        return herobrine;
+    }
+
+    public void setHerobrine(Player player)
+    {
+        herobrine = player;
     }
 }

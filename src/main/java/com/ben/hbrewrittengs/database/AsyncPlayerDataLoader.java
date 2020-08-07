@@ -19,20 +19,29 @@ public class AsyncPlayerDataLoader implements Listener
 	{
 		UUID uuid = e.getUniqueId();
 
-		// Building up the player's PlayerData object with data fetched from the database
+		/* Building up the player's PlayerData object with data fetched from the database */
+
 		PlayerData pd = new PlayerData(uuid);
 
+		// Fetches the player's points from the database, puts it into PlayerData pd
 		pd.setPoints(Queries.getPoints(uuid));
 		Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "Points: " + pd.getPoints());
 
+		// Fetches the player's is_herobrine value from the database, puts it into PlayerData pd
 		pd.setHerobrine(Queries.isHerobrine(uuid));
 		Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "IsHerobrine: " + pd.isHerobrine());
+		// Resets is_herobrine to false in the database, if it was true.
+		if (pd.isHerobrine())
+		{
+			Queries.setHerobrine(uuid, false);
+		}
 
+		// Fetches the player's chosen class from the database, puts it into PlayerData pd
 		pd.setActiveClass(ClassData.valueOf(Queries.getActiveClass(uuid)));
 		Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "Active Class: " + pd.getActiveClass().getName());
 
 
-		// Adding the PlayerData object to the main class's hashmap.
+		// Adds PlayerData pd to the main class's PlayerData hashmap.
 		if (Main.getInstance().playerDataMap.containsKey(uuid))
 		{
 			Main.getInstance().playerDataMap.replace(uuid, pd);

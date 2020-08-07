@@ -17,6 +17,8 @@ public class PlayerDeathListener implements Listener
         Player player = e.getEntity();
         PlayerData pd = Main.getInstance().playerDataMap.get(player.getUniqueId());
 
+        Main.arena.removeAllEffectsAndItems(player);
+
         e.setKeepLevel(true);
 
         if (!(pd.isHerobrine()))

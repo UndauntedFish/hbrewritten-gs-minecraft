@@ -25,6 +25,10 @@ public class Queries
                                         "FROM hbstats " +
                                         "WHERE uuid = ?";
 
+    private static String setHerobrine = "UPDATE hbstats " +
+                                         "SET is_herobrine = ? " +
+                                         "WHERE uuid = ?";
+
     // Gets the player's current amount of points from the database
     public static int getPoints(UUID uuid)
     {
@@ -75,7 +79,7 @@ public class Queries
         return null;
     }
 
-    // Returns the player's "is_herobrine" entry as is in the database.
+    // Returns the player's "is_herobrine" field as is in the database.
     // If it is true, that means the user used a herobrine pass.
     public static boolean isHerobrine(UUID uuid)
     {
@@ -98,5 +102,23 @@ public class Queries
             e.printStackTrace();
         }
         return false;
+    }
+
+    // Sets the player's "is_herobrine" field in the database to the inputted boolean value
+    public static void setHerobrine(UUID uuid, boolean value)
+    {
+        AsyncUpdate query = new AsyncUpdate(setHerobrine);
+
+        // puts 1 in the query if value is true, 0 otherwise
+        if (value)
+        {
+            query.setString(1, Integer.toString(1));
+        }
+        else
+        {
+            query.setString(1, Integer.toString(0));
+        }
+        query.setString(2, uuid.toString());
+        query.execute();
     }
 }
